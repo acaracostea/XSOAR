@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "Option 1,Option 2,Option 3",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "Training Custom Field Values",
+	"itemVersion": "",
+	"locked": false,
+	"name": "Training Custom Field Values",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
