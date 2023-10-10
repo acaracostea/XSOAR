@@ -1,0 +1,59 @@
+commonfields:
+  id: 6a7b0987-6175-42a5-86a5-cd3c9b529d27
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.30607
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: PostProcessing_Delete_MISP_Event
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  from typing import Dict, Any
+  import traceback
+
+  close_reason = demisto.args().get('closeReason')
+  #mispid = demisto.incident()["CustomFields"]["mispid"] if "mispid" in demisto.incident()["CustomFields"].keys() else 0
+  mispid = demisto.incident()["CustomFields"].get("mispid",0)
+
+  incidentID = demisto.incident().get("id", False)
+  if not close_reason:
+      return_error("Close Reason was not provided")
+  else:
+      if close_reason == "False Positive":
+          if mispid != 0:
+              demisto.executeCommand("misp-delete-event", { "event_id":mispid, "using":"MISP V3_instance_1"})
+              comment = "MISP event "+str(mispid)+" was deleted \n Reason: Incident closed as " + close_reason
+              note_entries: List = []
+              note_entries.append({
+                  'Type': EntryType.NOTE,
+                  'Category': 'Builtin',
+                  'Contents': comment,
+                  'ContentsFormat': 'markdown',
+                  'Tags': ['comments'],
+                  'Note': True,
+                  'EntryContext': {'Logbook': comment}
+                  })
+              demisto.executeCommand("addEntries", {"id": incidentID, "entries": note_entries})
+              status = '<p style="color:green">Successful</p>'
+              message = '<p style="color:green"> MISP Event '+str(mispid)+' was deleted. Incident closed as False Positive</p>'
+              demisto.executeCommand("setIncident",{"mispuploadmessage":message,"mispuploadstatus":status,"mispid":0,"mispeventtitle":"","mispurl":""})
+
+scripttarget: 0
+subtype: python3
+tags:
+- post-processing
+- AC
+type: python
