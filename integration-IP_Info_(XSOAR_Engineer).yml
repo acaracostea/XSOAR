@@ -1,0 +1,91 @@
+category: Utilities
+commonfields:
+  id: IP Info (XSOAR Engineer)
+  version: -1
+configuration:
+- additionalinfo: The API token from ipinfo.io
+  display: API Token
+  name: token
+  required: true
+  type: 4
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Queries IpInfo.io for information about an IP.   Use for training how
+  to write simple integrations.
+detaileddescription: |-
+  ### Community Contributed Integration
+   #### Integration Author: beauchompers
+   No support or maintenance is provided by the author. Customers are encouraged to engage with the user community for questions and guidance at the [Cortex XSOAR Live Discussions](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions).
+  ***
+  You need to register for a free account on ipinfo.io, and get yourself an access token!
+
+  [IpInfo.io](https://ipinfo.io/)
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/ip-info-xsoar-engineer)
+display: IP Info (XSOAR Engineer) (Community Contribution)
+image: data:image/png;base64,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
+name: IP Info (XSOAR Engineer)
+script:
+  commands:
+  - arguments:
+    - description: The IP address to lookup! (e.g. 8.8.8.8)
+      name: ip
+      required: true
+    description: Lookup an IP
+    name: xsoar-engineer-ipinfo
+    outputs:
+    - contextPath: IpInfo.ip
+      description: The IP Address
+    - contextPath: IpInfo.hostname
+      description: Hostname
+    - contextPath: IpInfo.org
+      description: Owner
+  dockerimage: demisto/python3:3.10.10.48392
+  runonce: false
+  script: |
+    register_module_line('IP Info (XSOAR Engineer)', 'start', __line__())
+
+
+    import requests
+    import urllib3
+    urllib3.disable_warnings()
+
+    def get_ipinfo_command(params, args):
+        token = params.get('token')
+        ip = args.get('ip')
+
+        res = requests.get(f"http://ipinfo.io/{ip}?token={token}")
+
+        readable = tableToMarkdown("IpInfo.io Results", res.json())
+        result = CommandResults(readable_output=readable,
+                                outputs_prefix="IpInfo",
+                                outputs=res.json())
+        return result
+
+    def main():
+        params = demisto.params()
+        args = demisto.args()
+        command = demisto.command()
+        LOG(f'Command being called is {command}')
+
+        if command == 'xsoar-engineer-ipinfo':
+            return_results(get_ipinfo_command(params, args))
+
+    if __name__ in ['__main__', 'builtin', 'builtins']:
+        main()
+
+    register_module_line('IP Info (XSOAR Engineer)', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
