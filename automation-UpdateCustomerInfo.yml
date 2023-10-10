@@ -1,0 +1,65 @@
+commonfields:
+  id: 1eaf710e-933e-427f-8a9f-d92cfb505550
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.11.57890
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UpdateCustomerInfo
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import json
+  fields = demisto.incident()
+
+  customer_name = fields['CustomFields']['customername'] if 'customername' in fields['CustomFields'].keys() else ""
+  customer_id = fields['CustomFields']['customerid'] if 'customerid' in fields['CustomFields'].keys() else ""
+  country_code = fields['CustomFields']['countrycode'] if 'countrycode' in fields['CustomFields'].keys() else ""
+  soc_service_id = fields['CustomFields']['socserviceid'] if 'socserviceid' in fields['CustomFields'].keys() else ""
+  customer_sla = fields['CustomFields']['customersla'] if 'customersla' in fields['CustomFields'].keys() else ""
+  telia_sales_contact = fields['CustomFields']['teliasalescontact'] if 'teliasalescontact' in fields['CustomFields'].keys() else ""
+
+  data = demisto.executeCommand("getList", { "listName": "CustomerInfo" })[0]['Contents']
+  data = json.loads(data)
+  CustomerInfo = []
+  count=0
+
+  for row in data:
+
+      if row['Customer Name'] == customer_name:
+          count=1
+          if country_code:
+              row['Country Code']=country_code
+          if soc_service_id:
+              row['SOC Service ID']=soc_service_id
+          if customer_sla:
+              row['Customer SLA']=customer_sla
+          if telia_sales_contact:
+              row['Telia Sales Contact']=telia_sales_contact
+
+      CustomerInfo.append(row)
+
+
+  if count==0:
+      CustomerInfo.append({'Customer Name':customer_name,'CustomerID':customer_id,'Country Code':country_code,'SOC Service ID':soc_service_id,'Customer SLA':customer_sla,'Telia Sales Contact':telia_sales_contact})
+
+  demisto.executeCommand("setList", { "listName": "CustomerInfo","listData": CustomerInfo})
+  return_results("CustomerInfo list updated")
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- incident-action-button
+type: python
