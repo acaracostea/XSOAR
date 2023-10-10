@@ -41,7 +41,7 @@ script: |+
   function convertObject(obj) {
       var res = {};
       Object.keys(obj).forEach(function(key) {
-          if (key == "url" || key == "IpAddress" || key == "processId" || key == "accountname"){
+          if (key == "url" || key == "ipAddress" || key == "processId" || key == "accountName"){
               res["value"] = obj[key];
           } else {
               res[stripToCliName(key)] = obj[key];
