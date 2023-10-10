@@ -1,0 +1,230 @@
+category: Utilities
+commonfields:
+  id: OpenWeatherMap (XSOAR Engineer)
+  version: -1
+configuration:
+- display: Open Weather Map API Key
+  name: apiKey
+  required: true
+  type: 4
+- defaultvalue: https://api.openweathermap.org/data
+  display: Base API URL
+  name: url
+  required: true
+  type: 0
+- defaultvalue: "2.5"
+  display: Open Weather Map API Version
+  name: apiVersion
+  required: true
+  type: 0
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This integration gets the current weather using the Open Weather Map
+  API.  Use for training how to write not-as-simple integrations.
+detaileddescription: |-
+  ### Community Contributed Integration
+   #### Integration Author: beauchompers
+   No support or maintenance is provided by the author. Customers are encouraged to engage with the user community for questions and guidance at the [Cortex XSOAR Live Discussions](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions).
+  ***
+  For this you need to signup for an API token at https://openweathermap.org/api
+
+  Add the token, get the weather!
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/open-weather-map-xsoar-engineer)
+display: OpenWeatherMap (XSOAR Engineer) (Community Contribution)
+image: data:image/png;base64,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
+name: OpenWeatherMap (XSOAR Engineer)
+script:
+  commands:
+  - arguments:
+    - description: Name of the City (example Calgary or San Francisco)
+      name: city
+      required: true
+    description: Retrieves the weather by provided city (where you wish you were)
+    name: openweather-by-city
+    outputs:
+    - contextPath: OpenWeather.CurrentWeather.City
+      description: city for the forecast
+    - contextPath: OpenWeather.CurrentWeather.Country
+      description: country code of the city
+    - contextPath: OpenWeather.CurrentWeather.Current Weather
+      description: current weather
+    - contextPath: OpenWeather.CurrentWeather.High
+      description: high temp forecasted
+    - contextPath: OpenWeather.CurrentWeather.Low
+      description: low temp forecasted
+  dockerimage: demisto/python3:3.10.10.48392
+  runonce: false
+  script: |
+    register_module_line('OpenWeatherMap (XSOAR Engineer)', 'start', __line__())
+
+
+    # This integration gets the current weather or weather forecast for a provided city.
+    # Example building a demisto integration to get started.
+    # Reference: https://xsoar.pan.dev/docs/integrations/code-conventions / https://xsoar.pan.dev/docs/tutorials/tut-integration-ui
+
+
+    class Client(BaseClient):
+        """
+        Client will implement the service API, should not contain Cortex XSOAR logic.
+        Inherits from the BaseClient in CommonServerPython, should only do requests and return data
+        """
+
+        def __init__(self, base_url, verify, proxy, apikey):
+            super().__init__(base_url=base_url, verify=verify, proxy=proxy)
+            self._apikey = apikey
+
+        def get_city_weather(self, city: str) -> Dict[str, Any]:
+            """
+            Gets the Weather of a city via the API endpoint:
+                api.openweathermap.org/data/2.5/weather?q={city}&appid={self._apikey}
+            :type city: ``str``
+
+            :return: dict containing the city weather from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            return self._http_request(
+                method='GET',
+                url_suffix=f'/weather?q={city}&APPID={self._apikey}'
+            )
+
+
+    ''' HELPER FUNCTIONS '''
+
+
+    def kelvin_to_celsius(K):
+        """
+        Function to convert temperature from degree kevlin to celsius
+        """
+
+        temp = K - 273.15
+        return round(temp)
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def get_weather_by_city_command(client, args):
+        """
+        Gets the current weather for the provided city
+        """
+
+        # get the city, send it to lower case.
+        city = args.get("city").lower()
+
+        # get the weather for the city
+        weather = client.get_city_weather(city)
+
+        # return the full json object to war room for debugging
+        # print(weather)
+
+        # Lets make things pretty, and pull out the data we want.
+        # These also become the Outputs of this command
+        pretty_weather = {
+            "City": weather.get("name"),
+            "Country": weather.get("sys").get("country"),
+            "Current Weather": weather.get("weather")[0].get("description"),
+            "High": kelvin_to_celsius(weather.get("main").get("temp_max")),
+            "Low": kelvin_to_celsius(weather.get("main").get("temp_min"))
+        }
+
+        # tableToMarkdown is useful for creating a readable war room entry
+        readable = tableToMarkdown(f"Weather for {pretty_weather.get('City')},{pretty_weather.get('Country')}", pretty_weather, headers=[
+                                   'City', 'Country', 'Current Weather', 'High', 'Low'])
+
+        # Return results, both the human readable, and the context outputs
+        results = CommandResults(
+            readable_output=readable,
+            outputs_prefix=f'OpenWeather.CurrentWeather',
+            outputs_key_field='City',
+            outputs=pretty_weather
+        )
+
+        return results
+
+
+    def test_module(client):
+        """
+        This call is made when pressing the integration test button.
+        Validate we can get the weather for Calgary from the API.
+        """
+
+        res = client.get_city_weather(city="Calgary")
+        if res.get('name') == "Calgary":
+            return 'ok'
+        else:
+            return_error(res)
+
+
+    ''' EXECUTION '''
+
+
+    def main():
+        """
+        Main function, grabs both the integration params and arguments.
+        Initializes our Class to handle the API calls, and returns results
+        """
+
+        # Params - You can use demisto.params().get('paramName') to get a specific params.
+        # Params are of the type given in the integration page creation.
+        apikey = demisto.params().get("apiKey")
+        apiversion = demisto.params().get("apiVersion")
+
+        # Args - You can use demisto.args() to get the arguments passed the command
+        args = demisto.args()
+
+        # Remove trailing slash to prevent wrong URL path to service
+        base_url = urljoin(demisto.params().get("url"), f"/{apiversion}")
+
+        verify_certificate = not demisto.params().get('insecure', False)
+        proxy = demisto.params().get('proxy', False)
+
+        # Command and Conquer
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                proxy=proxy,
+                apikey=apikey)
+
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                result = test_module(client)
+                return_results(result)
+
+            elif demisto.command() == 'openweather-by-city':
+                return_results(get_weather_by_city_command(client, args))
+
+        # Log exceptions
+        except Exception as e:
+            return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('OpenWeatherMap (XSOAR Engineer)', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
