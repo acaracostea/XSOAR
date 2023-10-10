@@ -1,0 +1,40 @@
+comment: Dynamic Section that displays a markdown list based on the Tab.
+commonfields:
+  id: XETCustomIndicators
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.10.48392
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: XETCustomIndicators
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('XETCustomIndicators', 'start', __line__())
+
+
+  list_name = "XETCustomIndicators"
+  markdown = demisto.executeCommand("getList", {"listName": list_name})[0]['Contents']
+  return_results(CommandResults(readable_output=markdown))
+
+  register_module_line('XETCustomIndicators', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- xet
+- dynamic-section
+type: python
