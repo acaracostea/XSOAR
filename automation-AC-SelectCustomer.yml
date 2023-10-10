@@ -1,0 +1,38 @@
+comment: Changes values available in the Types field based on the Category.
+commonfields:
+  id: 3e2927c3-dab7-436e-8416-600ce7f847b2
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.27798
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AC-SelectCustomer
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  import json
+  data = demisto.executeCommand("getList", { "listName": "CustomerInfo" })[0]['Contents']
+  data = json.loads(data)
+  customer_list = []
+  for row in data:
+      customer_list.append(row['Customer Name'])
+  demisto.results({'hidden': False, 'options': customer_list})
+
+scripttarget: 0
+subtype: python3
+tags:
+- field-display
+- AC
+type: python
