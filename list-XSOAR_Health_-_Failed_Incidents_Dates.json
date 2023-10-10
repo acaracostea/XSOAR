@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "2023-07-12T14:44:56.405666759+02:00,2023-07-12T14:44:56.470589072+02:00,2023-07-12T14:45:56.342955125+02:00,2023-07-12T14:45:56.40369632+02:00,2023-07-12T14:45:56.464791942+02:00,2023-07-12T14:45:56.518760046+02:00,2023-07-12T14:45:56.579160863+02:00,2023-07-17T12:15:56.389053544+02:00,2023-07-17T12:16:56.300913765+02:00,2023-07-20T12:20:56.582950646+02:00,2023-07-20T12:20:56.442854846+02:00,2023-09-08T13:08:02.269492907+02:00,2023-09-12T13:57:54.68960014+02:00",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Failed Incidents Dates",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Failed Incidents Dates",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
