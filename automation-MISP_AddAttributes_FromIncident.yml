@@ -1,0 +1,318 @@
+commonfields:
+  id: ba0bcd3c-ff37-46df-8312-277be99d3592
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: MISP_AddAttributes_FromIncident
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  # Python template - reading arguments, calling a command, handling errors and returning results
+  import copy
+  import datetime
+  import re
+
+  mispSeverityTag = {
+      0: '-P3_Low-',
+      1: '-P3_Low-',
+      2: '-P2_Medium-',
+      3: '-P1_High-',
+      4: '-P0_Critical-'
+  }
+
+  mispSeverity = {
+      1: "Low",
+      2: "Medium",
+      3: "High",
+      4: "High"
+  }
+
+
+
+  attribute_dict_default = {
+      "Date":"",
+      "Category":"",
+      "Type":"",
+      "Value":"",
+      "Comment":"",
+      "Harmful":False,
+      "Select":False,
+      "AttributeID":"",
+      "AttributeUUID":""
+  }
+
+  status_dict = {
+      "Status":"",
+      "Message":""
+  }
+
+  fields = demisto.incident()
+  event_info = fields["name"]
+  context = demisto.context()
+  attribute_list = []
+  #error = ''
+  errors = []
+
+
+
+  if "incidentindicators" in fields["CustomFields"].keys():
+      severity = demisto.gets(fields, 'severity')
+      if "mispeventtags" in fields["CustomFields"].keys():
+          tags = fields["CustomFields"]["mispeventtags"]
+      else:
+          tags = []
+      automatedTags = ['-INC-', 'XSOAR ID '+str(fields["id"]) ,mispSeverityTag.get(int(severity))]
+      print(automatedTags)
+      indicator_list= fields["CustomFields"]["incidentindicators"]
+      event_id = fields["CustomFields"]["mispid"] if "mispid" in fields["CustomFields"].keys() else ""
+
+      if isinstance(indicator_list,list):
+          for indicator in indicator_list:
+              if "category" and "type" and "value" in indicator:
+                  get_indicators = True
+              else:
+                  get_indicators = False
+      elif isinstance(indicator_list,dict):
+          if "category" and "type" and "value" in indicator_list:
+
+              get_indicators = True
+          else:
+              get_indicators = False
+
+
+
+      if isinstance(indicator_list,list) and get_indicators:
+
+          for indicator in indicator_list:
+              category = indicator["category"]
+              attrtype = indicator["type"]
+              value = indicator["value"]
+              comment = indicator["comment"] if "comment" in indicator.keys() else ""
+              harmful = indicator["harmful"] if "harmful" in indicator.keys() else False
+              select = indicator["select"] if "select" in indicator.keys() else False
+              if select:
+                  if event_id:
+                      #event_id = fields["CustomFields"]["mispid"]
+                      res_search_value = demisto.executeCommand("misp-search-attributes", { "event_id":event_id, "value":value, "using":"MISP V3_instance_1"})
+
+                      if not (res_search_value[0]["Type"] == entryTypes["error"]):
+                          if res_search_value[0]['Contents']['Attribute']:
+                              continue
+                          else:
+                              if harmful and attrtype == "ip-src":
+                                  valid = re.search("^(?:10\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){3})|(?:172\.(?:1[6-9]|2[0-9]|3[0-1])\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})|(?:192\.168\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})|(?:100\.(?:6[4-9]|[7-9][0-9]|1[0-2][0-7])\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})$", value)
+                                  if valid:
+                                      errors.append("Indicator "+str(value)+" was not uploaded.Private IP Address marked as Harmful - please reconsider. Contact Cortex XSOAR Administrator team members in case such a scenario is necessary to occur")
+                                  else:
+                                      res = demisto.executeCommand("misp-add-attribute", { "event_id":event_id, "value":value, "category":category, "comment":comment, "distribution":"This_community_only", "to_ids":harmful, "type":attrtype, "using":"MISP V3_instance_1"})
+                                      if (res[0]["Type"] == entryTypes["error"]):
+                                          errors.append("Indicator "+str(value)+" was not uploaded."+str(res_search_value[0]["Contents"]))
+                              else:
+                                  res = demisto.executeCommand("misp-add-attribute", { "event_id":event_id, "value":value, "category":category, "comment":comment, "distribution":"This_community_only", "to_ids":harmful, "type":attrtype, "using":"MISP V3_instance_1"})
+                                  if (res[0]["Type"] == entryTypes["error"]):
+                                      errors.append("Indicator "+str(value)+" was not uploaded."+str(res_search_value[0]["Contents"]))
+                      else:
+                          errors.append("Indicator "+str(value)+" was not uploaded."+str(res_search_value[0]["Contents"]))
+                  else:
+                      if harmful and attrtype == "ip-src":
+                          valid = re.search("^(?:10\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){3})|(?:172\.(?:1[6-9]|2[0-9]|3[0-1])\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})|(?:192\.168\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})|(?:100\.(?:6[4-9]|[7-9][0-9]|1[0-2][0-7])\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})$", value)
+                          if valid:
+                              errors.append("Indicator "+str(value)+" was not uploaded.Private IP Address marked as Harmful - please reconsider. Contact Cortex XSOAR Administrator team members in case such a scenario is necessary to occur")
+                          else:
+                              create_event = demisto.executeCommand("misp-create-event",{"info":event_info,"value":value,"category":category,"distribution":"This_community_only",'threat_level_id' : mispSeverity.get(int(severity), "Unknown"),"to_ids":harmful,"type":attrtype,"comment":comment, "using":"MISP V3_instance_1"})
+                              if not (create_event[0]["Type"] == entryTypes["error"]):
+                                  event_id = create_event[0]['Contents'][0]['Event']['id']
+                                  event_uuid = create_event[0]['Contents'][0]['Event']['uuid']
+                                  if tags and isinstance(tags, list):
+                                      tags = automatedTags + list(set(tags)-set(automatedTags))
+                                  else:
+                                      tags = automatedTags
+                                  for tag in tags:
+                                      demisto.executeCommand("misp-add-tag-to-event", {'uuid' : event_uuid, 'tag' : tag, "using":"MISP V3_instance_1"})
+                                  demisto.executeCommand('setIncident', {'mispeventtags' : ','.join(tags)})
+                                  demisto.executeCommand("setIncident",{"mispid":create_event[0]['Contents'][0]['Event']['id'],"mispeventtitle":create_event[0]['Contents'][0]['Event']['info'],"mispurl":'<a href="https://192.168.50.84/events/view/'+str(create_event[0]['Contents'][0]['Event']['id'])+'">https://192.168.50.84/events/view/'+str(create_event[0]['Contents'][0]['Event']['id'])+'</a>'})
+                              else:
+                                  errors.append("Event not created."+str(create_event[0]["Contents"]))
+
+                      else:
+                          create_event = demisto.executeCommand("misp-create-event",{"info":event_info,"value":value,"category":category,"distribution":"This_community_only",'threat_level_id' : mispSeverity.get(int(severity), "Unknown"),"to_ids":harmful,"type":attrtype,"comment":comment, "using":"MISP V3_instance_1"})
+                          if not (create_event[0]["Type"] == entryTypes["error"]):
+                              event_id = create_event[0]['Contents'][0]['Event']['id']
+                              event_uuid = create_event[0]['Contents'][0]['Event']['uuid']
+                              if tags and isinstance(tags, list):
+                                  tags = automatedTags + list(set(tags)-set(automatedTags))
+                              else:
+                                  tags = automatedTags
+                              for tag in tags:
+                                  demisto.executeCommand("misp-add-tag-to-event", {'uuid' : event_uuid, 'tag' : tag, "using":"MISP V3_instance_1"})
+                              demisto.executeCommand('setIncident', {'mispeventtags' : ','.join(tags)})
+                              demisto.executeCommand("setIncident",{"mispid":create_event[0]['Contents'][0]['Event']['id'],"mispeventtitle":create_event[0]['Contents'][0]['Event']['info'],"mispurl":'<a href="https://192.168.50.84/events/view/'+str(create_event[0]['Contents'][0]['Event']['id'])+'">https://192.168.50.84/events/view/'+str(create_event[0]['Contents'][0]['Event']['id'])+'</a>'})
+                          else:
+                              errors.append("Event not created."+str(create_event[0]["Contents"]))
+          demisto.executeCommand("GetIncidentIndicator_error_handling", {})
+          if event_id:
+              demisto.executeCommand("misp-publish-event", {"event_id" : event_id, "Using":"MISP V3_custom commands_instance_1"})
+              res_search_attributes = demisto.executeCommand("misp-search-attributes", {'event_id' : event_id, "using":"MISP V3_instance_1"})
+              if not(res_search_attributes[0]["Type"] == entryTypes["error"]):
+                  attributes_list_misp = res_search_attributes[0]["Contents"]["Attribute"]
+                  if isinstance(attributes_list_misp,list):
+                      for attr in attributes_list_misp:
+                          attribute = copy.deepcopy(attribute_dict_default)
+                          attribute["Date"] = datetime.datetime.fromtimestamp(int(attr["timestamp"])).strftime('%Y-%m-%d %H:%M:%S')
+                          attribute["Category"] = attr["category"]
+                          attribute["Type"] = attr["type"]
+                          attribute["Value"] = attr["value"]
+                          attribute["Comment"] = attr["comment"]
+                          attribute["Harmful"] = True if attr["to_ids"] else False
+                          attribute["AttributeID"] = attr["id"]
+                          attribute["AttributeUUID"] = attr["uuid"]
+                          attribute_list.append(attribute)
+
+                  demisto.setContext("MispGridField", attribute_list)
+                  demisto.executeCommand("SetGridField", {"columns" : "Select,Date,Category,Type,Value,Comment,Harmful,AttributeID,AttributeUUID", "context_path": "MispGridField", "grid_id": "mispattributesv2", "keys":"Select,Date,Category,Type,Value,Comment,Harmful,AttributeID,AttributeUUID"})
+
+              else:
+                  errors.append(str(res_search_attributes[0]["Contents"]))
+          if not errors:
+              status_dict["Status"] = '<p style="color:green">Success</p>'
+              status_dict["Message"] = '<p style="color:green">Attribute uploaded to MISP Event</p>'
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("All selected indicators were uploaded")
+          else:
+              error_message = ""
+              for error in errors:
+                  error_message = error_message+'<p style="color:red">'+error+'</p>'
+
+              status_dict["Status"] = '<p style="color:red">Error</p>'
+              status_dict["Message"] = error_message
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("\n".join(errors))
+
+
+      elif isinstance(indicator_list,dict) and get_indicators:
+
+          category = indicator_list["category"]
+          attrtype = indicator_list["type"]
+          value = indicator_list["value"]
+          comment = indicator_list["comment"] if "comment" in indicator_list.keys() else ""
+          harmful = indicator_list["harmful"] if "harmful" in indicator_list.keys() else False
+          select = indicator_list["select"] if "select" in indicator_list.keys() else False
+          if select:
+              if event_id:
+                  #event_id = fields["CustomFields"]["mispid"]
+                  res_search_value = demisto.executeCommand("misp-search-attributes", { "event_id":event_id, "value":value, "using":"MISP V3_instance_1"})
+                  if not (res_search_value[0]["Type"] == entryTypes["error"]):
+                      if res_search_value[0]['Contents']['Attribute']:
+                          return_results("Already added to MISP")
+                      else:
+                          if harmful and attrtype == "ip-src":
+                              valid = re.search("^(?:10\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){3})|(?:172\.(?:1[6-9]|2[0-9]|3[0-1])\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})|(?:192\.168\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})|(?:100\.(?:6[4-9]|[7-9][0-9]|1[0-2][0-7])\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})$", value)
+                              if valid:
+                                  errors.append("Indicator "+str(value)+" was not uploaded.Private IP Address marked as Harmful - please reconsider. Contact Cortex XSOAR Administrator team members in case such a scenario is necessary to occur")
+                              else:
+                                  res = demisto.executeCommand("misp-add-attribute", { "event_id":event_id, "value":value, "category":category, "comment":comment, "distribution":"This_community_only", "to_ids":harmful, "type":attrtype, "using":"MISP V3_instance_1"})
+                                  if (res[0]["Type"] == entryTypes["error"]):
+                                      errors.append(str(res[0]["Contents"]))
+                          else:
+                              res = demisto.executeCommand("misp-add-attribute", { "event_id":event_id, "value":value, "category":category, "comment":comment, "distribution":"This_community_only", "to_ids":harmful, "type":attrtype, "using":"MISP V3_instance_1"})
+                              if (res[0]["Type"] == entryTypes["error"]):
+                                  errors.append(str(res[0]["Contents"]))
+
+                  else:
+                      errors.append(str(create_event[0]["Contents"]))
+              else:
+                  if harmful and attrtype == "ip-src":
+                      valid = re.search("^(?:10\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){3})|(?:172\.(?:1[6-9]|2[0-9]|3[0-1])\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})|(?:192\.168\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})|(?:100\.(?:6[4-9]|[7-9][0-9]|1[0-2][0-7])\.(?:(?:25[0-5]|2[0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]?)(?:\.|$)){2})$", value)
+                      if valid:
+                          errors.append("Indicator "+str(value)+" was not uploaded.Private IP Address marked as Harmful - please reconsider. Contact Cortex XSOAR Administrator team members in case such a scenario is necessary to occur")
+                      else:
+                          create_event = demisto.executeCommand("misp-create-event",{"info":event_info,"value":value,"category":category,"distribution":"This_community_only",'threat_level_id' : mispSeverity.get(int(severity), "Unknown"),"to_ids":harmful,"type":attrtype,"comment":comment,"using":"MISP V3_instance_1"})
+                          if not (create_event[0]["Type"] == entryTypes["error"]):
+                              event_id = create_event[0]['Contents'][0]['Event']['id']
+                              event_uuid = create_event[0]['Contents'][0]['Event']['uuid']
+                              if tags and isinstance(tags, list):
+                                  tags = automatedTags + list(set(tags)-set(automatedTags))
+                              else:
+                                  tags = automatedTags
+                              for tag in tags:
+                                  demisto.executeCommand("misp-add-tag-to-event", {'uuid' : event_uuid, 'tag' : tag, "using":"MISP V3_instance_1"})
+                              demisto.executeCommand('setIncident', {'mispeventtags' : ','.join(tags)})
+                              demisto.executeCommand("setIncident",{"mispid":create_event[0]['Contents'][0]['Event']['id'],"mispeventtitle":create_event[0]['Contents'][0]['Event']['info']})
+
+                  else:
+                      create_event = demisto.executeCommand("misp-create-event",{"info":event_info,"value":value,"category":category,"distribution":"This_community_only",'threat_level_id' : mispSeverity.get(int(severity), "Unknown"),"to_ids":harmful,"type":attrtype,"comment":comment,"using":"MISP V3_instance_1"})
+                      if not (create_event[0]["Type"] == entryTypes["error"]):
+                          event_id = create_event[0]['Contents'][0]['Event']['id']
+                          event_uuid = create_event[0]['Contents'][0]['Event']['uuid']
+                          if tags and isinstance(tags, list):
+                              tags = automatedTags + list(set(tags)-set(automatedTags))
+                          else:
+                              tags = automatedTags
+                          for tag in tags:
+                              demisto.executeCommand("misp-add-tag-to-event", {'uuid' : event_uuid, 'tag' : tag, "using":"MISP V3_instance_1"})
+                          demisto.executeCommand('setIncident', {'mispeventtags' : ','.join(tags)})
+                          demisto.executeCommand("setIncident",{"mispid":create_event[0]['Contents'][0]['Event']['id'],"mispeventtitle":create_event[0]['Contents'][0]['Event']['info']})
+
+          demisto.executeCommand("GetIncidentIndicator_error_handling", {})
+          if event_id:
+              demisto.executeCommand("misp-publish-event", {"event_id" : event_id, "Using":"MISP V3_custom commands_instance_1"})
+              res_search_attributes = demisto.executeCommand("misp-search-attributes", {'event_id' : event_id, "using":"MISP V3_instance_1"})
+              attributes_list_misp = res_search_attributes[0]["Contents"]["Attribute"]
+              if not (create_event[0]["Type"] == entryTypes["error"]):
+                  if isinstance(attributes_list_misp,list):
+                      for attr in attributes_list_misp:
+                          attribute = copy.deepcopy(attribute_dict_default)
+                          attribute["Date"] = datetime.datetime.fromtimestamp(int(attr["timestamp"])).strftime('%Y-%m-%d %H:%M:%S')
+                          attribute["Category"] = attr["category"]
+                          attribute["Type"] = attr["type"]
+                          attribute["Value"] = attr["value"]
+                          attribute["Comment"] = attr["comment"]
+                          attribute["Harmful"] = True if attr["to_ids"] else False
+                          attribute["AttributeID"] = attr["id"]
+                          attribute["AttributeUUID"] = attr["uuid"]
+                          attribute_list.append(attribute)
+
+                  demisto.setContext("MispGridField", attribute_list)
+                  demisto.executeCommand("SetGridField", {"columns" : "Select,Date,Category,Type,Value,Comment,Harmful,AttributeID,AttributeUUID", "context_path": "MispGridField", "grid_id": "mispattributesv2", "keys":"Select,Date,Category,Type,Value,Comment,Harmful,AttributeID,AttributeUUID"})
+              else:
+                  errors.append(str(res_search_attributes[0]["Contents"]))
+
+          if not errors:
+              status_dict["Status"] = '<p style="color:green">Success</p>'
+              status_dict["Message"] = '<p style="color:green">Attribute uploaded to MISP Event</p>'
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("All selected indicators were uploaded")
+          else:
+              error_message = ""
+              for error in errors:
+                  error_message = error_message+'<p style="color:red">'+error+'</p>'
+
+              status_dict["Status"] = '<p style="color:red">Error</p>'
+              status_dict["Message"] = error_message
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("\n".join(errors))
+      else:
+          return_results("Please verify that the indicators were returned in the table and SELECT the indicators that needs to be uploaded")
+
+
+  else:
+      return_results("There are no indicators selected.")
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+type: python
