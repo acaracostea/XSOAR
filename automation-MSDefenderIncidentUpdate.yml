@@ -1,0 +1,45 @@
+commonfields:
+  id: 77f1035a-6ca0-4cb3-8351-1480e0ff47e3
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.10.48392
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: MSDefenderIncidentUpdate
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  args = demisto.args()
+  instance = args['using']
+  fields = demisto.incident()
+  inc_id = fields["CustomFields"]['microsoft365defenderid']
+  xsoar_id =fields["id"]
+
+  inc_context = demisto.executeCommand('microsoft-365-defender-incident-get', {'id':inc_id,'using':instance})[0]['Contents']
+
+  if not inc_context['alerts']:
+      res=demisto.executeCommand('demisto-delete-incidents', {'ids':xsoar_id})
+      return_results('Completed')
+  else:
+      return_results('Completed')
+
+
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- Telia
+- MS Defender
+type: python
