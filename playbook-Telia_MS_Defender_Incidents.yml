@@ -1,0 +1,134 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: df923d3a-4f95-4269-81c9-32476ff663ff
+inputs: []
+name: Telia MS Defender Incidents
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a8e778f7-4c0e-4eb5-8bd7-29314710579c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: a8e778f7-4c0e-4eb5-8bd7-29314710579c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      builtincondition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.status
+          operator: isEqualString
+          right:
+            value:
+              simple: Closed
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 600
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ff8f9b5b-7aed-4af5-8b8c-31c4231d4db9
+      iscommand: false
+      name: Telia Link MS Defender Alerts to Incidents
+      playbookId: 8b4dfd8f-1664-4a18-8361-b169860b1612
+      type: playbook
+      version: -1
+    taskid: ff8f9b5b-7aed-4af5-8b8c-31c4231d4db9
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 280
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      name:
+        simple: ${incident.microsoft365defenderdisplayname}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 5f2dba91-0689-4aa9-8cf6-f9465dba55eb
+      iscommand: true
+      name: Set Incident Name
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 5f2dba91-0689-4aa9-8cf6-f9465dba55eb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 280
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 325,
+        "width": 850,
+        "x": -20,
+        "y": 50
+      }
+    }
+  }
