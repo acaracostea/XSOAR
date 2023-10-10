@@ -1,0 +1,96 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.7.2
+    packID: RecordedFuture
+    packName: Recorded Future Intelligence
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: A default playbook to fetch details of Playbook alert that does not yet
+  have mapping made by Recorded Future
+id: Recorded Future Playbook Alert Details
+inputs: []
+name: Recorded Future Playbook Alert Details
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Playbook Triggered
+      id: 05a84883-71da-45c9-81db-5f5cbcba9a21
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 05a84883-71da-45c9-81db-5f5cbcba9a21
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: true
+    quietmode: 0
+    scriptarguments:
+      alert_ids:
+        simple: ${incident.labels.playbook_alert_id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: RecordedFuturePlaybookAlerts
+      description: Get Playbook alert details by id.
+      id: 909c3c54-d3ad-427f-827a-96c671a95f69
+      iscommand: true
+      name: Get Alerts Details
+      script: RecordedFuturePlaybookAlerts|||recordedfuture-playbook-alerts-details
+      type: regular
+      version: -1
+    taskid: 909c3c54-d3ad-427f-827a-96c671a95f69
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 275,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
