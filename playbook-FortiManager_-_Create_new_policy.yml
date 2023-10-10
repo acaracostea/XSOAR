@@ -1,0 +1,320 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 42deab14-2977-4da3-820b-170d2d4431f0
+inputs: []
+name: FortiManager - Create new policy
+outputs: []
+quiet: true
+sourceplaybookid: d6e759a9-0756-4bac-86a5-6e367e376b6f
+starttaskid: "0"
+tags:
+- AC
+- Firewall Change
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5d865eca-3753-40c7-8307-8388047cc9c6
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 5d865eca-3753-40c7-8307-8388047cc9c6
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 2
+    reputationcalc: 1
+    scriptarguments:
+      adom:
+        simple: ${incident.adom}
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      id: 3b5fcc2e-5c11-4072-84b1-c8b5a1b59d42
+      iscommand: true
+      name: Fortimanager Lock ADOM
+      script: FortiManager_copy_copy|||fortimanager-lock-adom
+      type: regular
+      version: -1
+    taskid: 3b5fcc2e-5c11-4072-84b1-c8b5a1b59d42
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 200
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 2
+    reputationcalc: 1
+    scriptarguments:
+      adom:
+        simple: ${incident.adom}
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      id: 4f69cd85-a246-4002-8290-0c479f395775
+      iscommand: true
+      name: Fortimanager Commit
+      script: FortiManager_copy_copy|||fortimanager-save-adom-command
+      type: regular
+      version: -1
+    taskid: 4f69cd85-a246-4002-8290-0c479f395775
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 570
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 2
+    reputationcalc: 1
+    scriptarguments:
+      adom:
+        simple: ${incident.adom}
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      id: ef11f07a-b453-4e17-8bd8-45054f95bbcd
+      iscommand: true
+      name: Fortimanager Unlock ADOM
+      script: FortiManager_copy_copy|||fortimanager-unlock-adom
+      type: regular
+      version: -1
+    taskid: ef11f07a-b453-4e17-8bd8-45054f95bbcd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 720
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 2
+    reputationcalc: 1
+    scriptarguments:
+      action:
+        simple: ${incident.policyaction}
+      adom:
+        simple: ${incident.adom}
+      comments:
+        simple: ${incident.comment}
+      dstaddr:
+        simple: ${incident.destinationaddress}
+      dstintf:
+        simple: ${incident.destinationinterface}
+      name:
+        simple: ${incident.policyname}
+      package:
+        simple: ${incident.package}
+      srcaddr:
+        simple: ${incident.sourceaddress}
+      srcintf:
+        simple: ${incident.sourceinterface}
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      description: Create a firewall policy.
+      id: d79183a7-3432-41af-8d03-55bc9c5bcebe
+      iscommand: true
+      name: fortimanager-firewall-policy-create
+      script: FortiManager_copy_copy|||fortimanager-firewall-policy-create
+      type: regular
+      version: -1
+    taskid: d79183a7-3432-41af-8d03-55bc9c5bcebe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 370
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      change:
+        simple: Create
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cbe275e5-3ead-44a2-83fc-73d988938bef
+      iscommand: false
+      name: Log Policy Change
+      script: fcd51dba-a75b-47b2-85cf-e4bef2d3363a
+      type: regular
+      version: -1
+    taskid: cbe275e5-3ead-44a2-83fc-73d988938bef
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 880
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 2
+    reputationcalc: 1
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4a933399-0705-4201-8b96-5c7caf8f9746
+      iscommand: false
+      name: Create New Policy
+      script: f42753cd-a657-4405-8dbb-b23e1d2c8d65
+      type: regular
+      version: -1
+    taskid: 4a933399-0705-4201-8b96-5c7caf8f9746
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 380
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3e9e3939-07ce-4861-849b-e97c4de845ee
+      iscommand: false
+      name: DisplayPolicy
+      script: 206a1467-96d1-407d-8cde-e1921ea4e59c
+      type: regular
+      version: -1
+    taskid: 3e9e3939-07ce-4861-849b-e97c4de845ee
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1060
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1105,
+        "width": 840,
+        "x": -10,
+        "y": 50
+      }
+    }
+  }
