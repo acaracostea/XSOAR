@@ -1,0 +1,703 @@
+{
+	"cacheVersn": 0,
+	"close": null,
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "summary",
+				"name": "Legacy Summary",
+				"type": "summary"
+			},
+			{
+				"id": "caseinfoid",
+				"name": "Incident Info",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "type",
+								"height": 22,
+								"id": "incident-type-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "severity",
+								"height": 22,
+								"id": "incident-severity-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "owner",
+								"height": 22,
+								"id": "incident-owner-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "sourcebrand",
+								"height": 22,
+								"id": "incident-sourceBrand-field",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "sourceinstance",
+								"height": 22,
+								"id": "incident-sourceInstance-field",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "playbookid",
+								"height": 22,
+								"id": "incident-playbookId-field",
+								"index": 6,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"name": "Case Details",
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"h": 2,
+						"i": "caseinfoid-61263cc0-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxW": 3,
+						"minH": 1,
+						"name": "Notes",
+						"type": "notes",
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-6aabad20-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxW": 3,
+						"minH": 1,
+						"name": "Work Plan",
+						"type": "workplan",
+						"w": 1,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-770ec200-98b1-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"maxW": 3,
+						"minH": 1,
+						"name": "Linked Incidents",
+						"type": "linkedIncidents",
+						"w": 1,
+						"x": 1,
+						"y": 6
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-842632c0-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxW": 3,
+						"minH": 1,
+						"name": "Child Incidents",
+						"type": "childInv",
+						"w": 1,
+						"x": 2,
+						"y": 4
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-4a31afa0-98ba-11e9-a519-93a53c759fe0",
+						"maxW": 3,
+						"minH": 1,
+						"name": "Evidence",
+						"type": "evidence",
+						"w": 1,
+						"x": 2,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-7717e580-9bed-11e9-9a3f-8b4b2158e260",
+						"maxW": 3,
+						"minH": 1,
+						"name": "Team Members",
+						"type": "team",
+						"w": 1,
+						"x": 2,
+						"y": 6
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-7ce69dd0-a07f-11e9-936c-5395a1acf11e",
+						"maxW": 3,
+						"minH": 1,
+						"name": "Indicators",
+						"query": "",
+						"queryType": "input",
+						"type": "indicators",
+						"w": 2,
+						"x": 0,
+						"y": 4
+					},
+					{
+						"displayType": "CARD",
+						"h": 2,
+						"i": "caseinfoid-ac32f620-a0b0-11e9-b27f-13ae1773d289",
+						"items": [
+							{
+								"endCol": 1,
+								"fieldId": "occurred",
+								"height": 22,
+								"id": "incident-occurred-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 1,
+								"fieldId": "dbotmodified",
+								"height": 22,
+								"id": "incident-modified-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotduedate",
+								"height": 22,
+								"id": "incident-dueDate-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotcreated",
+								"height": 22,
+								"id": "incident-created-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 1
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotclosed",
+								"height": 22,
+								"id": "incident-closed-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 1
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"name": "Timeline Information",
+						"w": 1,
+						"x": 0,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-88e6bf70-a0b1-11e9-b27f-13ae1773d289",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "dbotclosed",
+								"height": 22,
+								"id": "incident-dbotClosed-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "closereason",
+								"height": 22,
+								"id": "incident-closeReason-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "closenotes",
+								"height": 22,
+								"id": "incident-closeNotes-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"name": "Closing Information",
+						"w": 1,
+						"x": 0,
+						"y": 6
+					},
+					{
+						"displayType": "CARD",
+						"h": 2,
+						"i": "caseinfoid-e54b1770-a0b1-11e9-b27f-13ae1773d289",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "details",
+								"height": 22,
+								"id": "incident-details-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"name": "Investigation Data",
+						"w": 1,
+						"x": 1,
+						"y": 2
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "nvlckvdkrt",
+				"name": "Alert Details",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": true,
+						"i": "caseinfoid-nvlckvdkrt-caseinfoid-nvlckvdkrt-field-changed-nvlckvdkrt-caseinfoid-340d4310-4d79-11ee-a34a-f1db036a2115",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "alerttime",
+								"height": 22,
+								"id": "40c92650-4d79-11ee-a34a-f1db036a2115",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "alertid",
+								"height": 22,
+								"id": "465018e0-4d79-11ee-a34a-f1db036a2115",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "subject",
+								"height": 22,
+								"id": "4ca298d0-4d79-11ee-a34a-f1db036a2115",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "tags",
+								"height": 22,
+								"id": "61979650-4d79-11ee-a34a-f1db036a2115",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "description",
+								"height": 22,
+								"id": "69e54a00-4d79-11ee-a34a-f1db036a2115",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "severity",
+								"height": 22,
+								"id": "516bc430-4d7a-11ee-a34a-f1db036a2115",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "New Section",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": true,
+						"i": "caseinfoid-nvlckvdkrt-caseinfoid-nvlckvdkrt-field-changed-nvlckvdkrt-caseinfoid-78894e30-4d79-11ee-a34a-f1db036a2115",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "devname",
+								"height": 22,
+								"id": "9f3953e0-4d79-11ee-a34a-f1db036a2115",
+								"index": 0,
+								"listId": "caseinfoid-78894e30-4d79-11ee-a34a-f1db036a2115",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "devtype",
+								"height": 22,
+								"id": "b4ccdb50-4d79-11ee-a34a-f1db036a2115",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "devid",
+								"height": 22,
+								"id": "bae47520-4d79-11ee-a34a-f1db036a2115",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "vdom",
+								"height": 22,
+								"id": "e937e4c0-4d79-11ee-a34a-f1db036a2115",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {
+									"alertid": {
+										"simple": "${incident.alertid}"
+									}
+								},
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "2e2a7e70-4d85-11ee-810f-ef59eb997d1d",
+								"index": 4,
+								"name": "Get Events",
+								"scriptId": "222c60d7-c30c-4818-8d1c-a1101a9d24cf",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
+								"args": {
+									"name": {
+										"simple": "FAZ - Extract indicator from events"
+									}
+								},
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "ecc65780-4dcd-11ee-b42a-817d67b9450f",
+								"index": 5,
+								"name": "Extract Indicators from events",
+								"scriptId": "11c1fbcb-28a4-4f98-8559-be5ba73040a0",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
+								"args": {
+									"name": {
+										"simple": "Create - Change management incident"
+									}
+								},
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "0b8632d0-4dce-11ee-b42a-817d67b9450f",
+								"index": 6,
+								"name": "Create a new Firewall Policy",
+								"scriptId": "11c1fbcb-28a4-4f98-8559-be5ba73040a0",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "New Section",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 5,
+						"hideName": true,
+						"i": "caseinfoid-nvlckvdkrt-caseinfoid-nvlckvdkrt-field-changed-nvlckvdkrt-caseinfoid-ca885d20-4d79-11ee-a34a-f1db036a2115",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "epid",
+								"height": 22,
+								"id": "88f197a0-4d79-11ee-a34a-f1db036a2115",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "epip",
+								"height": 22,
+								"id": "8f7adf00-4d79-11ee-a34a-f1db036a2115",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "euid",
+								"height": 22,
+								"id": "958fe0c0-4d79-11ee-a34a-f1db036a2115",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "logtype",
+								"height": 22,
+								"id": "ad63e250-4d79-11ee-a34a-f1db036a2115",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "triggername",
+								"height": 22,
+								"id": "f6827370-4d79-11ee-a34a-f1db036a2115",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "eventid",
+								"height": 22,
+								"id": "ff72a8b0-4d79-11ee-a34a-f1db036a2115",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "eventtype",
+								"height": 22,
+								"id": "4b5d7930-4d7a-11ee-a34a-f1db036a2115",
+								"index": 6,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "handlertype",
+								"height": 22,
+								"id": "8f507e30-4d7a-11ee-a34a-f1db036a2115",
+								"index": 7,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "handlername",
+								"height": 22,
+								"id": "924d1c60-4d7a-11ee-a34a-f1db036a2115",
+								"index": 8,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "handlerid",
+								"height": 22,
+								"id": "94395c00-4d7a-11ee-a34a-f1db036a2115",
+								"index": 9,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "ruleid",
+								"height": 22,
+								"id": "9cf317f0-4d7a-11ee-a34a-f1db036a2115",
+								"index": 10,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "rulename",
+								"height": 22,
+								"id": "9ecfee40-4d7a-11ee-a34a-f1db036a2115",
+								"index": 11,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "New Section",
+						"static": false,
+						"w": 1,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"description": "",
+						"h": 2,
+						"hideName": true,
+						"i": "caseinfoid-nvlckvdkrt-caseinfoid-nvlckvdkrt-field-changed-nvlckvdkrt-caseinfoid-4d11bc10-4d7e-11ee-a34a-f1db036a2115",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "General Purpose Dynamic Section",
+						"query": "78008b78-40c5-452f-8fdf-76483df4804a",
+						"queryType": "script",
+						"static": false,
+						"type": "dynamic",
+						"w": 3,
+						"x": 0,
+						"y": 5
+					},
+					{
+						"displayType": "ROW",
+						"h": 5,
+						"hideName": true,
+						"i": "caseinfoid-32535d70-4dce-11ee-b42a-817d67b9450f",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "message",
+								"height": 44,
+								"id": "4567db20-4dce-11ee-b42a-817d67b9450f",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "changemanagementincident",
+								"height": 22,
+								"id": "3feca860-4dce-11ee-b42a-817d67b9450f",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "New Section",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 0
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"id": "warRoom",
+				"name": "War Room",
+				"type": "warRoom"
+			},
+			{
+				"id": "workPlan",
+				"name": "Work Plan",
+				"type": "workPlan"
+			},
+			{
+				"id": "evidenceBoard",
+				"name": "Evidence Board",
+				"type": "evidenceBoard"
+			},
+			{
+				"id": "relatedIncidents",
+				"name": "Related Incidents",
+				"type": "relatedIncidents"
+			},
+			{
+				"id": "canvas",
+				"name": "Canvas",
+				"type": "canvas"
+			}
+		]
+	},
+	"edit": null,
+	"fromServerVersion": "",
+	"group": "incident",
+	"id": "b98b1692-e186-4be8-853a-0b7318f7d83c",
+	"indicatorsDetails": null,
+	"indicatorsQuickView": null,
+	"itemVersion": "",
+	"locked": false,
+	"mobile": null,
+	"name": "Fortianalyzer-Traffic",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"quickView": null,
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
