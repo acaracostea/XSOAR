@@ -1,0 +1,53 @@
+commonfields:
+  id: 3003f52b-5ad1-4e36-8ac2-2be1330e5010
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SourceObjectDisplay
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  incident = demisto.incident()['CustomFields']
+  object_type = incident['objecttype'] if 'objecttype' in incident.keys() else []
+  adom = incident['adom'] if 'adom' in incident.keys() else ''
+  options = []
+  if object_type:
+      try:
+          if 'Source Address' in object_type:
+
+              addresses = demisto.executeCommand('fortimanager-address-list', {'adom':adom,'limit':0,'using':'FortiManager_instance_1'})[0]['Contents']
+              for address in addresses:
+                  options.append(address['name'])
+
+          else:
+
+              groups = demisto.executeCommand('fortimanager-address-group-list', {'adom':adom,'limit':0,'using':'FortiManager_instance_1'})[0]['Contents']
+              for group in groups:
+                  options.append(group['name'])
+
+          demisto.results({'hidden': False, 'options': options})
+
+      except Exception as ex:
+          print(ex)
+
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- field-display
+type: python
