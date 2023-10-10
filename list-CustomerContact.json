@@ -1,0 +1,27 @@
+{
+	"allRead": true,
+	"allReadWrite": true,
+	"cacheVersn": 0,
+	"data": "[{\"Customer Contact Name\":\"xxxxxxx\",\"Customer Name\":\"xxxxxx\",\"CustomerID\":\"xxxxx\",\"Email Contact\":\"xxxxxx\",\"Phone Contact\":\"xxxxx\"},{\"Customer Contact Name\":\"Customer1 Name edited\",\"Customer Name\":\"Customer1\",\"CustomerID\":\"xxxxx\",\"Email Contact\":\"Customer1 Email\"},{\"Customer Contact Name\":\"Customer1 Name second\",\"Customer Name\":\"Customer1\",\"CustomerID\":\"xxxxx\",\"Email Contact\":\"Customer1 Email second edited\"},{\"Customer Contact Name\":\"New customer contact\",\"Customer Name\":\"New Customer\",\"CustomerID\":\"11111111\",\"Email Contact\":\"email address\"},{\"Customer Contact Name\":\"New customer contact\",\"Customer Name\":\"Customer1\",\"CustomerID\":\"xxxxx\",\"Email Contact\":\"Modified Email address\"}]",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "CustomerContact",
+	"itemVersion": "",
+	"locked": false,
+	"name": "CustomerContact",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"previousAllRead": true,
+	"previousAllReadWrite": true,
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "json",
+	"version": -1
+}
