@@ -1,0 +1,483 @@
+{
+	"cacheVersn": 0,
+	"close": null,
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "summary",
+				"name": "Legacy Summary",
+				"type": "summary"
+			},
+			{
+				"id": "caseinfoid",
+				"name": "Customer Info",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "customercontactname",
+								"height": 22,
+								"id": "03452d90-f03d-11ed-9ab6-6dc187d2c8f8",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "emailcontact",
+								"height": 22,
+								"id": "0efa0110-f03d-11ed-9ab6-6dc187d2c8f8",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "warning",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "8b6ca930-f044-11ed-a2e4-9940690970dd",
+								"index": 2,
+								"name": "Update Customer Contact",
+								"scriptId": "e113d336-f502-4af5-85dd-a0fda9d5e0d0",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Customer Contact",
+						"static": false,
+						"w": 1,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-7717e580-9bed-11e9-9a3f-8b4b2158e260",
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Team Members",
+						"static": false,
+						"type": "team",
+						"w": 1,
+						"x": 1,
+						"y": 4
+					},
+					{
+						"displayType": "CARD",
+						"h": 2,
+						"i": "caseinfoid-ac32f620-a0b0-11e9-b27f-13ae1773d289",
+						"items": [
+							{
+								"endCol": 1,
+								"fieldId": "occurred",
+								"height": 22,
+								"id": "incident-occurred-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 1,
+								"fieldId": "dbotmodified",
+								"height": 22,
+								"id": "incident-modified-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotduedate",
+								"height": 22,
+								"id": "incident-dueDate-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotcreated",
+								"height": 22,
+								"id": "incident-created-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 1
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotclosed",
+								"height": 22,
+								"id": "incident-closed-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 1
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Timeline Information",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 4
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-88e6bf70-a0b1-11e9-b27f-13ae1773d289",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "dbotclosed",
+								"height": 22,
+								"id": "incident-dbotClosed-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "closereason",
+								"height": 22,
+								"id": "incident-closeReason-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "closenotes",
+								"height": 22,
+								"id": "incident-closeNotes-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Closing Information",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 6
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-55eb2ae0-f03d-11ed-9ab6-6dc187d2c8f8",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "selectexistingcustomer",
+								"height": 22,
+								"id": "fc1e8d60-f03f-11ed-a2e4-9940690970dd",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "customername",
+								"height": 22,
+								"id": "895f5130-f03d-11ed-9ab6-6dc187d2c8f8",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "customerid",
+								"height": 22,
+								"id": "8b21c1b0-f03d-11ed-9ab6-6dc187d2c8f8",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Customer",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-2f64c5e0-f040-11ed-a2e4-9940690970dd",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "countrycode",
+								"height": 22,
+								"id": "5130a8b0-f040-11ed-a2e4-9940690970dd",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "socserviceid",
+								"height": 22,
+								"id": "5ab04cb0-f040-11ed-a2e4-9940690970dd",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "customersla",
+								"height": 22,
+								"id": "638dbd40-f040-11ed-a2e4-9940690970dd",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "teliasalescontact",
+								"height": 22,
+								"id": "6cc18b30-f040-11ed-a2e4-9940690970dd",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "primary",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "a9860b50-f044-11ed-a2e4-9940690970dd",
+								"index": 4,
+								"name": "Update Customer Info",
+								"scriptId": "1eaf710e-933e-427f-8a9f-d92cfb505550",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Customer Info",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-7a633a90-f040-11ed-a2e4-9940690970dd",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "edr",
+								"height": 22,
+								"id": "922f4ce0-f040-11ed-a2e4-9940690970dd",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "edrtenantid",
+								"height": 22,
+								"id": "93f98590-f040-11ed-a2e4-9940690970dd",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "vendor",
+								"height": 22,
+								"id": "991e8200-f040-11ed-a2e4-9940690970dd",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "firewall",
+								"height": 22,
+								"id": "a190ada0-f040-11ed-a2e4-9940690970dd",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "teliafirewallservicetype",
+								"height": 22,
+								"id": "a36dd210-f040-11ed-a2e4-9940690970dd",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "success",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 22,
+								"id": "ab22cb60-f044-11ed-a2e4-9940690970dd",
+								"index": 5,
+								"name": "Update Customer Service List",
+								"scriptId": "67826d64-a77e-4981-8f42-dc700fb17111",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Customer Service List",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-c545e9e0-f040-11ed-a2e4-9940690970dd",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "adom",
+								"height": 22,
+								"id": "1eede100-f041-11ed-a2e4-9940690970dd",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "fwhostname",
+								"height": 22,
+								"id": "22c35300-f041-11ed-a2e4-9940690970dd",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "error",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "acb24500-f044-11ed-a2e4-9940690970dd",
+								"index": 2,
+								"name": "Update CMDB",
+								"scriptId": "715d852d-b09d-4ce0-8723-06883e1635c4",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Add Firewall to CMDB",
+						"static": false,
+						"w": 1,
+						"x": 1,
+						"y": 2
+					},
+					{
+						"h": 6,
+						"i": "caseinfoid-06731820-f041-11ed-a2e4-9940690970dd",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Notes",
+						"static": false,
+						"type": "notes",
+						"w": 1,
+						"x": 2,
+						"y": 2
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "warRoom",
+				"name": "War Room",
+				"type": "warRoom"
+			},
+			{
+				"hidden": true,
+				"id": "workPlan",
+				"name": "Work Plan",
+				"type": "workPlan"
+			},
+			{
+				"hidden": true,
+				"id": "evidenceBoard",
+				"name": "Evidence Board",
+				"type": "evidenceBoard"
+			},
+			{
+				"hidden": true,
+				"id": "relatedIncidents",
+				"name": "Related Incidents",
+				"type": "relatedIncidents"
+			},
+			{
+				"hidden": true,
+				"id": "canvas",
+				"name": "Canvas",
+				"type": "canvas"
+			}
+		]
+	},
+	"edit": null,
+	"fromServerVersion": "",
+	"group": "incident",
+	"id": "dcc4ac6c-2e90-46de-829e-980bf94133b0",
+	"indicatorsDetails": null,
+	"indicatorsQuickView": null,
+	"itemVersion": "",
+	"locked": false,
+	"mobile": null,
+	"name": "Add/Edit Customer",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"quickView": null,
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
