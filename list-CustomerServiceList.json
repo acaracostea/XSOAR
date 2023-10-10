@@ -1,0 +1,27 @@
+{
+	"allRead": true,
+	"allReadWrite": true,
+	"cacheVersn": 0,
+	"data": "[{\"Customer Name\":\"xxxxxx\",\"CustomerID\":\"xxxxxx\",\"EDR\":\"YES\",\"EDR Tenant ID\":\"xxxxxxxx\",\"Firewall\":\"YES\",\"Telia Firewall Service Type\":\"xxxxxx\",\"Vendor\":\"MSDefender\"},{\"Customer Name\":\"Customer1\",\"CustomerID\":\"xxxxx\",\"EDR\":\"NO\",\"EDR Tenant ID\":\"xxxxxx\",\"Firewall\":\"YES\",\"Telia Firewall Service Type\":\"44444\",\"Vendor\":\"MS Defender\"},{\"Customer Name\":\"New Customer\",\"CustomerID\":\"11111111\",\"EDR\":\"YES\",\"EDR Tenant ID\":\"dadOHDd\",\"Firewall\":\"YES\",\"Telia Firewall Service Type\":\"\",\"Vendor\":\"Microsoft\"}]",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "CustomerServiceList",
+	"itemVersion": "",
+	"locked": false,
+	"name": "CustomerServiceList",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"previousAllRead": true,
+	"previousAllReadWrite": true,
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "json",
+	"version": -1
+}
