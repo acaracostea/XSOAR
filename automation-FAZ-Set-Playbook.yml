@@ -1,0 +1,32 @@
+args:
+- name: name
+commonfields:
+  id: 11c1fbcb-28a4-4f98-8559-be5ba73040a0
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.13.72123
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: FAZ-Set-Playbook
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  name = demisto.args().get('name')
+  demisto.executeCommand('SetPlaybook', {'playbook':name})
+scripttarget: 0
+subtype: python3
+tags:
+- incident-action-button
+type: python
