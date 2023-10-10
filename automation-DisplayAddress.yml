@@ -1,0 +1,89 @@
+commonfields:
+  id: 676d075f-e3af-4103-8252-6bd81f28e350
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: DisplayAddress
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  import copy
+
+  incident = demisto.incidents()[0]
+  incidentId = incident['id']
+  adom = incident['CustomFields']['adom']
+  address = incident['CustomFields']['address'] if 'address' in incident['CustomFields'].keys() else ''
+  print(address)
+
+  policy_list = []
+
+  try:
+      if address:
+          address_parameters = demisto.executeCommand('fortimanager-address-list', {'adom':adom,'address':address,'using':'FortiManager_custom_instance'})[0]['Contents']
+          print(address_parameters)
+
+  except Exception as e:
+      return_error(f'Failed to execute DisplayPolicy Automation. Error: {str(e)}')
+  '''
+      if  address_parameters:
+          for address_parameter in address_parameters:
+              context = copy.deepcopy(policy_dict)
+              context['N'] = address_parameter['policyid']
+              context['Source Interface'] = ','.join(policy['srcintf'])
+              context['Destination Interface'] = ','.join(policy['dstintf'])
+              context['Source Address'] = ','.join(policy['srcaddr'])
+              context['Destination Address'] = ','.join(policy['dstaddr'])
+              context['Schedule'] = ','.join(policy['schedule'])
+              context['Service'] = ','.join(policy['service'])
+              context['Action'] = policy['action']
+              context['Name'] = policy['name'] if 'name' in policy.keys() else ''
+              context['Package'] = package
+              policy_list.append(context)
+      else:
+          policy_list.append(policy_dict)
+
+
+      policies_footer = demisto.executeCommand('fortimanager-footer-policy-list', {'package':package,'adom':adom,'using':'FortiManager_custom_instance'})[0]['Contents']
+
+      if  policies_footer:
+          for policy_footer in policies_footer:
+              context_footer = copy.deepcopy(policy_dict)
+              context_footer['Policy ID'] = policy_footer['policyid']
+              context_footer['Source Interface'] = ','.join(policy_footer['srcintf'])
+              context_footer['Destination Interface'] = ','.join(policy_footer['dstintf'])
+              context_footer['Source Address'] = ','.join(policy_footer['srcaddr'])
+              context_footer['Destination Address'] = ','.join(policy_footer['dstaddr'])
+              context_footer['Schedule'] = ','.join(policy_footer['schedule'])
+              context_footer['Service'] = ','.join(policy_footer['service'])
+              context_footer['Action'] = policy_footer['action']
+              context_footer['Name'] = policy_footer['name'] if 'name' in policy_footer.keys() else ''
+              context_footer['Package'] = package
+              policy_list.append(context_footer)
+
+      demisto.executeCommand('DeleteContext',{'all':'no','key':'Fortimanager.Policies'})
+      demisto.setContext('Fortimanager.Policies', policy_list)
+      demisto.executeCommand('SetGridField',{'columns':','.join(policy_dict.keys()),'context_path':'Fortimanager.Policies','grid_id':'fortimanagerfirewallpolicylistpackage','keys':','.join(policy_dict.keys())})
+      return_results(policy_list)
+  '''
+
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- incident-action-button
+type: python
