@@ -15,10 +15,10 @@ commonfields:
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
-    fromServerVersion: 5.0.0
-    itemVersion: 1.2.32
+    fromServerVersion: ""
+    itemVersion: ""
     packID: ""
-    packName: Filters And Transformers
+    packName: ""
     prevname: ""
     propagationLabels:
     - all
@@ -41,7 +41,12 @@ script: |+
   function convertObject(obj) {
       var res = {};
       Object.keys(obj).forEach(function(key) {
-          res[stripToCliName(key)] = obj[key];
+          if (key == "url" || key == "IpAddress" || key == "processId"){
+              key == "value"
+              res[stripToCliName(key)] = obj[key];
+          } else {
+              res[stripToCliName(key)] = obj[key];
+          }
       });
       return res;
   }
@@ -65,7 +70,6 @@ script: |+
 
 
 scripttarget: 0
-sourcescripid: ConvertKeysToTableFieldFormat
 tags:
 - transformer
 type: javascript
