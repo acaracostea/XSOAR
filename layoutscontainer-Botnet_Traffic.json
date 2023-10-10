@@ -1,0 +1,545 @@
+{
+	"cacheVersn": 0,
+	"close": null,
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "summary",
+				"name": "Legacy Summary",
+				"type": "summary"
+			},
+			{
+				"id": "caseinfoid",
+				"name": "Incident Info",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "type",
+								"height": 22,
+								"id": "incident-type-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "severity",
+								"height": 22,
+								"id": "incident-severity-field",
+								"index": 1,
+								"listId": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "owner",
+								"height": 22,
+								"id": "incident-owner-field",
+								"index": 2,
+								"listId": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "fircreationdate",
+								"height": 22,
+								"id": "48126cd0-7766-11ed-8c98-555b810dd4b3",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "firid",
+								"height": 22,
+								"id": "69fc10d0-7766-11ed-8c98-555b810dd4b3",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "firsubject",
+								"height": 22,
+								"id": "6ccf06f0-7766-11ed-8c98-555b810dd4b3",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "firdescription",
+								"height": 22,
+								"id": "67e4a280-7766-11ed-8c98-555b810dd4b3",
+								"index": 6,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Case Details",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"h": 4,
+						"i": "caseinfoid-61263cc0-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Notes",
+						"static": false,
+						"type": "notes",
+						"w": 2,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-770ec200-98b1-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Linked Incidents",
+						"static": false,
+						"type": "linkedIncidents",
+						"w": 2,
+						"x": 1,
+						"y": 7
+					},
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"i": "caseinfoid-7ce69dd0-a07f-11e9-936c-5395a1acf11e",
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Indicators",
+						"query": "",
+						"queryType": "input",
+						"static": false,
+						"type": "indicators",
+						"w": 3,
+						"x": 0,
+						"y": 4
+					},
+					{
+						"displayType": "CARD",
+						"h": 2,
+						"i": "caseinfoid-ac32f620-a0b0-11e9-b27f-13ae1773d289",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "fircommentaction",
+								"height": 53,
+								"id": "932507f0-7775-11ed-bbf3-279801f263c4",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "newcomment",
+								"height": 53,
+								"id": "9e57da30-7775-11ed-bbf3-279801f263c4",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "warning",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 22,
+								"id": "db1ad080-7775-11ed-919f-d1534694781c",
+								"index": 2,
+								"name": "Upload Comment",
+								"scriptId": "10586317-969d-4ab7-8494-334392055621",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Upload Comment to FIR",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-88e6bf70-a0b1-11e9-b27f-13ae1773d289",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "dbotclosed",
+								"height": 22,
+								"id": "incident-dbotClosed-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "closereason",
+								"height": 22,
+								"id": "incident-closeReason-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "closenotes",
+								"height": 22,
+								"id": "incident-closeNotes-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Closing Information",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 7
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "k5xw9uxk4y",
+				"name": "MISP",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-df11a1c0-6c33-11ed-afb1-91437da87ec3",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "mispid",
+								"height": 22,
+								"id": "57102b10-6c34-11ed-afb1-91437da87ec3",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispeventtags",
+								"height": 22,
+								"id": "4f682d40-6c34-11ed-afb1-91437da87ec3",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispeventtitle",
+								"height": 22,
+								"id": "5157a130-6c34-11ed-afb1-91437da87ec3",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispuploadmessage",
+								"height": 44,
+								"id": "5364fd60-6c34-11ed-afb1-91437da87ec3",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispuploadstatus",
+								"height": 22,
+								"id": "556c1800-6c34-11ed-afb1-91437da87ec3",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispurl",
+								"height": 44,
+								"id": "62083e40-6c34-11ed-afb1-91437da87ec3",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "MISP Event Update",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-e23ace30-6c33-11ed-afb1-91437da87ec3",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "mispattributeharmful",
+								"height": 22,
+								"id": "48754ea0-6c34-11ed-afb1-91437da87ec3",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispattributevalue",
+								"height": 22,
+								"id": "43773b20-6c34-11ed-afb1-91437da87ec3",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispattributecategory",
+								"height": 22,
+								"id": "3f91eaa0-6c34-11ed-afb1-91437da87ec3",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispattributecomment",
+								"height": 22,
+								"id": "41bbf690-6c34-11ed-afb1-91437da87ec3",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "mispattributetype",
+								"height": 22,
+								"id": "4cf77b60-6c34-11ed-afb1-91437da87ec3",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "warning",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "e7d68bd0-6c34-11ed-afb1-91437da87ec3",
+								"index": 5,
+								"name": "Add/update Attribute",
+								"scriptId": "4567cf04-3663-4fac-81f7-e107ab9e141a",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Manual upload/update indicator",
+						"static": false,
+						"w": 1,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 6,
+						"hideName": false,
+						"i": "caseinfoid-2e311af0-6c35-11ed-afb1-91437da87ec3",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "incidentindicators",
+								"height": 106,
+								"id": "4da29300-6c35-11ed-afb1-91437da87ec3",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "primary",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "5f4b24a0-6c35-11ed-afb1-91437da87ec3",
+								"index": 1,
+								"name": "Get Incident Indicators",
+								"scriptId": "adc63231-feb3-4375-8fa2-3081fab2f3f1",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "warning",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 22,
+								"id": "80977730-6c35-11ed-afb1-91437da87ec3",
+								"index": 2,
+								"name": "Add Incident Indicator to Misp",
+								"scriptId": "ba0bcd3c-ff37-46df-8312-277be99d3592",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Upload Incident Indicators",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 4,
+						"hideName": false,
+						"i": "caseinfoid-b15f6940-6c35-11ed-afb1-91437da87ec3",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 4,
+								"fieldId": "mispattributesv2",
+								"height": 106,
+								"id": "c8ec4fb0-6c35-11ed-afb1-91437da87ec3",
+								"index": 0,
+								"listId": "caseinfoid-b15f6940-6c35-11ed-afb1-91437da87ec3",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "primary",
+								"endCol": 3,
+								"fieldId": "",
+								"height": 22,
+								"id": "01f942e0-6c36-11ed-afb1-91437da87ec3",
+								"index": 1,
+								"name": "Delete Misp Attribute",
+								"scriptId": "dc79390a-e322-4344-863d-8015c590ebc7",
+								"sectionItemType": "button",
+								"startCol": 1
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Remove attributes from MISP event",
+						"static": false,
+						"w": 2,
+						"x": 0,
+						"y": 4
+					},
+					{
+						"h": 2,
+						"i": "caseinfoid-8f18de60-0fab-11ee-8b9c-4512113d36ee",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "General Purpose Dynamic Section",
+						"query": "7278614e-b1c6-43b7-8cd5-b3bc18de84ab",
+						"queryType": "script",
+						"static": false,
+						"type": "dynamic",
+						"w": 1,
+						"x": 0,
+						"y": 2
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"id": "warRoom",
+				"name": "War Room",
+				"type": "warRoom"
+			},
+			{
+				"id": "workPlan",
+				"name": "Work Plan",
+				"type": "workPlan"
+			},
+			{
+				"id": "evidenceBoard",
+				"name": "Evidence Board",
+				"type": "evidenceBoard"
+			},
+			{
+				"id": "relatedIncidents",
+				"name": "Related Incidents",
+				"type": "relatedIncidents"
+			},
+			{
+				"id": "canvas",
+				"name": "Canvas",
+				"type": "canvas"
+			}
+		]
+	},
+	"edit": null,
+	"fromServerVersion": "",
+	"group": "incident",
+	"id": "a4ce45bf-fe42-4265-8dca-48a0eb822631",
+	"indicatorsDetails": null,
+	"indicatorsQuickView": null,
+	"itemVersion": "",
+	"locked": false,
+	"mobile": null,
+	"name": "Botnet Traffic",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"quickView": null,
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
