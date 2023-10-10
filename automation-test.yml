@@ -1,0 +1,29 @@
+commonfields:
+  id: 251ed64a-d391-473a-8024-367f02154364
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.10.48392
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: test
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  xdr_incident_type_scheme = SchemeTypeMapping(type_name='Telia Microsoft 365 Defender Incident')
+  demisto.log(xdr_incident_type_scheme)
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
