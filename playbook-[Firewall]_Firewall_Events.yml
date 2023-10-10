@@ -1,0 +1,88 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: c961f7c6-7c40-49b7-8313-2f08fb476469
+inputs: []
+name: '[Firewall] Firewall Events'
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0d26bd69-c08e-4500-8ab4-2782cf5c6cbc
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 0d26bd69-c08e-4500-8ab4-2782cf5c6cbc
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 564f97d4-1d7f-4305-8bc2-19d149d1b4b5
+      iscommand: false
+      name: AddNotesFromComment
+      script: 6b2c7076-c5af-4327-8f33-131ac64dae5b
+      type: regular
+      version: -1
+    taskid: 564f97d4-1d7f-4305-8bc2-19d149d1b4b5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 275,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
