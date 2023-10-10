@@ -1,0 +1,40 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#B1EE95",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.5.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Recorded Future Playbook Alert",
+	"itemVersion": "1.7.2",
+	"layout": "Recorded Future Playbook Alert Layout",
+	"locked": false,
+	"name": "Recorded Future Playbook Alert",
+	"onChangeRepAlg": 1,
+	"packID": "RecordedFuture",
+	"packName": "Recorded Future Intelligence",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Recorded Future Playbook Alert Details",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 1,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
