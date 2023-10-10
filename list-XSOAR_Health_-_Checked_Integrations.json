@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "Core REST API_instance_1,EDL_instance_1,FortiAnalyzer_instance_1,FortiManager_custom_instance,FortiManager_instance_1,FortiManager_instance_2,Image OCR_default_instance,MISP Feed_instance_1,MISP V3_custom commands_instance_1,MISP V3_instance_1,MITRE ATT\u0026CK v2_instance_1,MS365_MDE_EmaTestikas_151a8279-80ee-4be3-852b-954bc6c4dd15,Rasterize_default_instance,SMIME Messaging_instance_1,Unit42v2 Feed_instance_1,Where is the egg?_default_instance,fcm_default_instance,ipinfo_v2_instance_1,nmap_instance_1,FIR_instance_1,MS365_Defender365_EmaTestikas_151a8279-80ee-4be3-852b-954bc6c4dd15,Mail Sender (New)_instance_1,Microsoft Defender Advanced Threat Protection_instance_2,Microsoft Graph Mail Single User_instance_1,Microsoft Graph Mail Single User_instance_2,MicrosoftGraphMail_instance_1,Unit42IntelObjectsFeed_default_instance,WildFire-Reports_default_instance",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Checked Integrations",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Checked Integrations",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
