@@ -1,0 +1,27 @@
+{
+	"allRead": true,
+	"allReadWrite": true,
+	"cacheVersn": 0,
+	"data": "[{\"Country Code\":\"\",\"Customer Name\":\"\",\"Customer SLA\":\"\",\"CustomerID\":\"\",\"SOC Service ID\":\"\",\"Telia Sales Contact\":\"\"},{\"Country Code\":\"00000\",\"Customer Name\":\"Customer1\",\"Customer SLA\":\"00000\",\"CustomerID\":\"xxxxx\",\"SOC Service ID\":\"00000\",\"Telia Sales Contact\":\"000000\"},{\"Country Code\":\"00000\",\"Customer Name\":\"Customer 2\",\"Customer SLA\":\"\",\"CustomerID\":\"23242\",\"SOC Service ID\":\"\",\"Telia Sales Contact\":\"456567\"},{\"Country Code\":\"00000\",\"Customer Name\":\"Customer3\",\"Customer SLA\":\"00000\",\"CustomerID\":\"1111\",\"SOC Service ID\":\"00000\",\"Telia Sales Contact\":\"000000\"},{\"Country Code\":\"00000\",\"Customer Name\":\"Customer4\",\"Customer SLA\":\"00000\",\"CustomerID\":\"444444444\",\"SOC Service ID\":\"00000\",\"Telia Sales Contact\":\"000000\"},{\"Country Code\":\"2133131\",\"Customer Name\":\"New Customer\",\"Customer SLA\":\"Best Effort\",\"CustomerID\":\"11111111\",\"SOC Service ID\":\"4141413431\",\"Telia Sales Contact\":\"Contact\"}]",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "CustomerInfo",
+	"itemVersion": "",
+	"locked": false,
+	"name": "CustomerInfo",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"previousAllRead": true,
+	"previousAllReadWrite": true,
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "json",
+	"version": -1
+}
