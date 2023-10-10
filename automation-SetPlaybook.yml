@@ -1,0 +1,36 @@
+args:
+- name: playbook
+commonfields:
+  id: 2513da88-051d-413c-805e-c64935554a0f
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SetPlaybook
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  incident = demisto.incidents()[0]
+  incidentId = incident['id']
+  playbook = demisto.args().get('playbook')
+  demisto.executeCommand('setPlaybook', {'incidentId':incidentId,'name':playbook})
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- incident-action-button
+type: python
