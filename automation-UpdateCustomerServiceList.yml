@@ -1,0 +1,68 @@
+commonfields:
+  id: 67826d64-a77e-4981-8f42-dc700fb17111
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.11.57890
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UpdateCustomerServiceList
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import json
+  fields = demisto.incident()
+
+  customer_name = fields['CustomFields']['customername'] if 'customername' in fields['CustomFields'].keys() else ""
+  customer_id = fields['CustomFields']['customerid'] if 'customerid' in fields['CustomFields'].keys() else ""
+  edr = fields['CustomFields']['edr'] if 'edr' in fields['CustomFields'].keys() else ""
+  vendor = fields['CustomFields']['vendor'] if 'vendor' in fields['CustomFields'].keys() else ""
+  edr_tenant_id = fields['CustomFields']['edrtenantid'] if 'edrtenantid' in fields['CustomFields'].keys() else ""
+  telia_firewall_service_type = fields['CustomFields']['teliafirewallservicetype'] if 'teliafirewallservicetype' in fields['CustomFields'].keys() else ""
+  firewall = fields['CustomFields']['firewall'] if 'firewall' in fields['CustomFields'].keys() else ""
+
+  data = demisto.executeCommand("getList", { "listName": "CustomerServiceList" })[0]['Contents']
+  data = json.loads(data)
+  CustomerServiceList = []
+  count=0
+
+  for row in data:
+
+      if row['Customer Name'] == customer_name:
+          count=1
+          if edr:
+              row['EDR']=edr
+          if vendor:
+              row['Vendor']=vendor
+          if edr_tenant_id:
+              row['EDR Tenant ID']=edr_tenant_id
+          if telia_firewall_service_type:
+              row['Telia Firewall Service Type']=telia_firewall_service_type
+          if firewall:
+              row['Firewall']=firewall
+
+      CustomerServiceList.append(row)
+
+
+  if count==0:
+      CustomerServiceList.append({'Customer Name':customer_name,'CustomerID':customer_id,'EDR':edr,'Vendor':vendor,'EDR Tenant ID':edr_tenant_id,'Telia Firewall Service Type':telia_firewall_service_type,'Firewall':firewall})
+
+  demisto.executeCommand("setList", { "listName": "CustomerServiceList","listData": CustomerServiceList})
+  return_results("CustomerServiceList list updated")
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- incident-action-button
+type: python
