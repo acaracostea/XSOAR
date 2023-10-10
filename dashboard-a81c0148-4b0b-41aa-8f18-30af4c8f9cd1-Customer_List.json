@@ -1,0 +1,253 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "a81c0148-4b0b-41aa-8f18-30af4c8f9cd1",
+	"isCommon": true,
+	"itemVersion": "",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "6af947f0-f038-11ed-9ab6-6dc187d2c8f8",
+			"id": "6af947f0-f038-11ed-9ab6-6dc187d2c8f8",
+			"reflectDimensions": true,
+			"w": 8,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"created": "0001-01-01T00:00:00Z",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "2ee0150e-ce26-42fe-8896-f005f359f56f",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2023-05-11T23:13:18.746577592+03:00",
+				"name": "Customer Contact",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": []
+				},
+				"prevName": "Customer Contact",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "AC-CustomerContact",
+				"shouldCommit": false,
+				"sizeInBytes": 0,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "table"
+			},
+			"x": 0,
+			"y": 3
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "7afa6b20-f038-11ed-9ab6-6dc187d2c8f8",
+			"id": "7afa6b20-f038-11ed-9ab6-6dc187d2c8f8",
+			"reflectDimensions": true,
+			"w": 8,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"created": "0001-01-01T00:00:00Z",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "fc23e093-13a1-475d-862d-2490531d2455",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2023-05-11T23:13:43.704457899+03:00",
+				"name": "Customer Info",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": []
+				},
+				"prevName": "Customer Info",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "AC-CustomerInfo",
+				"shouldCommit": false,
+				"sizeInBytes": 0,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "table"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "a0c42f80-f038-11ed-9ab6-6dc187d2c8f8",
+			"id": "a0c42f80-f038-11ed-9ab6-6dc187d2c8f8",
+			"reflectDimensions": true,
+			"w": 8,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"created": "0001-01-01T00:00:00Z",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "85ae1c35-0bf5-496b-8fc1-b8d3107e4cdb",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2023-05-11T23:14:48.33974228+03:00",
+				"name": "Customer Service List",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": []
+				},
+				"prevName": "Customer Service List",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "AC-CustomerServiceList",
+				"shouldCommit": false,
+				"sizeInBytes": 0,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "table"
+			},
+			"x": 0,
+			"y": 6
+		},
+		{
+			"forceRange": false,
+			"h": 9,
+			"i": "b9b1b760-f038-11ed-9ab6-6dc187d2c8f8",
+			"id": "b9b1b760-f038-11ed-9ab6-6dc187d2c8f8",
+			"reflectDimensions": true,
+			"w": 4,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"created": "0001-01-01T00:00:00Z",
+				"dataType": "scripts",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "",
+						"byTo": "",
+						"field": "",
+						"fromValue": null,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "66bb28c7-be77-49a2-8994-d19537ce2f89",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2023-05-11T23:15:30.781120977+03:00",
+				"name": "FW CMDB",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"tableColumns": []
+				},
+				"prevName": "FW CMDB",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "AC-FWCMDB",
+				"shouldCommit": false,
+				"sizeInBytes": 0,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "table"
+			},
+			"x": 8,
+			"y": 0
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "Customer List",
+	"owner": "",
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 7,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": false,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
