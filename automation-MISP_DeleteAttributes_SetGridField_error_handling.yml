@@ -1,0 +1,113 @@
+commonfields:
+  id: dc79390a-e322-4344-863d-8015c590ebc7
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.28442
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: MISP_DeleteAttributes_SetGridField_error_handling
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  import copy
+  import datetime
+
+  status_dict = {
+      "Status":"",
+      "Message":""
+  }
+
+  attribute_dict_default = {
+      "Date":"",
+      "Category":"",
+      "Type":"",
+      "Value":"",
+      "Comment":"",
+      "Harmful":False,
+      "Select":False,
+      "AttributeID":"",
+      "AttributeUUID":""
+  }
+  attribute_list = []
+  count = 0
+  fields = demisto.incident()["CustomFields"]["mispattributesv2"]
+  errors = []
+  if isinstance(fields,list) and "mispid" in demisto.incident()["CustomFields"].keys():
+      event_id = demisto.incident()["CustomFields"]["mispid"]
+      for field in fields:
+          if field['select']:
+              count += 1
+              delete_attribute = demisto.executeCommand("misp-delete-attribute", {"attribute_id":field['attributeid'], 'using':'MISP V3_instance_1'})
+              if not (delete_attribute[0]["Type"] == entryTypes["error"]):
+                  status_dict["Status"] = '<p style="color:green">Success</p>'
+                  status_dict["Message"] = '<p style="color:green">Misp attribute deleted successful</p>'
+                  demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+
+              else:
+                  error = f'Attribute {field["value"]} was not deleted: {str(delete_attribute[0]["Contents"])}'
+                  errors.append(error)
+
+          else:
+              continue
+
+      if count>0:
+          demisto.executeCommand("misp-publish-event", {"event_id" : event_id, "Using":"MISP V3_custom commands_instance_1"})
+          res_search_attributes = demisto.executeCommand("misp-search-attributes", {'event_id' : event_id, 'using':'MISP V3_instance_1'})
+          if not (res_search_attributes[0]["Type"] == entryTypes["error"]):
+              attributes_list_misp = res_search_attributes[0]["Contents"]["Attribute"]
+              if isinstance(attributes_list_misp,list):
+                  for attr in attributes_list_misp:
+                      attribute = copy.deepcopy(attribute_dict_default)
+                      attribute["Date"] = datetime.datetime.fromtimestamp(int(attr["timestamp"])).strftime('%Y-%m-%d %H:%M:%S')
+                      attribute["Category"] = attr["category"]
+                      attribute["Type"] = attr["type"]
+                      attribute["Value"] = attr["value"]
+                      attribute["Comment"] = attr["comment"]
+                      attribute["Harmful"] = True if attr["to_ids"] else False
+                      attribute["AttributeID"] = attr["id"]
+                      attribute["AttributeUUID"] = attr["uuid"]
+                      attribute_list.append(attribute)
+
+              demisto.setContext("MispGridField", attribute_list)
+              demisto.executeCommand("SetGridField", {"columns" : "Select,Date,Category,Type,Value,Comment,Harmful,AttributeID,AttributeUUID", "context_path": "MispGridField", "grid_id": "mispattributesv2", "keys":"Select,Date,Category,Type,Value,Comment,Harmful,AttributeID,AttributeUUID","append":True})
+
+          else:
+              error = f'Attribute {field["value"]} was not deleted: {str(delete_attribute[0]["Contents"])}'
+              errors.append(error)
+
+          if errors:
+              status_dict["Status"] = '<p style="color:red">Error</p>'
+              status_dict["Message"] = '<p style="color:red">'+" ; ".join(errors)+'</p>'
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("Misp attribute delete failed.")
+          else:
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("Selected MISP attributes were deleted.")
+
+      else:
+          status_dict["Status"] = '<p style="color:red">Error</p>'
+          status_dict["Message"] = '<p style="color:red">Misp attribute delete failed. No attribute selected</p>'
+          demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+          return_results("Misp attribute delete failed. No attribute selected")
+  else:
+      status_dict["Status"] = '<p style="color:red">Error</p>'
+      status_dict["Message"] = '<p style="color:red">Misp attribute delete failed. No attributes were uploaded</p>'
+      demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+      return_results("Misp attribute delete failed.")
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+type: python
