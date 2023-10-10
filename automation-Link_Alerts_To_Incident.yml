@@ -1,0 +1,49 @@
+commonfields:
+  id: 87b11aaf-10ed-4da6-807e-4a12a4032b66
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.10.48392
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: Link_Alerts_To_Incident
+pswd: ""
+runas: DBotRole
+runonce: false
+script: |2+
+
+
+  from typing import Dict, Any
+  import traceback
+
+  fields = demisto.incident()
+  incident_id = fields['CustomFields']['microsoft365defenderid']
+  related_incidents = demisto.executeCommand('SearchIncidentsV2', {'query':'microsoft365defenderid:='+str(incident_id)})
+  related_incidents =  related_incidents[0]['Contents'][0]['Contents']['data']
+  ids = []
+
+  for related_incident in related_incidents:
+      if related_incident['id'] != fields['id']:
+          ids.append(related_incident['id'])
+  if ids:
+      demisto.executeCommand('linkIncidents',{'linkedIncidentIDs':",".join(ids)})
+  else:
+      print ("There are no incidents to correlate")
+
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- MS Defender
+- Telia
+type: python
