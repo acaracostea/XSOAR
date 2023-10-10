@@ -1,0 +1,689 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: CensysV2
+  version: -1
+configuration:
+- display: App ID
+  displaypassword: Secret
+  name: credentials
+  required: true
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.0.26
+    packID: Censys
+    packName: Censys
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Censys is a search engine that allows computer scientists to ask questions
+  about the devices and networks that compose the internet. Driven by internet-wide
+  scanning, Censys lets researchers find specific hosts and create aggregate reports
+  on how devices, and certificates are configured and deployed.
+detaileddescription: |-
+  ## Retrieve Your API ID and Secret
+  1. Log in to the Censys console as the user for which you want to get the credentials from.
+  2. Click the username in the upper-right corner.
+  3. Under *My Account*, click the API tab.
+  4. Under *API Credentials* copy your **API ID** and the **Secret** and paste it to the integration configuration.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/censys-v2)
+display: Censys v2
+image: data:image/png;base64,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
+name: CensysV2
+script:
+  commands:
+  - arguments:
+    - description: The IP address of the requested host.
+      name: query
+      required: true
+    - auto: PREDEFINED
+      description: The index from which to retrieve data.
+      name: index
+      predefined:
+      - ipv4
+      - certificates
+      required: true
+    description: Returns detailed information for an IP address or SHA256 within the
+      specified index.
+    name: cen-view
+    outputs:
+    - contextPath: Censys.View.autonomous_system.asn
+      description: The autonomous system number (ASN) that the host is in.
+      type: Number
+    - contextPath: Censys.View.autonomous_system.bgp_prefix
+      description: The autonomous system's CIDR.
+      type: String
+    - contextPath: Censys.View.autonomous_system.country_code
+      description: The autonomous system's two-letter, ISO 3166-1 alpha-2 country
+        code (e.g., US, CN, GB, RU).
+      type: String
+    - contextPath: Censys.View.autonomous_system.description
+      description: A brief description of the autonomous system.
+      type: String
+    - contextPath: Censys.View.autonomous_system.name
+      description: The friendly name of the autonomous system.
+      type: String
+    - contextPath: Censys.View.autonomous_system_updated_at
+      description: When the autonomous system was updated.
+      type: Date
+    - contextPath: Censys.View.dns.names
+      description: DNS Names.
+      type: String
+    - contextPath: Censys.View.dns.records
+      description: DNS records.
+      type: Unknown
+    - contextPath: Censys.View.dns.reverse_dns.names
+      description: Reverse DNS names.
+      type: String
+    - contextPath: Censys.View.ip
+      description: The host’s IP address.
+      type: String
+    - contextPath: Censys.View.last_updated_at
+      description: When the host was last updated.
+      type: Date
+    - contextPath: Censys.View.location.continent
+      description: The continent of the host's detected location (e.g., North America,
+        Europe, Asia, South America, Africa, Oceania).
+      type: String
+    - contextPath: Censys.View.location.coordinates
+      description: The estimated coordinates of the host's detected location.
+      type: Unknown
+    - contextPath: Censys.View.location.country
+      description: The name of the country of the host's detected location.
+      type: String
+    - contextPath: Censys.View.location.country_code
+      description: The two-letter ISO 3166-1 alpha-2 country code of the host's detected
+        location (e.g., US, CN, GB, RU).
+      type: String
+    - contextPath: Censys.View.location.postal_code
+      description: The postal code (if applicable) of the host's detected location.
+      type: String
+    - contextPath: Censys.View.location.registered_country
+      description: The English name of the host's registered country.
+      type: String
+    - contextPath: Censys.View.location.registered_country_code
+      description: The registered country's two-letter, ISO 3166-1 alpha-2 country
+        code (e.g., US, CN, GB, RU).
+      type: String
+    - contextPath: Censys.View.location.timezone
+      description: The IANA time zone database name of the host's detected location.
+      type: String
+    - contextPath: Censys.View.services.dns
+      description: DNS information.
+      type: Unknown
+    - contextPath: Censys.View.services.extended_service_name
+      description: The service name with the TLS encryption indicator if the service
+        is using it.
+      type: String
+    - contextPath: Censys.View.services.observed_at
+      description: The UTC timestamp of when Censys scanned the service.
+      type: Date
+    - contextPath: Censys.View.services.perspective_id
+      description: The upstream internet service provider Censys peered with to scan
+        the service - NTT Communications, TATA, Telia Carrier, or Hurricane Electric.
+      type: String
+    - contextPath: Censys.View.services.port
+      description: The port the service was reached at.
+      type: Number
+    - contextPath: Censys.View.services.service_name
+      description: The name of the service on the port. This is typically the L7 protocol
+        (e.g., “HTTP”); however, in the case that a more specific HTTP-based protocol
+        is found (e.g., Kubernetes or Prometheus), the field will show that. This
+        field indicates where protocol-specific data will be located.
+      type: String
+    - contextPath: Censys.View.services.source_ip
+      description: The IP address from which Censys scanned the service.
+      type: String
+    - contextPath: Censys.View.services.transport_protocol
+      description: The transport protocol (known in OSI model as L4) used to contact
+        this service (i.e., UDP or TCP).
+      type: String
+    - contextPath: Censys.View.services.banner
+      description: The banner as a part of the protocol scan. That field will be nested
+        in the protocol-specific data under the service_name field.
+      type: String
+    - contextPath: Censys.View.services.tls.certificates
+      description: A subset of the parsed details of the certificate, including the
+        issuer, subject, fingerprint, names, public keys, and signature.
+      type: Unknown
+    - contextPath: Censys.View.services.tls.session_ticket
+      description: Details about the session ticket provided by the server at the
+        end of the TLS handshake.
+      type: Unknown
+    - contextPath: Censys.View.ct
+      description: When a certificate was added to a CT log.
+      type: Unknown
+    - contextPath: Censys.View.fingerprint_sha256
+      description: The SHA2-256 digest over the DER encoding of the certificate.
+      type: String
+    - contextPath: Censys.View.metadata
+      description: Whether the certificate was (ever) seen during a Censys scan of
+        the internet.
+      type: Unknown
+    - contextPath: Censys.View.parent_spki_subject_fingerprint
+      description: Parent simple public key infrastructure (SPKI) subject fingerprint.
+      type: String
+    - contextPath: Censys.View.parsed.extensions
+      description: Additional fields that extend the X.509 spec.
+      type: Unknown
+    - contextPath: Censys.View.parsed.fingerprint_md5
+      description: The MD5 digest over the DER encoding of the certificate.
+      type: String
+    - contextPath: Censys.View.parsed.fingerprint_sha1
+      description: The SHA1 digest over the DER encoding of the certificate.
+      type: String
+    - contextPath: Censys.View.parsed.fingerprint_sha256
+      description: The SHA2-256 digest over the DER encoding of the certificate.
+      type: String
+    - contextPath: Censys.View.parsed.issuer.common_name
+      description: Common name.
+      type: String
+    - contextPath: Censys.View.parsed.issuer.country
+      description: Country name.
+      type: String
+    - contextPath: Censys.View.parsed.issuer.organization
+      description: Organization name.
+      type: String
+    - contextPath: Censys.View.parsed.issuer_dn
+      description: Information about the certificate authority that issued the certificate.
+      type: String
+    - contextPath: Censys.View.parsed.names
+      description: Any names for which the certificate can be used for identity verification.
+      type: String
+    - contextPath: Censys.View.parsed.redacted
+      description: Indicates whether the certificate redacted.
+      type: Boolean
+    - contextPath: Censys.View.parsed.serial_number
+      description: The issuer-specific identifier of the certificate.
+      type: String
+    - contextPath: Censys.View.parsed.signature.self_signed
+      description: Indicates whether the subject key was also used to sign the certificate.
+      type: Boolean
+    - contextPath: Censys.View.parsed.signature.signature_algorithm.name
+      description: Name of signature algorithm, e.g., SHA1-RSA or ECDSA-SHA512. Unknown
+        algorithms get an integer ID.
+      type: String
+    - contextPath: Censys.View.parsed.signature.signature_algorithm.oid
+      description: The object identifier of the signature algorithm, in dotted-decimal
+        notation.
+      type: String
+    - contextPath: Censys.View.parsed.signature.valid
+      description: Whether the signature is valid.
+      type: Boolean
+    - contextPath: Censys.View.parsed.signature.value
+      description: Contents of the signature as a bit string.
+      type: String
+    - contextPath: Censys.View.parsed.signature_algorithm.name
+      description: Name of the signature algorithm, e.g., SHA1-RSA or ECDSA-SHA512.
+        Unknown algorithms get an integer ID.
+      type: String
+    - contextPath: Censys.View.parsed.signature_algorithm.oid
+      description: The object identifier of the signature algorithm, in dotted-decimal
+        notation.
+      type: String
+    - contextPath: Censys.View.parsed.spki_subject_fingerprint
+      description: The SHA2-256 digest over the DER encoding of the certificate's
+        SubjectPublicKeyInfo, as a hexadecimal string.
+      type: String
+    - contextPath: Censys.View.parsed.subject.common_name
+      description: Common name.
+      type: String
+    - contextPath: Censys.View.parsed.subject.country
+      description: Country name.
+      type: String
+    - contextPath: Censys.View.parsed.subject.locality
+      description: Locality name.
+      type: String
+    - contextPath: Censys.View.parsed.subject.organization
+      description: The name of the organization to which the certificate was issued,
+        if available.
+      type: String
+    - contextPath: Censys.View.parsed.subject.province
+      description: State of province name.
+      type: String
+    - contextPath: Censys.View.parsed.subject_dn
+      description: Information about the entity that was issued the certificate.
+      type: String
+    - contextPath: Censys.View.parsed.subject_key_info.ecdsa_public_key
+      description: The public portion of an ECDSA asymmetric key.
+      type: Unknown
+    - contextPath: Censys.View.parsed.subject_key_info.fingerprint_sha256
+      description: The SHA2-256 digest calculated over the certificate's DER encoding.
+      type: String
+    - contextPath: Censys.View.parsed.subject_key_info.key_algorithm.name
+      description: Name of public key type, e.g., RSA or ECDSA.
+      type: String
+    - contextPath: Censys.View.parsed.tbs_fingerprint
+      description: The SHA2-256 digest over the DER encoding of the certificate's
+        TBSCertificate.
+      type: String
+    - contextPath: Censys.View.parsed.tbs_noct_fingerprint
+      description: The SHA2-256 digest over the DER encoding of the certificate's
+        TBSCertificate with any CT extensions omitted.
+      type: String
+    - contextPath: Censys.View.parsed.validation_level
+      description: How the certificate is validated - Domain validated (DV), Organization
+        Validated (OV), Extended Validation (EV), or unknown.
+      type: String
+    - contextPath: Censys.View.parsed.validity.end
+      description: Timestamp of when the certificate expires. Timezone is UTC.
+      type: Date
+    - contextPath: Censys.View.parsed.validity.length
+      description: The length of time, in seconds, that the certificate is valid.
+      type: Number
+    - contextPath: Censys.View.parsed.validity.start
+      description: Timestamp of when certificate is first valid. Timezone is UTC.
+      type: Date
+    - contextPath: Censys.View.parsed.version
+      description: The x.509 certificate version number.
+      type: Number
+    - contextPath: Censys.View.precert
+      description: Whether the certificate is pre-cert.
+      type: Boolean
+    - contextPath: Censys.View.raw
+      description: The raw certificate.
+      type: String
+    - contextPath: Censys.View.tags
+      description: Tags applied to the certificate.
+      type: String
+    - contextPath: Censys.View.validation
+      description: Whether the certificate is trusted by modern web browsers (Mozilla
+        NSS, Microsoft, and Apple).
+      type: Unknown
+    - contextPath: Censys.View.zlint
+      description: Whether the certificate has any zlint errors.
+      type: Unknown
+    - contextPath: IP.Address
+      description: IP address
+      type: String
+    - contextPath: IP.ASN
+      description: 'The autonomous system name for the IP address, for example: "AS8948".'
+      type: String
+    - contextPath: IP.Geo.Location
+      description: 'The geolocation where the IP address is located, in the format:
+        latitude:longitude.'
+      type: String
+    - contextPath: IP.Geo.Country
+      description: The country in which the IP address is located.
+      type: String
+    - contextPath: IP.Geo.Description
+      description: Additional information about the location.
+      type: String
+    - contextPath: IP.ASOwner
+      description: The autonomous system owner of the IP.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+  - arguments:
+    - description: Query used to search for hosts with matching attributes. Uses the
+        Censys Search Language.
+      name: query
+      required: true
+    - defaultValue: "50"
+      description: The maximum number of hits to return in each response (minimum
+        of 0, maximum of 100). (Applies for the host search.)
+      name: page_size
+    - defaultValue: "50"
+      description: The number of results to return.
+      name: limit
+    - auto: PREDEFINED
+      description: The index from which to retrieve data.
+      name: index
+      predefined:
+      - ipv4
+      - certificates
+      required: true
+    - description: The fields to return. (Applies for the certificates search.)
+      name: fields
+    - defaultValue: "1"
+      description: The page to return. (Applies for the certificates search.)
+      name: page
+    description: Return previews of hosts matching a specified search query or a list
+      of certificates that match the given query.
+    name: cen-search
+    outputs:
+    - contextPath: Censys.Search.autonomous_system.asn
+      description: The autonomous system number (ASN) that the host is in.
+      type: Number
+    - contextPath: Censys.Search.autonomous_system.bgp_prefix
+      description: The autonomous system's CIDR.
+      type: String
+    - contextPath: Censys.Search.autonomous_system.country_code
+      description: The autonomous system's two-letter, ISO 3166-1 alpha-2 country
+        code (e.g., US, CN, GB, RU).
+      type: String
+    - contextPath: Censys.Search.autonomous_system.description
+      description: A brief description of the autonomous system.
+      type: String
+    - contextPath: Censys.Search.autonomous_system.name
+      description: The friendly name of the autonomous system.
+      type: String
+    - contextPath: Censys.Search.ip
+      description: The host’s IP address.
+      type: String
+    - contextPath: Censys.Search.location.continent
+      description: The continent of the host's detected location (e.g., North America,
+        Europe, Asia, South America, Africa, Oceania).
+      type: String
+    - contextPath: Censys.Search.location.coordinates
+      description: The estimated coordinates of the host's detected location.
+      type: Unknown
+    - contextPath: Censys.Search.location.country
+      description: The country of the host's detected location.
+      type: String
+    - contextPath: Censys.Search.location.country_code
+      description: The two-letter ISO 3166-1 alpha-2 country code of the host's detected
+        location (e.g., US, CN, GB, RU).
+      type: String
+    - contextPath: Censys.Search.location.registered_country
+      description: The host's registered country.
+      type: String
+    - contextPath: Censys.Search.location.registered_country_code
+      description: The registered country's two-letter, ISO 3166-1 alpha-2 country
+        code (e.g., US, CN, GB, RU).
+      type: String
+    - contextPath: Censys.Search.location.timezone
+      description: The IANA time zone database name of the host's detected location.
+      type: String
+    - contextPath: Censys.Search.services.port
+      description: The port the service was reached at.
+      type: Number
+    - contextPath: Censys.Search.services.service_name
+      description: The name of the service on the port. This is typically the L7 protocol
+        (e.g., “HTTP”); however, in case a more specific HTTP-based protocol is found
+        (e.g., Kubernetes or Prometheus), the field will show that. This field indicates
+        where protocol-specific data will be located.
+      type: String
+    - contextPath: Censys.Search.services.transport_protocol
+      description: The transport protocol (known in OSI model as L4) used to contact
+        this service (i.e., UDP or TCP).
+      type: String
+    - contextPath: Censys.Search.parsed.fingerprint_sha256
+      description: SHA 256 fingerprint.
+      type: String
+    - contextPath: Censys.Search.parsed.issuer.organization
+      description: The organization name.
+      type: Unknown
+    - contextPath: Censys.Search.parsed.names
+      description: Common names for the entity.
+      type: Unknown
+    - contextPath: Censys.Search.parsed.subject_dn
+      description: Distinguished name of the entity that the certificate belongs to.
+      type: String
+    - contextPath: Censys.Search.parsed.validity.end
+      description: Timestamp of when the certificate expires. Timezone is UTC.
+      type: Date
+    - contextPath: Censys.Search.parsed.validity.start
+      description: Timestamp of when the certificate is first valid. Timezone is UTC.
+      type: Date
+    - contextPath: Censys.Search.parsed.issuer_dn
+      description: Distinguished name of the entity that has signed and issued the
+        certificate.
+      type: String
+  dockerimage: demisto/python3:3.10.13.72123
+  runonce: false
+  script: |
+    register_module_line('CensysV2', 'start', __line__())
+    ### pack version: 2.0.26
+
+
+
+
+    import urllib3
+    from typing import Dict, Any
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()  # pylint: disable=no-member
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+
+        def censys_view_request(self, index: str, query: str) -> Dict:
+
+            if index == 'ipv4':
+                url_suffix = f'v2/hosts/{query}'
+            else:
+                url_suffix = f'v1/view/certificates/{query}'
+            res = self._http_request('GET', url_suffix)
+            return res
+
+        def censys_search_ip_request(self, query: Dict, page_size: int) -> Dict:
+            url_suffix = 'v2/hosts/search'
+            params = {
+                'q': query,
+                'per_page': page_size
+            }
+            res = self._http_request('GET', url_suffix, params=params)
+            return res
+
+        def censys_search_certs_request(self, data: Dict) -> Dict:
+            url_suffix = 'v1/search/certificates'
+            res = self._http_request('POST', url_suffix, json_data=data)
+            return res
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def test_module(client: Client) -> str:
+        client.censys_view_request('ipv4', '8.8.8.8')
+        return 'ok'
+
+
+    def censys_view_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """
+        Returns host information for the specified IP address or structured certificate data for the specified SHA-256
+        """
+        index = args.get('index', '')
+        query = args.get('query', '')
+        res = client.censys_view_request(index, query)
+        if index == 'ipv4':
+            result = res.get('result', {})
+            content = {
+                'Name': result.get('autonomous_system', {}).get('name'),
+                'Bgp Prefix': result.get('autonomous_system', {}).get('bgp_prefix'),
+                'ASN': result.get('autonomous_system', {}).get('asn'),
+                'Service': [{
+                    'Port': service.get('port'),
+                    'Service Name': service.get('service_name')
+                } for service in result.get('services', [])],
+                'Last Updated': result.get('last_updated_at')
+            }
+
+            city = demisto.get(result, 'location.city')
+            province = demisto.get(result, 'location.province')
+            postal = demisto.get(result, 'location.postal_code')
+            country_code = demisto.get(result, 'location.country_code')
+            country = demisto.get(result, 'location.country')
+
+            description = ', '.join(filter(None, [city, province, postal, country_code]))
+            lat = demisto.get(result, 'location.coordinates.latitude')
+            lon = demisto.get(result, 'location.coordinates.longitude')
+
+            indicator = Common.IP(
+                ip=query,
+                dbot_score=Common.DBotScore(indicator=query,
+                                            indicator_type=DBotScoreType.IP,
+                                            score=Common.DBotScore.NONE),
+                asn=demisto.get(result, 'autonomous_system.asn'),
+                geo_latitude=str(lat) if lat else None,
+                geo_longitude=str(lon) if lon else None,
+                geo_description=description or None,
+                geo_country=country,
+                as_owner=demisto.get(result, 'autonomous_system.name'))
+
+            human_readable = tableToMarkdown(f'Information for IP {query}', content)
+            return CommandResults(
+                readable_output=human_readable,
+                outputs_prefix='Censys.View',
+                outputs_key_field='ip',
+                outputs=result,
+                indicator=indicator,
+                raw_response=res
+            )
+        else:
+            metadata = res.get('metadata', {})
+            content = {
+                'SHA 256': res.get('fingerprint_sha256'),
+                'Tags': res.get('tags'),
+                'Source': metadata.get('source'),
+                'Added': metadata.get('added_at'),
+                'Updated': metadata.get('updated_at')
+            }
+            human_readable = tableToMarkdown('Information for certificate', content)
+            return CommandResults(
+                readable_output=human_readable,
+                outputs_prefix='Censys.View',
+                outputs_key_field='fingerprint_sha256',
+                outputs=res,
+                raw_response=res
+            )
+
+
+    def censys_search_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """
+        Returns previews of hosts matching a specified search query or a list of certificates that match the given query.
+        """
+        index = args.get('index')
+        query = args.get('query', '')
+        page_size: int = arg_to_number(args.get('page_size', 50))  # type: ignore[assignment]
+        limit = arg_to_number(args.get('limit'))
+        contents = []
+
+        if index == 'ipv4':
+            if limit and limit < page_size:
+                page_size = limit
+            res = client.censys_search_ip_request(query, page_size)
+            hits = res.get('result', {}).get('hits', [])
+
+            for hit in hits:
+                contents.append({
+                    'IP': hit.get('ip'),
+                    'Services': hit.get('services'),
+                    'Location Country code': hit.get('location', {}).get('country_code'),
+                    'Registered Country Code': hit.get('location', {}).get('registered_country_code'),
+                    'ASN': hit.get('autonomous_system', {}).get('asn'),
+                    'Description': hit.get('autonomous_system', {}).get('description'),
+                    'Name': hit.get('autonomous_system', {}).get('name')
+                })
+            headers = ['IP', 'Name', 'Description', 'ASN', 'Location Country code', 'Registered Country Code', 'Services']
+            human_readable = tableToMarkdown(f'Search results for query "{query}"', contents, headers)
+            return CommandResults(
+                readable_output=human_readable,
+                outputs_prefix='Censys.Search',
+                outputs_key_field='ip',
+                outputs=hits,
+                raw_response=res
+            )
+        else:
+            response = search_certs_command(client, args, query, limit)
+            return response
+
+
+    def search_certs_command(client: Client, args: Dict[str, Any], query: str, limit: Optional[int]):
+        fields = ['parsed.fingerprint_sha256', 'parsed.subject_dn', 'parsed.issuer_dn', 'parsed.issuer.organization',
+                  'parsed.validity.start', 'parsed.validity.end', 'parsed.names']
+        search_fields = argToList(args.get('fields'))
+        if search_fields:
+            fields.extend(search_fields)
+        contents = []
+        data = {
+            'query': query,
+            'page': int(args.get('page', 1)),
+            'fields': fields,
+            'flatten': False
+        }
+
+        res = client.censys_search_certs_request(data)
+        results = res.get('results', {})[:limit]
+        for result in results:
+            contents.append({
+                'SHA256': result.get('parsed').get('fingerprint_sha256'),
+                'Issuer dn': result.get('parsed').get('issuer_dn'),
+                'Subject dn': result.get('parsed').get('subject_dn'),
+                'Names': result.get('parsed').get('names'),
+                'Validity': result.get('parsed').get('validity'),
+                'Issuer': result.get('parsed').get('issuer'),
+            })
+
+        human_readable = tableToMarkdown(f'Search results for query "{query}"', contents)
+        return CommandResults(
+            readable_output=human_readable,
+            outputs_prefix='Censys.Search',
+            outputs_key_field='fingerprint_sha256',
+            outputs=results,
+            raw_response=res
+        )
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+        params = demisto.params()
+        username = params.get('credentials', {}).get('identifier')
+        password = params.get('credentials', {}).get('password')
+        verify_certificate = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+
+        base_url = 'https://search.censys.io/api/'
+        command = demisto.command()
+        demisto.debug(f'Command being called is {command}')
+        try:
+            client = Client(
+                base_url=base_url,
+                auth=(username, password),
+                verify=verify_certificate,
+                proxy=proxy)
+
+            if command == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                result = test_module(client)
+                return_results(result)
+
+            elif command == 'cen-view':
+                return_results(censys_view_command(client, demisto.args()))
+            elif command == 'cen-search':
+                return_results(censys_search_command(client, demisto.args()))
+
+        # Log exceptions and return errors
+        except Exception as e:
+            return_error(f'Failed to execute {command} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('CensysV2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
