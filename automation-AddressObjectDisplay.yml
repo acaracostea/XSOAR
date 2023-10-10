@@ -1,0 +1,45 @@
+commonfields:
+  id: 7d459902-6b31-4474-844f-f24e2b124e35
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AddressObjectDisplay
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  incident = demisto.incident()['CustomFields']
+  adom = incident['adom'] if 'adom' in incident.keys() else ''
+  options = []
+
+  try:
+
+      addresses = demisto.executeCommand('fortimanager-address-list', {'adom':adom,'limit':0,'using':'FortiManager_instance_1'})[0]['Contents']
+      for address in addresses:
+          options.append(address['name'])
+
+      demisto.results({'hidden': False, 'options': options})
+
+  except Exception as ex:
+      print(ex)
+
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- field-display
+type: python
