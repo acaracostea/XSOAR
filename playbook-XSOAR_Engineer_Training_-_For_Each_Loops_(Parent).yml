@@ -1,0 +1,340 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "This playbook demonstrates sub-playbook looping using a for each method.
+  \ \n\nWe start by setting an array to a context key that we are going to loop over.
+  \ The array is a list of dictionaries with or without a base64 encoded string. \n\nWe
+  pass this into the sub-playbook to loop over, decode the string and return the original
+  and decoded value. \n\nIndividual steps in the playbook may have additional details. "
+id: XSOAR Engineer Training - For Each Loops (Parent)
+inputs: []
+name: XSOAR Engineer Training - For Each Loops (Parent)
+outputs: []
+starttaskid: "0"
+system: true
+tags:
+- training
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 09462464-7aee-49ff-8fd4-ff8e9520b22d
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 09462464-7aee-49ff-8fd4-ff8e9520b22d
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": -160
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: Data
+      stringify:
+        simple: "false"
+      value:
+        simple: |-
+          [
+              {
+                  "Base64":"aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQo=",
+                  "OtherKey":1
+              },
+              {
+                  "OtherKey":2
+              },
+                  {
+                  "Base64":"aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQo=",
+                  "OtherKey":3
+              }
+          ]
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered.
+
+        In this step we are setting an array to loop over into context, however typically this array would come from other playbook commands.  However for training purposes this is self contained.
+      id: 53506c64-d9ce-46b2-8adc-c28c000e00a8
+      iscommand: false
+      name: Set Data for Loop
+      script: Set
+      type: regular
+      version: -1
+    taskid: 53506c64-d9ce-46b2-8adc-c28c000e00a8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Delete field from context\n\nThis deletes our context, allowing
+        us to re-run the playbook for testing purposes.   "
+      id: 4993842f-359a-40fc-8b5d-176daf5ed7ed
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 4993842f-359a-40fc-8b5d-176daf5ed7ed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 5
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          root: LoopData
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Prints text to war room (Markdown supported)\n\nThis simply prints
+        the decoded base64 data from the sub-playbook output, proving our loop worked. "
+      id: c7d1f8d0-40d1-4c42-8843-3dbd59016526
+      iscommand: false
+      name: Print decoded data outputted from sub-playbook
+      script: Print
+      type: regular
+      version: -1
+    taskid: c7d1f8d0-40d1-4c42-8843-3dbd59016526
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bb2b17ac-a9b3-4b20-867e-639974597c73
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: bb2b17ac-a9b3-4b20-867e-639974597c73
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1070
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      data:
+        complex:
+          root: Data
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2eb45514-1e74-4513-8712-53275d252ef0
+      iscommand: false
+      name: XSOAR Engineer Training - For Each Loops (Sub-Playbook)
+      playbookId: XSOAR Engineer Training - For Each Loops (Sub-Playbook)
+      type: playbook
+      version: -1
+    taskid: 2eb45514-1e74-4513-8712-53275d252ef0
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Complete to continue, you can verify the data was set into Context
+        by checking the context in the top right of the Incident, the drop down next
+        to actions. \n\nThere should be a key called 'Data' with our array. \n\nWill
+        \ pass this array into the next task which is our sub-playbook that will loop
+        over the data. "
+      id: 1bfb50d6-ed68-42e7-8727-5cbdfd2424ca
+      iscommand: false
+      name: Pause
+      type: regular
+      version: -1
+    taskid: 1bfb50d6-ed68-42e7-8727-5cbdfd2424ca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - For Each Loops (Parent)\n\nThis playbook
+          demonstrates sub-playbook looping using a for each method.  \n\nWe start
+          by setting an array to a context key that we are going to loop over.  The
+          array is a list of dictionaries with or without a base64 encoded string.
+          \n\nWe pass this into the sub-playbook to loop over, decode the string and
+          return the original and decoded value. \n\nIndividual steps in the playbook
+          may have additional details. "
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: c3502f45-150d-427e-8164-e84c942c7e25
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: c3502f45-150d-427e-8164-e84c942c7e25
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 180
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1295,
+        "width": 380,
+        "x": 50,
+        "y": -160
+      }
+    }
+  }
