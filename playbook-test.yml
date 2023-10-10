@@ -1,0 +1,57 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: a67b6c29-7587-4576-8271-bdbb15b657c3
+inputs: []
+name: test
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 07549101-80ed-47bc-82c0-5319b7cd3fd5
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 07549101-80ed-47bc-82c0-5319b7cd3fd5
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 65,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
