@@ -1,0 +1,101 @@
+commonfields:
+  id: 206a1467-96d1-407d-8cde-e1921ea4e59c
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: DisplayPolicy
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import copy
+
+  incident = demisto.incidents()[0]
+  incidentId = incident['id']
+  adom = incident['CustomFields']['adom']
+  folder = incident['CustomFields']['packagefolder'] if 'packagefolder' in incident['CustomFields'].keys() else ''
+  package = incident['CustomFields']['package'] if 'package' in incident['CustomFields'].keys() else ''
+  policy_dict = {
+      'Select':False,
+      'Policy ID':'',
+      'Name':'',
+      'Source Interface':'',
+      'Destination Interface':'',
+      'Source Address':'',
+      'Destination Address':'',
+      'Schedule':'',
+      'Service':'',
+      'Action':'',
+      'Package':''
+  }
+
+  policy_list = []
+
+  try:
+      if folder:
+          policies = demisto.executeCommand('fortimanager-firewall-policy-list', {'package':package,'adom':adom,'folder':folder,'using':'FortiManager_custom_instance'})[0]['Contents']
+          print(policies)
+      else:
+          policies = demisto.executeCommand('fortimanager-firewall-policy-list', {'package':package,'adom':adom,'using':'FortiManager_instance_1'})[0]['Contents']
+
+      if  policies:
+          for policy in policies:
+              context = copy.deepcopy(policy_dict)
+              context['Policy ID'] = policy['policyid']
+              context['Source Interface'] = ','.join(policy['srcintf'])
+              context['Destination Interface'] = ','.join(policy['dstintf'])
+              context['Source Address'] = ','.join(policy['srcaddr'])
+              context['Destination Address'] = ','.join(policy['dstaddr'])
+              context['Schedule'] = ','.join(policy['schedule'])
+              context['Service'] = ','.join(policy['service'])
+              context['Action'] = policy['action']
+              context['Name'] = policy['name'] if 'name' in policy.keys() else ''
+              context['Package'] = package
+              policy_list.append(context)
+      else:
+          policy_list.append(policy_dict)
+
+
+      policies_footer = demisto.executeCommand('fortimanager-footer-policy-list', {'package':package,'adom':adom,'using':'FortiManager_custom_instance'})[0]['Contents']
+
+      if  policies_footer:
+          for policy_footer in policies_footer:
+              context_footer = copy.deepcopy(policy_dict)
+              context_footer['Policy ID'] = policy_footer['policyid']
+              context_footer['Source Interface'] = ','.join(policy_footer['srcintf'])
+              context_footer['Destination Interface'] = ','.join(policy_footer['dstintf'])
+              context_footer['Source Address'] = ','.join(policy_footer['srcaddr'])
+              context_footer['Destination Address'] = ','.join(policy_footer['dstaddr'])
+              context_footer['Schedule'] = ','.join(policy_footer['schedule'])
+              context_footer['Service'] = ','.join(policy_footer['service'])
+              context_footer['Action'] = policy_footer['action']
+              context_footer['Name'] = policy_footer['name'] if 'name' in policy_footer.keys() else ''
+              context_footer['Package'] = package
+              policy_list.append(context_footer)
+
+      demisto.executeCommand('DeleteContext',{'all':'no','key':'Fortimanager.Policies'})
+      demisto.setContext('Fortimanager.Policies', policy_list)
+      demisto.executeCommand('SetGridField',{'columns':','.join(policy_dict.keys()),'context_path':'Fortimanager.Policies','grid_id':'fortimanagerfirewallpolicylistpackage','keys':','.join(policy_dict.keys())})
+      return_results(policy_list)
+  except Exception as e:
+      return_error(f'Failed to execute DisplayPolicy Automation. Error: {str(e)}')
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- incident-action-button
+type: python
