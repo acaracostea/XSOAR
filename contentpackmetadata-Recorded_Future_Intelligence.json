@@ -1,0 +1,637 @@
+{
+	"author": "Recorded Future",
+	"authorImage": "content/packs/RecordedFuture/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"indicatorfield",
+		"dashboard",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "",
+				"id": "Recorded Future Playbook Alert Mapper",
+				"name": "Recorded Future Playbook Alert Mapper"
+			},
+			{
+				"description": "",
+				"id": "Recorded Future - Classifier",
+				"name": "Recorded Future - Classifier"
+			},
+			{
+				"description": "",
+				"id": "Recorded Future Playbook Alert Classifier",
+				"name": "Recorded Future Playbook Alert Classifier"
+			},
+			{
+				"description": "",
+				"id": "Recorded Future - Incoming Mapper",
+				"name": "Recorded Future - Incoming Mapper"
+			}
+		],
+		"dashboard": [
+			{
+				"name": "Recorded Future"
+			}
+		],
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Recorded Future Whois Record Data",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future AI Insights",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future Targeted Domains",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future Insikt Notes",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future Targeted Products",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future Alert Entities",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future Identified Domain",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future DNS Records",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future Identified CVE",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Recorded Future Risk Rule",
+				"type": "grid"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Recorded Future Vulnerability",
+				"playbook": "Recorded Future Vulnerability",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Recorded Future Playbook Alert",
+				"playbook": "Recorded Future Playbook Alert Details",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Recorded Future New Critical or Pre NVD Vulnerabilities",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Recorded Future Domain Abuse",
+				"playbook": "Recorded Future Domain Abuse",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Recorded Future Alert",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Recorded Future Leaked Credential Monitoring",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Recorded Future Code Repo Leakage",
+				"playbook": "Recorded Future Playbook Alert Details",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Recorded Future Potential Typosquat",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": [
+			{
+				"description": "",
+				"name": "RecordedFuture Threat assessment",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "RecordedFuture Risk rules",
+				"type": "tagsSelect"
+			}
+		],
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Get Playbook alert details by id.",
+						"name": "recordedfuture-playbook-alerts-details"
+					},
+					{
+						"description": "Update the status of one or multiple Playbook alerts",
+						"name": "recordedfuture-playbook-alerts-update"
+					},
+					{
+						"description": "Search playbook alerts based on filters",
+						"name": "recordedfuture-playbook-alerts-search"
+					}
+				],
+				"description": "Fetch \u0026 triage Recorded Future Playbook Alerts",
+				"id": "RecordedFuturePlaybookAlerts",
+				"name": "Recorded Future - Playbook Alerts (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Search for lists in Recorded Future",
+						"name": "recordedfuture-lists-search"
+					},
+					{
+						"description": "Add entities to a list, separate entities by commas. \"NOTE:\" if entity type is specified, only one entity type can be added with each action.",
+						"name": "recordedfuture-lists-add-entities"
+					},
+					{
+						"description": "Remove entities from a list. Separate entities with a comma. \"NOTE:\" If entity type is specified, only one entity type can be added with each action.",
+						"name": "recordedfuture-lists-remove-entities"
+					},
+					{
+						"description": "Get the entities that are currently in the given lists.",
+						"name": "recordedfuture-lists-entities"
+					}
+				],
+				"description": "Search and manage watchlists in Recorded Future",
+				"id": "RecordedFutureLists",
+				"name": "Recorded Future - Lists (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets a quick indicator of the risk associated with a domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Gets a quick indicator of the risk associated with an IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Gets a quick indicator of the risk associated with a file.",
+						"name": "file"
+					},
+					{
+						"description": "Gets a quick indicator of the risk associated with a CVE.",
+						"name": "cve"
+					},
+					{
+						"description": "Gets a quick indicator of the risk associated with a URL.",
+						"name": "url"
+					},
+					{
+						"description": "Get an indicator of the risk based on context.",
+						"name": "recordedfuture-threat-assessment"
+					},
+					{
+						"description": "Get threat intelligence for an IP, Domain, CVE, URL, File or Malware.",
+						"name": "recordedfuture-intelligence"
+					},
+					{
+						"description": "Get Insikt Group Research Links for an IP, Domain, CVE, URL, File, or Malware.",
+						"name": "recordedfuture-links"
+					},
+					{
+						"description": "Get detailed information from vulnerability, typosquat and credential alerts.",
+						"name": "recordedfuture-single-alert"
+					},
+					{
+						"description": "Gets details on alerts configured and generated by Recorded Future by alert rule ID and/or time range.",
+						"name": "recordedfuture-alerts"
+					},
+					{
+						"description": "Search for alert rule IDs.",
+						"name": "recordedfuture-alert-rules"
+					},
+					{
+						"description": "Set alert into predefined status.",
+						"name": "recordedfuture-alert-set-status"
+					},
+					{
+						"description": "Set a note for the alert in Recorded Future.",
+						"name": "recordedfuture-alert-set-note"
+					},
+					{
+						"description": "Search for a malware by specified filters.",
+						"name": "recordedfuture-malware-search"
+					},
+					{
+						"description": "Get threat actors map.",
+						"name": "recordedfuture-threat-map"
+					},
+					{
+						"description": "Search links.",
+						"name": "recordedfuture-threat-links"
+					},
+					{
+						"description": "Search detection rules.",
+						"name": "recordedfuture-detection-rules"
+					},
+					{
+						"description": "Post detection to collective insight.",
+						"name": "recordedfuture-collective-insight"
+					}
+				],
+				"description": "Unique threat intel technology that automatically serves up relevant insights in real time.",
+				"id": "Recorded Future v2",
+				"name": "Recorded Future v2 (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "Custom layout for Recorded Future Vulnerability Incident type.",
+				"name": "Recorded Future Playbook Alert Vulnerability"
+			},
+			{
+				"description": "Default layout for Recorded Future Playbook Alert Incident type.",
+				"name": "Recorded Future Playbook Alert Layout"
+			},
+			{
+				"description": "Deprecated. Custom layout for Recorded Future Incident type.",
+				"name": "RecordedFutureLayout"
+			},
+			{
+				"description": "Custom layout for Recorded Future Incident type.",
+				"name": "Recorded Future Incident"
+			},
+			{
+				"description": "Custom layout for Recorded Future Domain Abuse Incident type.",
+				"name": "Recorded Future Playbook Alert Domain Abuse"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "",
+				"name": "Recorded Future Detailed Alert example"
+			},
+			{
+				"description": "Template playbook showing suggested steps to triage new critical vulnerability alerts. Playbook include New and Critical CVEs. Classifier/Mapper are available to ingest Recorded Future New, Critical or Pre NVD Vulnerability Alerts.",
+				"name": "Recorded Future Vulnerability Alert Handling"
+			},
+			{
+				"description": "CVE reputation with Recorded Future SOAR enrichment",
+				"name": "Recorded Future CVE Reputation"
+			},
+			{
+				"description": "Template playbook to incorporate Recorded Future enrichment for IPs, Hashes, Domains, URLs into your current workflows. Playbook also shows how to look up available 'Links' data for IOCs.",
+				"name": "Recorded Future Entity Enrichment"
+			},
+			{
+				"description": "Template playbook showing suggested steps to triage typo squat alerts. Classifier/Mapper are available to ingest Recorded Future Typo squat Alerts.",
+				"name": "Recorded Future Typosquat Alert Handling"
+			},
+			{
+				"description": "Manage, view, and edit your lists in Recorded Future.",
+				"name": "Recorded Future List Management"
+			},
+			{
+				"description": "A default playbook to fetch details of Playbook alert that does not yet have mapping made by Recorded Future",
+				"name": "Recorded Future Playbook Alert Details"
+			},
+			{
+				"description": "URL reputation using Recorded Future SOAR enrichment",
+				"name": "Recorded Future URL Reputation"
+			},
+			{
+				"description": "File reputation using Recorded Future SOAR enrichment",
+				"name": "Recorded Future File Reputation"
+			},
+			{
+				"description": "This playbook was developed as a template to handle the ingestion of Recorded Future Cyber Vulnerability playbook alerts.",
+				"name": "Recorded Future Vulnerability"
+			},
+			{
+				"description": "Domain reputation using Recorded Future SOAR enrichment",
+				"name": "Recorded Future Domain Reputation"
+			},
+			{
+				"description": "Template playbook utilizing Hatching.io to sandbox a given file and generate an analysis report. Indicators from the given report are then extracted and enriched with Recorded Future data.",
+				"name": "Recorded Future Sandbox"
+			},
+			{
+				"description": "This playbook was developed as a template to handle the ingestion of Recorded Future Domain Abuse playbook alerts.",
+				"name": "Recorded Future Domain Abuse"
+			},
+			{
+				"description": "Threat Assessment using the Recorded Future SOAR Triage API and the context Phishing.",
+				"name": "Recorded Future Threat Assessment"
+			},
+			{
+				"description": "IP Address Enrichment using Recorded Future Intelligence",
+				"name": "Recorded Future IP Intelligence"
+			},
+			{
+				"description": "Template playbook to initiate an Automated Threat Hunt based on the Threat Map in Recorded Future. The Playbook fetches links related to the Threat Actors part of the Threat Map from Recorded Future and launches a hunt in the SIEM for any detections within the environment.",
+				"name": "Recorded Future - Threat Actor Search"
+			},
+			{
+				"description": "IP address reputation using Recorded Future SOAR enrichment",
+				"name": "Recorded Future IP Reputation"
+			},
+			{
+				"description": "Template playbook showing suggested steps to triage leaked credential alerts. Classifier/Mapper are available to ingest Recorded Future Leaked Credential Alerts.",
+				"name": "Recorded Future Leaked Credential Alert Handling"
+			},
+			{
+				"description": "CVE enrichment using Recorded Future intelligence",
+				"name": "Recorded Future CVE Intelligence"
+			},
+			{
+				"description": "Entity Reputation using sub-playbooks",
+				"name": "Recorded Future IOC Reputation"
+			},
+			{
+				"description": "URL Enrichment using Recorded Future intelligence",
+				"name": "Recorded Future URL Intelligence"
+			},
+			{
+				"description": "File enrichment using Recorded Future intelligence",
+				"name": "Recorded Future File Intelligence"
+			},
+			{
+				"description": "Domain enrichment using Recorded Future intelligence",
+				"name": "Recorded Future Domain Intelligence"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.7.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.35",
+			"name": "Base"
+		},
+		"Censys": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.0.26",
+			"name": "Censys"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.4.5",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.12.29",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.87",
+			"name": "Common Types"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.32",
+			"name": "Filters And Transformers"
+		},
+		"HatchingTriage": {
+			"author": "Hatching",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.13",
+			"name": "Hatching Triage"
+		},
+		"Jira": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.1.2",
+			"name": "Atlassian Jira"
+		},
+		"QRadar": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.4.36",
+			"name": "IBM QRadar"
+		},
+		"SplunkPy": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.1.8",
+			"name": "Splunk"
+		},
+		"UrlScan": {
+			"author": "urlscan GmbH",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.9",
+			"name": "URLScan.io"
+		},
+		"Whois": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.5.3",
+			"name": "Whois"
+		}
+	},
+	"deprecated": false,
+	"description": "Recorded Future App, this pack is previously known as 'RecordedFuture v2'",
+	"disabledMonthly": false,
+	"downloads": 7371,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "RecordedFuture",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/RecordedFuture/RecordedFutureLists_image.png",
+			"name": "Recorded Future - Lists"
+		},
+		{
+			"imagePath": "content/packs/RecordedFuture/RecordedFuturePlaybookAlerts_image.png",
+			"name": "Recorded Future - Playbook Alerts"
+		},
+		{
+			"imagePath": "content/packs/RecordedFuture/RecordedFuturev2_image.png",
+			"name": "Recorded Future v2"
+		},
+		{
+			"imagePath": "content/packs/SplunkPy/SplunkPy_image.png",
+			"name": "SplunkPy"
+		},
+		{
+			"imagePath": "content/packs/Whois/Whois_image.png",
+			"name": "Whois"
+		},
+		{
+			"imagePath": "content/packs/QRadar/QRadar_image.png",
+			"name": "IBM QRadar (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/QRadar/QRadar_v2_image.png",
+			"name": "IBM QRadar v2 (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/QRadar/QRadarv3_image.png",
+			"name": "IBM QRadar v3"
+		},
+		{
+			"imagePath": "content/packs/UrlScan/urlscan.io_image.png",
+			"name": "urlscan.io"
+		},
+		{
+			"imagePath": "content/packs/Jira/jira-v2_image.png",
+			"name": "Atlassian Jira v2 (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Jira/JiraV3_image.png",
+			"name": "Atlassian Jira v3"
+		},
+		{
+			"imagePath": "content/packs/Censys/Censys_image.png",
+			"name": "Censys (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Censys/CensysV2_image.png",
+			"name": "Censys v2"
+		},
+		{
+			"imagePath": "content/packs/HatchingTriage/HatchingTriage_image.png",
+			"name": "Hatching Triage"
+		}
+	],
+	"itemVersion": "1.7.2",
+	"keywords": [
+		"recorded future",
+		"recordedfuture",
+		"recorded future v2",
+		"recordedfuture v2",
+		"recorded future app v2",
+		"recordedfuture app v2",
+		"rf",
+		"threat intelligence",
+		"ti",
+		"tip",
+		"enrichment",
+		"enrich",
+		"intelligence",
+		"data enrichment"
+	],
+	"legacy": true,
+	"name": "Recorded Future Intelligence",
+	"packID": "RecordedFuture",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "# \"Recorded Future Intelligence\" Pack Documentation\n​\n## Integrations\n​\n### Recorded Future v2 \nAccess Recorded Future data to enrich IPs, domains, URLs, CVEs, Files, and Malwares and assess\nthreats in regards to a specific context. Use this integration to fetch Recorded Future non-playbook alerts\n​\n#### Available Actions\n​\n* Reputation actions: \n    * Gets a reputaion lookup based on Recorded Future's risk assessment for IPs, Domains, Files (hashes), URLs and CVEs\n    * Using the new Recorded Future SOAR Enrichment API.\n    * Available actions: ip, domain, url, file(hashes), cve.\n* Intelligence action\n    * Fetches full information for the entity.\n    * Supports IPs, Domains, URLs, Files(hashes), Vulnerabilities(cve), Malwares.\n* Malware search action\n    * Search for malware family names curated by Recorded Future\n    * Look up and enrich malware families with Recorded Future context\n* Alert actions\n    * Fetch alerting rules defined at Recorded Future.\n    * Fetch alert summaries from one or more alerting rules.\n    * Set alert status in Recorded Future\n    * Set alert note in Recorded Future\n* Threat assessment action\n    * Takes a context, such as phishing or malware and one or more IOC as input.\n    * Outputs a verdict (true/false) and related evidence (risk rules) for this context.\n​\n​\n#### Relevant Playbooks\n​\nAll the playbooks are meant to be used as sub-playbooks to get reputation, intelligence or assess the threat level in\nregards to a context.\n* Available Reputation sub-playbooks\n    * IP\n    * Domain\n    * CVE\n    * File\n    * URL\n    * One combined playbook that returns the reputation for all of the above types\n​\n* Available Intelligence/Enrichment sub-playbooks\n    * IP\n    * Domain\n    * CVE\n    * File\n    * URL\n​\n* Threat assessment sub-playbooks for the following contexts\n    * Malware\n    * Phishing\n    * Command and Control (C2)\n​\n    * Available template playbooks\n    * Recorded Future Entity Enrichment\n    * Recorded Future Sandbox (Hatching)\n    * Recorded Future Leaked Credentials Alert Handling\n    * Recorded Future Typosquat Alert Handling\n    * Recorded Future Vulnerability Alert Handling\n    \n#### Relevant Classifiers\nClassifier and Incoming Mapper allows you to classify and map fetched incident onto Recorded Future Incident Types.\n​\n* Recorded Future - Classifier\n* Recorded Future - Incoming Mapper\n    \n#### Relevant Incident Types\n​\n* Recorded Future Alert\n* Recorded Future Leaked Credential Monitoring\n* Recorded Future New Critical or Pre NVD Vulnerabilities\n* Recorded Future Potential Typosquat \n    \n#### Relevant Layouts\n​\n* Custom layout for Recorded Future incident type\n    \n---\n​\n### Recorded Future - Playbook Alerts\nFetch \u0026 triage Recorded Future Playbook Alerts\n​\n#### Available Actions\n​\n* recordedfuture-playbook-alerts-details\n    * View details of a specific Recorded Future playbook alert\n    * Get Playbook alert details by id\n* recordedfuture-playbook-alerts-update\n    * Update the status of one or multiple Playbook alerts\n* recordedfuture-playbook-alerts-search\n    * View which Recorded Future playbook alerts  are set up in Recorded Future enterprise to be brought into XSOAR\n    * Search playbook alerts based on filters\n​\n#### Relevant Playbooks\nThe template playbooks included help you save time and keep your incidents in sync. They also aid with automating repetitive tasks associated with playbook alerts. Template playbooks should be used as launching points to build playbooks for specific use cases supported by Recorded Future. Certain playbook steps in a template playbook need to be configured to function.\n​\n* Recorded Future Playbook Alert Details \n    * A default playbook to fetch details of Playbook alert that does not yet have mapping made by Recorded Future\n* Recorded Future Domain Abuse\n    * This playbook was developed as a template to handle the ingestion of Recorded Future Domain Abuse playbook alerts.\n* Recorded Future Vulnerability\n    * This playbook was developed as a template to handle the ingestion of Recorded Future Cyber Vulnerability playbook alerts.\n​\n#### Relevant Classifiers\nClassifier and Incoming Mapper allows you to classify and map fetched incident onto Recorded Future Incident Types.\n​\n* Recorded Future Playbook Alert Classifier\n* Recorded Future Playbook Alert Mapper\n    \n#### Relevant Incident Types\n​\n* Recorded Future Playbook Alert\n* Recorded Future Domain Abuse\n* Recorded Future Vulnerability\n* Recorded Future Code Repo Leakage\n​\n#### Relevant Layouts\n​\n* Recorded Future Playbook Alert Domain Abuse\n* Recorded Future Playbook Alert Vulnerability\n* Recorded Future Alert Layout\n​\n---\n### Recorded Future - Lists\nSearch and manage watchlists and lists in Recorded Future\n​\n#### Available Actions\n* recordedfuture-lists-add-entities\n\t* Add entities to a list, separate entities by commas. \"NOTE:\" if entity type is specified, only one entity type can be added with each action.\n* recordedfuture-lists-remove-entities\n    * Remove entities from a list. Separate entities with commas. \"NOTE:\" If entity type is specified, only one entity type can be added with each action.\n* recordedfuture-lists-search\n\t* Search for a Recorded Future list. Returns list entities  \n* recordedfuture-lists-entities\n    * Fetch entities from given lists. Use search command to find the unique ID of a list.\n\n---\n#### Dashboards and indicators\n​\nIncludes a dashboard that details various metrics related to indicators that was generated from Recorded Future data and\nincidents that was created from Recorded Future data.  \n\nThere are two indicator fields added to record which risk rules indicators have triggered as well as whether an\nindicator is a malware, c2, or phishing when it has gone through the playbook for threat assessment.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@recordedfuture.com",
+		"url": "https://www.recordedfuture.com/support/demisto-integration/"
+	},
+	"tags": [
+		"Partner Spotlight"
+	],
+	"toServerVersion": "",
+	"updated": "2023-10-01T22:25:42+03:00",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6479322",
+	"videos": []
+}
