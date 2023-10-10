@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "[{\"taskname\":\"Get MITRE name\",\"commandname\":\"mitre-get-indicator-name\",\"creationdate\":\"2023-07-12T14:44:56.405666759+02:00\",\"incidentid\":\"13028\",\"numberoferrors\":\"2\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"237\"},{\"commandname\":\"endpoint\",\"creationdate\":\"2023-07-12T14:44:56.470589072+02:00\",\"incidentid\":\"13029\",\"numberoferrors\":\"6\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"348\",\"taskname\":\"Enrich endpoint details\"},{\"taskname\":\"Get MITRE name\",\"commandname\":\"mitre-get-indicator-name\",\"creationdate\":\"2023-07-12T14:45:56.342955125+02:00\",\"incidentid\":\"13032\",\"numberoferrors\":\"2\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"237\"},{\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"366\",\"taskname\":\"Get MITRE name\",\"commandname\":\"mitre-get-indicator-name\",\"creationdate\":\"2023-07-12T14:45:56.40369632+02:00\",\"incidentid\":\"13033\",\"numberoferrors\":\"2\"},{\"incidentid\":\"13034\",\"numberoferrors\":\"2\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"366\",\"taskname\":\"Get MITRE name\",\"commandname\":\"mitre-get-indicator-name\",\"creationdate\":\"2023-07-12T14:45:56.464791942+02:00\"},{\"incidentid\":\"13035\",\"numberoferrors\":\"7\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"348\",\"taskname\":\"Enrich endpoint details\",\"commandname\":\"endpoint\",\"creationdate\":\"2023-07-12T14:45:56.518760046+02:00\"},{\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"237\",\"taskname\":\"Get MITRE name\",\"commandname\":\"mitre-get-indicator-name\",\"creationdate\":\"2023-07-12T14:45:56.579160863+02:00\",\"incidentid\":\"13036\",\"numberoferrors\":\"2\"},{\"taskid\":\"226\",\"taskname\":\"Get full alert details\",\"commandname\":\"microsoft-atp-get-alert-by-id\",\"creationdate\":\"2023-07-17T12:15:56.389053544+02:00\",\"incidentid\":\"13040\",\"numberoferrors\":\"2\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\"},{\"creationdate\":\"2023-07-17T12:16:56.300913765+02:00\",\"incidentid\":\"13042\",\"numberoferrors\":\"2\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"237\",\"taskname\":\"Get MITRE name\",\"commandname\":\"mitre-get-indicator-name\"},{\"creationdate\":\"2023-07-20T12:20:56.582950646+02:00\",\"incidentid\":\"13048\",\"numberoferrors\":\"2\",\"owner\":\"customer\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"237\",\"taskname\":\"Get MITRE name\",\"commandname\":\"mitre-get-indicator-name\"},{\"creationdate\":\"2023-07-20T12:20:56.442854846+02:00\",\"incidentid\":\"13045\",\"numberoferrors\":\"7\",\"owner\":\"customer\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"348\",\"taskname\":\"Enrich endpoint details\",\"commandname\":\"endpoint\"},{\"incidentid\":\"13627\",\"numberoferrors\":\"1\",\"owner\":\"admin\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"359\",\"taskname\":\"Get full alert details\",\"commandname\":\"microsoft-atp-get-alert-by-id\",\"creationdate\":\"2023-09-08T13:08:02.269492907+02:00\"},{\"commandname\":\"microsoft-atp-get-alert-by-id\",\"creationdate\":\"2023-09-12T13:57:54.68960014+02:00\",\"incidentid\":\"13640\",\"numberoferrors\":\"1\",\"owner\":\"rupak.poddar\",\"playbookname\":\"Telia - MDE Malware - Investigation and Response\",\"taskid\":\"359\",\"taskname\":\"Get full alert details\"}]",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Failed Incidents Table",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Failed Incidents Table",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
