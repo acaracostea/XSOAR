@@ -1,0 +1,245 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "List all devices in the ADOM instance.",
+						"name": "fortimanager-devices-list"
+					},
+					{
+						"description": "List ADOM device groups.",
+						"name": "fortimanager-device-groups-list"
+					},
+					{
+						"description": "List ADOM firewall IPv4 addresses.",
+						"name": "fortimanager-address-list"
+					},
+					{
+						"description": "Add a new IPv4 address.",
+						"name": "fortimanager-address-create"
+					},
+					{
+						"description": "Add a new IPv4 address.",
+						"name": "fortimanager-address-update"
+					},
+					{
+						"description": "Delete an address.",
+						"name": "fortimanager-address-delete"
+					},
+					{
+						"description": "List ADOM IPv4 address groups.",
+						"name": "fortimanager-address-group-list"
+					},
+					{
+						"description": "Create a new address group.",
+						"name": "fortimanager-address-group-create"
+					},
+					{
+						"description": "Create a new address group.",
+						"name": "fortimanager-address-group-update"
+					},
+					{
+						"description": "Delete an address group.",
+						"name": "fortimanager-address-group-delete"
+					},
+					{
+						"description": "List the ADOM service categories.",
+						"name": "fortimanager-service-categories-list"
+					},
+					{
+						"description": "List ADOM service groups.",
+						"name": "fortimanager-service-group-list"
+					},
+					{
+						"description": "Creates a new service group.",
+						"name": "fortimanager-service-group-create"
+					},
+					{
+						"description": "Create a new service group.",
+						"name": "fortimanager-service-group-update"
+					},
+					{
+						"description": "Delete a service group.",
+						"name": "fortimanager-service-group-delete"
+					},
+					{
+						"description": "List the custom services.",
+						"name": "fortimanager-custom-service-list"
+					},
+					{
+						"description": "Create a new custom service.",
+						"name": "fortimanager-custom-service-create"
+					},
+					{
+						"description": "Update a custom service.",
+						"name": "fortimanager-custom-service-update"
+					},
+					{
+						"description": "Delete a custom service.",
+						"name": "fortimanager-custom-service-delete"
+					},
+					{
+						"description": "List ADOM policy packages.",
+						"name": "fortimanager-firewall-policy-package-list"
+					},
+					{
+						"description": "Create a new firewall policy package.",
+						"name": "fortimanager-firewall-policy-package-create"
+					},
+					{
+						"description": "Create a new firewall policy package.",
+						"name": "fortimanager-firewall-policy-package-update"
+					},
+					{
+						"description": "Delete a firewall policy package.",
+						"name": "fortimanager-firewall-policy-package-delete"
+					},
+					{
+						"description": "List specific firewall policies from a policy package.",
+						"name": "fortimanager-firewall-policy-list"
+					},
+					{
+						"description": "Create a firewall policy.",
+						"name": "fortimanager-firewall-policy-create"
+					},
+					{
+						"description": "Update a firewall policy.",
+						"name": "fortimanager-firewall-policy-update"
+					},
+					{
+						"description": "Delete a firewall policy.",
+						"name": "fortimanager-firewall-policy-delete"
+					},
+					{
+						"description": "Move a policy in the package.",
+						"name": "fortimanager-firewall-policy-move"
+					},
+					{
+						"description": "List dynamic interfaces",
+						"name": "fortimanager-dynamic-interface-list"
+					},
+					{
+						"description": "Schedule a policy package installation.",
+						"name": "fortimanager-firewall-policy-package-install"
+					},
+					{
+						"description": "Get installation status.",
+						"name": "fortimanager-firewall-policy-package-install-status"
+					}
+				],
+				"description": "FortiManager is a single console central management system that manages Fortinet devices.",
+				"id": "FortiManager",
+				"name": "FortiManager"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Install FortiManager firewall policy package on a given device.",
+				"name": "FortiManager - Install Policy Package on Device"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.0.7",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.19",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.78",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.11.92",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Manage your FortiNet firewall",
+	"disabledMonthly": false,
+	"downloads": 1041,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FortiManager",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FortiManager/FortiManager_image.png",
+			"name": "FortiManager"
+		}
+	],
+	"itemVersion": "1.0.7",
+	"keywords": [],
+	"legacy": true,
+	"name": "FortiManager",
+	"packID": "FortiManager",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-07-25T22:32:14+03:00",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "5678279",
+	"videos": []
+}
