@@ -1,0 +1,96 @@
+args:
+- description: webserver action uuid
+  name: uuid
+  required: true
+- defaultValue: "30"
+  description: Time between 2 polls
+  name: timebetweenruns
+comment: |-
+  Companion automation to XSOAR-Web-Server that polls a certain UUID for user response.
+  The automation returns a scheduledcommand if the user has not responded to the action url
+commonfields:
+  id: xsoar-ws-poll-status
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.0.1
+    packID: XsoarWebserver
+    packName: Xsoar-web-server
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: xsoar-ws-poll-status
+outputs:
+- contextPath: WS-ActionStatus
+  description: Data structure that gets the latest status information for the uuid
+    being tracked
+- contextPath: WS-ActionStatus.link_tracker
+  description: status indicating if the job has been completed
+  type: boolean
+polling: true
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('xsoar-ws-poll-status', 'start', __line__())
+  ### pack version: 1.0.1
+
+
+
+
+  uuid = demisto.args().get('uuid')
+  next_run = int(demisto.args().get('timebetweenruns'))
+  timeout = 259200
+  job_status = demisto.executeCommand("xsoar-ws-get-action-status", {"uuid": uuid})[0]['Contents']
+
+
+  def parse_job_status():
+      link_tracker = job_status["link_tracker"]
+      complete = False
+      for link in link_tracker:
+          if link["response_received"]:
+              complete = True
+          else:
+              complete = False
+              break
+
+      if not complete:
+          scheduled_command = ScheduledCommand(command="xsoar-ws-poll-status", next_run_in_seconds=next_run,
+                                               args={'uuid': uuid, 'timebetweenruns': next_run, 'timeout': timeout},
+                                               timeout_in_seconds=timeout)
+          toreturn = CommandResults(outputs_prefix='WS-ActionStatus(val.job_uuid==obj.job_uuid)',
+                                    readable_output="Waiting for Job to complete, polling job",
+                                    outputs=job_status, scheduled_command=scheduled_command)
+      else:
+          demisto.executeCommand("xsoar-ws-set-job-complete", {"uuid": uuid})
+          job_status["completed"] = True
+          toreturn = CommandResults(outputs_prefix='WS-ActionStatus(val.job_uuid==obj.job_uuid)',
+                                    readable_output="All responses received, stopped polling", outputs=job_status)
+      return toreturn
+
+
+  if type(job_status) is not dict:
+      return_error(job_status)
+  elif job_status["completed"]:
+      toreturn = CommandResults(outputs_prefix='WS-ActionStatus(val.job_uuid==obj.job_uuid)',
+                                readable_output="Job has been set to complete, not polling", outputs=job_status)
+  else:
+      toreturn = parse_job_status()
+
+
+  return_results(toreturn)
+
+  register_module_line('xsoar-ws-poll-status', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
