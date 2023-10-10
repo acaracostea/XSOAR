@@ -1,0 +1,270 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "248c5cb0-cb97-44cf-8610-010b89fb533b",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 2,
+	"mapping": {
+		"Fortianalyzer DNS": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Alert ID": {
+					"simple": "alertid"
+				},
+				"Alert Time": {
+					"complex": {
+						"filters": [],
+						"root": "alerttime",
+						"transformers": [
+							{
+								"operator": "TimeStampToDate"
+							}
+						]
+					}
+				},
+				"Description": {
+					"simple": "extrainfo"
+				},
+				"Devid": {
+					"simple": "devid"
+				},
+				"Devname": {
+					"simple": "devname"
+				},
+				"Devtype": {
+					"simple": "devtype"
+				},
+				"Event Status": {
+					"simple": "eventstatus"
+				},
+				"Event Type": {
+					"simple": "eventtype"
+				},
+				"Handler ID": {
+					"simple": "alert_part_info.handlerid"
+				},
+				"Handler Name": {
+					"simple": "alert_part_info.handlername"
+				},
+				"Handler Type": {
+					"simple": "handler_type"
+				},
+				"Log Type": {
+					"simple": "logtype"
+				},
+				"Rule ID": {
+					"simple": "alert_part_info.ruleid"
+				},
+				"Rule Name": {
+					"simple": "alert_part_info.rulename"
+				},
+				"Subject": {
+					"simple": "subject"
+				},
+				"Tags": {
+					"simple": "tag"
+				},
+				"Trigger Name": {
+					"simple": "triggername"
+				},
+				"Vdom": {
+					"simple": "vdom"
+				},
+				"epid": {
+					"simple": "epid"
+				},
+				"epip": {
+					"simple": "epip"
+				},
+				"euid": {
+					"simple": "euid"
+				},
+				"severity": {
+					"simple": "severity"
+				}
+			}
+		},
+		"Fortianalyzer Traffic": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Alert ID": {
+					"simple": "alertid"
+				},
+				"Alert Time": {
+					"complex": {
+						"filters": [],
+						"root": "alerttime",
+						"transformers": [
+							{
+								"operator": "TimeStampToDate"
+							}
+						]
+					}
+				},
+				"Description": {
+					"simple": "extrainfo"
+				},
+				"Devid": {
+					"simple": "devid"
+				},
+				"Devname": {
+					"simple": "devname"
+				},
+				"Devtype": {
+					"simple": "devtype"
+				},
+				"Event Status": {
+					"simple": "eventstatus"
+				},
+				"Event Type": {
+					"simple": "eventtype"
+				},
+				"Handler ID": {
+					"simple": "alert_part_info.handlerid"
+				},
+				"Handler Name": {
+					"simple": "alert_part_info.handlername"
+				},
+				"Handler Type": {
+					"simple": "handler_type"
+				},
+				"Log Type": {
+					"simple": "logtype"
+				},
+				"Rule ID": {
+					"simple": "alert_part_info.ruleid"
+				},
+				"Rule Name": {
+					"simple": "alert_part_info.rulename"
+				},
+				"Subject": {
+					"simple": "subject"
+				},
+				"Tags": {
+					"simple": "tag"
+				},
+				"Trigger Name": {
+					"simple": "triggername"
+				},
+				"Vdom": {
+					"simple": "vdom"
+				},
+				"epid": {
+					"simple": "epid"
+				},
+				"epip": {
+					"simple": "epip"
+				},
+				"euid": {
+					"simple": "euid"
+				},
+				"severity": {
+					"simple": "severity"
+				}
+			}
+		},
+		"Fortianalyzer Webfilter": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Alert ID": {
+					"simple": "alertid"
+				},
+				"Alert Time": {
+					"complex": {
+						"filters": [],
+						"root": "alerttime",
+						"transformers": [
+							{
+								"operator": "TimeStampToDate"
+							}
+						]
+					}
+				},
+				"Description": {
+					"simple": "extrainfo"
+				},
+				"Devid": {
+					"simple": "devid"
+				},
+				"Devname": {
+					"simple": "devname"
+				},
+				"Devtype": {
+					"simple": "devtype"
+				},
+				"Event Status": {
+					"simple": "eventstatus"
+				},
+				"Event Type": {
+					"simple": "eventtype"
+				},
+				"Handler ID": {
+					"simple": "alert_part_info.handlerid"
+				},
+				"Handler Name": {
+					"simple": "alert_part_info.handlername"
+				},
+				"Handler Type": {
+					"simple": "handler_type"
+				},
+				"Log Type": {
+					"simple": "logtype"
+				},
+				"Rule ID": {
+					"simple": "alert_part_info.ruleid"
+				},
+				"Rule Name": {
+					"simple": "alert_part_info.rulename"
+				},
+				"Subject": {
+					"simple": "subject"
+				},
+				"Tags": {
+					"simple": "tag"
+				},
+				"Trigger Name": {
+					"simple": "triggername"
+				},
+				"Vdom": {
+					"simple": "vdom"
+				},
+				"epid": {
+					"simple": "epid"
+				},
+				"epip": {
+					"simple": "epip"
+				},
+				"euid": {
+					"simple": "euid"
+				},
+				"severity": {
+					"simple": "severity"
+				}
+			}
+		}
+	},
+	"name": "Fortianalyzer-mapper-incoming",
+	"nameRaw": "Fortianalyzer-mapper-incoming",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
