@@ -1,0 +1,74 @@
+commonfields:
+  id: f42753cd-a657-4405-8dbb-b23e1d2c8d65
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: PolicyCreate
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  incident = demisto.incidents()[0]
+  incident_field = incident['CustomFields']
+  error=[]
+
+  dstaddr = incident_field['destinationaddress'] if 'destinationaddress' in incident_field.keys() else ''
+  srcaddr = incident_field['sourceaddress'] if 'sourceaddress' in incident_field.keys() else ''
+  dstintf = incident_field['destinationinterface'] if 'destinationinterface' in incident_field.keys() else ''
+  srcintf = incident_field['sourceinterface'] if 'sourceinterface' in incident_field.keys() else ''
+  schedule = incident_field['comment'] if 'comment' in incident_field.keys() else 'always'
+  service = incident_field['service'] if 'service' in incident_field.keys() else 'ALL'
+  args = {
+      'adom':incident_field['adom'] if 'adom' in incident_field.keys() else '',
+      'package':incident_field['package'] if 'package' in incident_field.keys() else '',
+      'action':incident_field['policyaction'] if 'policyaction' in incident_field.keys() else '',
+      'comments':incident_field['comment'] if 'comment' in incident_field.keys() else 'test',
+      'dstaddr':dstaddr,
+      'srcaddr':srcaddr,
+      'dstintf':dstintf,
+      'srcintf':srcintf,
+      'name':incident_field['policyname'] if 'policyname' in incident_field.keys() else '',
+      'schedule':schedule,
+      'service':service,
+      #'policyid':incident_field['policyid'] if 'policyid' in incident_field.keys() else '',
+      'logtraffic': 'utm',
+      'using': 'FortiManager_custom_instance'
+
+  }
+
+  tp = type(args)
+
+  try:
+
+      policy_id = demisto.executeCommand('fortimanager-firewall-policy-create', args)
+
+      '''
+      if type(policy_id[0]['Contents']) == str:
+          error.append(policy_id[0]['Contents'])
+          return_error(f'Failed to execute PolicyCreate Automation. Error: {error}')
+      else:
+      '''
+      #demisto.setContext('created_policy_id', policy_id[0]['Contents'])
+      demisto.executeCommand('setIncident', {'policyid':policy_id[0]['Contents']})
+      return_results(policy_id[0]['Contents'])
+  except Exception as e:
+      error.append(str(e))
+      return_error(f'Failed to execute PolicyCreate Automation. Error: {error}')
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+type: python
