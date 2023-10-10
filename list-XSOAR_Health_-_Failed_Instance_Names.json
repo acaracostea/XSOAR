@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "FIR_instance_1,MS365_Defender365_EmaTestikas_151a8279-80ee-4be3-852b-954bc6c4dd15,Mail Sender (New)_instance_1,Microsoft Defender Advanced Threat Protection_instance_2,Microsoft Graph Mail Single User_instance_1,Microsoft Graph Mail Single User_instance_2,MicrosoftGraphMail_instance_1,Unit42IntelObjectsFeed_default_instance,WildFire-Reports_default_instance",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Failed Instance Names",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Failed Instance Names",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
