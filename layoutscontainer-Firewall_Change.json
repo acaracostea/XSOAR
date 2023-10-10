@@ -1,0 +1,803 @@
+{
+	"cacheVersn": 0,
+	"close": null,
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "summary",
+				"name": "Legacy Summary",
+				"type": "summary"
+			},
+			{
+				"id": "caseinfoid",
+				"name": "Incident Info",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 4,
+						"i": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "type",
+								"height": 22,
+								"id": "incident-type-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "severity",
+								"height": 22,
+								"id": "incident-severity-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "owner",
+								"height": 22,
+								"id": "incident-owner-field",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "sourcebrand",
+								"height": 22,
+								"id": "incident-sourceBrand-field",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "sourceinstance",
+								"height": 22,
+								"id": "incident-sourceInstance-field",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "playbookid",
+								"height": 22,
+								"id": "incident-playbookId-field",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Case Details",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"h": 4,
+						"i": "caseinfoid-61263cc0-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Notes",
+						"static": false,
+						"type": "notes",
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"displayType": "CARD",
+						"h": 2,
+						"i": "caseinfoid-ac32f620-a0b0-11e9-b27f-13ae1773d289",
+						"items": [
+							{
+								"endCol": 1,
+								"fieldId": "occurred",
+								"height": 53,
+								"id": "incident-occurred-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 1,
+								"fieldId": "dbotmodified",
+								"height": 53,
+								"id": "incident-modified-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotduedate",
+								"height": 53,
+								"id": "incident-dueDate-field",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotcreated",
+								"height": 53,
+								"id": "incident-created-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 1
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotclosed",
+								"height": 53,
+								"id": "incident-closed-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 1
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Timeline Information",
+						"static": false,
+						"w": 1,
+						"x": 1,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-88e6bf70-a0b1-11e9-b27f-13ae1773d289",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "dbotclosed",
+								"height": 22,
+								"id": "incident-dbotClosed-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "closereason",
+								"height": 22,
+								"id": "incident-closeReason-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "closenotes",
+								"height": 44,
+								"id": "incident-closeNotes-field",
+								"index": 2,
+								"listId": "caseinfoid-88e6bf70-a0b1-11e9-b27f-13ae1773d289",
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Closing Information",
+						"static": false,
+						"w": 1,
+						"x": 1,
+						"y": 0
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "q4nszdryqw",
+				"name": "Firewall Policies",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "caseinfoid-q4nszdryqw-caseinfoid-q4nszdryqw-field-changed-caseinfoid-93bb3420-14cb-11ee-a8d0-57106340e832",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "display",
+								"height": 22,
+								"id": "5b62adc0-14d4-11ee-a970-61e5d618afa8",
+								"index": 0,
+								"listId": "caseinfoid-93bb3420-14cb-11ee-a8d0-57106340e832",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "adom",
+								"height": 22,
+								"id": "11b4aab0-14d0-11ee-a8d0-57106340e832",
+								"index": 1,
+								"listId": "caseinfoid-93bb3420-14cb-11ee-a8d0-57106340e832",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "package",
+								"height": 22,
+								"id": "01642280-1692-11ee-8a54-7f17dd177918",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "packagefolder",
+								"height": 22,
+								"id": "052b3ca0-1692-11ee-8a54-7f17dd177918",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "policyname",
+								"height": 22,
+								"id": "4d9f5020-14d5-11ee-a970-61e5d618afa8",
+								"index": 3,
+								"listId": "caseinfoid-93bb3420-14cb-11ee-a8d0-57106340e832",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "policyid",
+								"height": 22,
+								"id": "7d6a92b0-14d5-11ee-a970-61e5d618afa8",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "limit",
+								"height": 22,
+								"id": "65714b50-14d4-11ee-a970-61e5d618afa8",
+								"index": 6,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "offset",
+								"height": 22,
+								"id": "6d9cf810-14d4-11ee-a970-61e5d618afa8",
+								"index": 7,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "87957f30-16b4-11ee-9823-e53f99cc8040",
+								"index": 8,
+								"name": "Show Policies",
+								"scriptId": "206a1467-96d1-407d-8cde-e1921ea4e59c",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Fields",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "caseinfoid-q4nszdryqw-caseinfoid-q4nszdryqw-field-changed-caseinfoid-990c49a0-14cb-11ee-a8d0-57106340e832",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 6,
+								"fieldId": "fortimanagerfirewallpolicylistpackage",
+								"height": 106,
+								"id": "8bfd5f50-15c6-11ee-a0ae-bb43ba2e137a",
+								"index": 0,
+								"listId": "caseinfoid-990c49a0-14cb-11ee-a8d0-57106340e832",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {
+									"playbook": {
+										"simple": "FortiManager - Delete policy"
+									}
+								},
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "99647720-2181-11ee-adf0-f3cc2709b7ee",
+								"index": 1,
+								"listId": "caseinfoid-q4nszdryqw-field-changed-caseinfoid-990c49a0-14cb-11ee-a8d0-57106340e832",
+								"name": "Delete Policy",
+								"scriptId": "2513da88-051d-413c-805e-c64935554a0f",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Firewall Policies",
+						"static": false,
+						"w": 3,
+						"x": 0,
+						"y": 6
+					},
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "caseinfoid-q4nszdryqw-caseinfoid-q4nszdryqw-field-changed-caseinfoid-47e0c028-16b4-11ee-9823-e53f99cc8040",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "display",
+								"height": 22,
+								"id": "47e0c020-16b4-11ee-9823-e53f99cc8040",
+								"index": 0,
+								"listId": "caseinfoid-93bb3420-14cb-11ee-a8d0-57106340e832",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "adom",
+								"height": 22,
+								"id": "47e0c021-16b4-11ee-9823-e53f99cc8040",
+								"index": 0,
+								"listId": "caseinfoid-93bb3420-14cb-11ee-a8d0-57106340e832",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "package",
+								"height": 22,
+								"id": "47e0c022-16b4-11ee-9823-e53f99cc8040",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "policyname",
+								"height": 22,
+								"id": "47e0c024-16b4-11ee-9823-e53f99cc8040",
+								"index": 2,
+								"listId": "caseinfoid-93bb3420-14cb-11ee-a8d0-57106340e832",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "policyaction",
+								"height": 22,
+								"id": "a5480330-16f6-11ee-baa6-5b27c8d34fc1",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "objecttype",
+								"height": 22,
+								"id": "bbc06520-1a53-11ee-9c69-b35229b9d687",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "destinationaddress",
+								"height": 22,
+								"id": "f745d9a0-16f6-11ee-baa6-5b27c8d34fc1",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "sourceaddress",
+								"height": 22,
+								"id": "fa381790-16f6-11ee-baa6-5b27c8d34fc1",
+								"index": 6,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "destinationinterface",
+								"height": 22,
+								"id": "0ee07bb0-16f7-11ee-975c-c9bad6387a1d",
+								"index": 7,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "sourceinterface",
+								"height": 22,
+								"id": "106a01e0-16f7-11ee-975c-c9bad6387a1d",
+								"index": 8,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "service",
+								"height": 22,
+								"id": "3ebfbc10-1b84-11ee-92bd-9dfd98c078ed",
+								"index": 9,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {
+									"playbook": {
+										"simple": "FortiManager - Create new policy"
+									}
+								},
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "3fbd2e40-16f7-11ee-975c-c9bad6387a1d",
+								"index": 10,
+								"name": "Create Policy",
+								"scriptId": "2513da88-051d-413c-805e-c64935554a0f",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "585da790-16f7-11ee-975c-c9bad6387a1d",
+								"index": 11,
+								"name": "Install Policy",
+								"scriptId": "fe54362d-6c24-49cd-8071-9d12cd6d2461",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Create Policy",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 3
+					},
+					{
+						"displayType": "ROW",
+						"h": 4,
+						"hideName": false,
+						"i": "caseinfoid-q4nszdryqw-caseinfoid-q4nszdryqw-field-changed-caseinfoid-a2bf1e80-172f-11ee-a27e-57d7f90245e4",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 4,
+								"fieldId": "policychanges",
+								"height": 106,
+								"id": "cbf002b0-172f-11ee-a27e-57d7f90245e4",
+								"index": 0,
+								"listId": "caseinfoid-a2bf1e80-172f-11ee-a27e-57d7f90245e4",
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "New Section",
+						"static": false,
+						"w": 2,
+						"x": 1,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-q4nszdryqw-caseinfoid-e632a2f0-1a53-11ee-9c69-b35229b9d687",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "actionstatus",
+								"height": 44,
+								"id": "78d07ea0-1a5b-11ee-9c69-b35229b9d687",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "message",
+								"height": 22,
+								"id": "7f7feba0-1a5b-11ee-9c69-b35229b9d687",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Execution Status",
+						"static": false,
+						"w": 2,
+						"x": 1,
+						"y": 0
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "6kieglglq6",
+				"name": "Firewall Address Object",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "caseinfoid-7171f0d0-26db-11ee-89a2-bfda40cdd49e",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "adom",
+								"height": 22,
+								"id": "78400960-26db-11ee-89a2-bfda40cdd49e",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "address",
+								"height": 22,
+								"id": "d7126c70-26e1-11ee-88cc-0d5a82ef3280",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "groups",
+								"height": 22,
+								"id": "dc7d2470-26e1-11ee-88cc-0d5a82ef3280",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "134ba5e0-2baf-11ee-9e1f-aba3476e0cbf",
+								"index": 3,
+								"name": "Show Address/Group",
+								"scriptId": "676d075f-e3af-4103-8252-6bd81f28e350",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "New Section",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "caseinfoid-a24bc9c0-2ba8-11ee-9e1f-aba3476e0cbf",
+						"items": [
+							{
+								"endCol": 6,
+								"fieldId": "fortimanageraddress",
+								"height": 106,
+								"id": "619a17a0-2ba9-11ee-9e1f-aba3476e0cbf",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Display Address",
+						"static": false,
+						"w": 3,
+						"x": 0,
+						"y": 5
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-07226d10-2bac-11ee-9e1f-aba3476e0cbf",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Create a new address/group object",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 3
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-4fcf50a0-2bac-11ee-9e1f-aba3476e0cbf",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "actionstatus",
+								"height": 44,
+								"id": "fd422b20-2bae-11ee-9e1f-aba3476e0cbf",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "message",
+								"height": 22,
+								"id": "05e4b590-2baf-11ee-9e1f-aba3476e0cbf",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Execution Status",
+						"static": false,
+						"w": 2,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "caseinfoid-79fe6af0-2bac-11ee-9e1f-aba3476e0cbf",
+						"items": [
+							{
+								"dropEffect": "move",
+								"endCol": 4,
+								"fieldId": "addressgroupchanges",
+								"height": 106,
+								"id": "919ae820-2bb4-11ee-9e1f-aba3476e0cbf",
+								"index": 0,
+								"listId": "caseinfoid-79fe6af0-2bac-11ee-9e1f-aba3476e0cbf",
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Address/Group Changes",
+						"static": false,
+						"w": 2,
+						"x": 1,
+						"y": 2
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"id": "warRoom",
+				"name": "War Room",
+				"type": "warRoom"
+			},
+			{
+				"id": "workPlan",
+				"name": "Work Plan",
+				"type": "workPlan"
+			},
+			{
+				"hidden": true,
+				"id": "evidenceBoard",
+				"name": "Evidence Board",
+				"type": "evidenceBoard"
+			},
+			{
+				"hidden": true,
+				"id": "relatedIncidents",
+				"name": "Related Incidents",
+				"type": "relatedIncidents"
+			},
+			{
+				"hidden": true,
+				"id": "canvas",
+				"name": "Canvas",
+				"type": "canvas"
+			}
+		]
+	},
+	"edit": null,
+	"fromServerVersion": "",
+	"group": "incident",
+	"id": "f685fd89-e481-4985-8b74-1f49ebbf361a",
+	"indicatorsDetails": null,
+	"indicatorsQuickView": null,
+	"itemVersion": "",
+	"locked": false,
+	"mobile": null,
+	"name": "Firewall Change",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"quickView": null,
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
