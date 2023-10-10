@@ -1,0 +1,41 @@
+comment: This is used to complete the Scheduled command if the either/both the users
+  respond in time. The time is configured on the EmailUserSLA.
+commonfields:
+  id: EmailSLABreach
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.0.1
+    packID: XsoarWebserver
+    packName: Xsoar-web-server
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: EmailSLABreach
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('EmailSLABreach', 'start', __line__())
+  ### pack version: 1.0.1
+
+
+
+  demisto.executeCommand("taskComplete", {"id": "EmailTimeout"})
+  demisto.executeCommand("resetTimer", {"timerField": "EmailUserSLA"})
+
+  register_module_line('EmailSLABreach', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- sla
+type: python
