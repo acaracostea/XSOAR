@@ -1,0 +1,41 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Recorded Future Playbook Alert",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Recorded Future Playbook Alert Classifier",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.7.2",
+	"keyTypeMap": {
+		"code_repo_leakage": "Recorded Future Code Repo Leakage",
+		"cyber_vulnerability": "Recorded Future Vulnerability",
+		"domain_abuse": "Recorded Future Domain Abuse"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Recorded Future Playbook Alert Classifier",
+	"nameRaw": "Recorded Future Playbook Alert Classifier",
+	"packID": "RecordedFuture",
+	"packName": "Recorded Future Intelligence",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "category"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
