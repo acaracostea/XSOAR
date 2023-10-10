@@ -1,0 +1,146 @@
+args:
+- name: change
+  required: true
+commonfields:
+  id: fcd51dba-a75b-47b2-85cf-e4bef2d3363a
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SetPolicyChanges
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  import copy
+
+  change = demisto.args().get("change")
+  incident = demisto.incidents()[0]
+  incidentId = incident['id']
+  adom = incident['CustomFields']['adom'] if 'adom' in incident['CustomFields'].keys() else ''
+  folder = incident['CustomFields']['packagefolder'] if 'packagefolder' in incident['CustomFields'].keys() else ''
+  package = incident['CustomFields']['package'] if 'package' in incident['CustomFields'].keys() else ''
+  displaypolicies = incident['CustomFields']['fortimanagerfirewallpolicylistpackage']
+
+  dict_default = {
+          'Adom':'',
+          'Change':'',
+          'Package':'',
+          'Policy ID':'',
+          'Name':'',
+          'Source Interface':'',
+          'Destination Interface':'',
+          'Source Address':'',
+          'Destination Address':'',
+          'Schedule':'',
+          'Service':'',
+          'Action':'',
+          }
+
+  if change == 'Create':
+      policy_list = []
+      if folder:
+          policy_dict = copy.deepcopy(dict_default)
+          policy_dict['Adom']=adom
+          policy_dict['Change']=change
+          policy_dict['Package']=folder+"/"+package
+          policy_dict['Policy ID']=incident['CustomFields']['policyid'] if 'policyid' in incident['CustomFields'].keys() else ''
+          policy_dict['Name']=incident['CustomFields']['policyname'] if 'policyname' in incident['CustomFields'].keys() else ''
+          policy_dict['Source Interface']=incident['CustomFields']['sourceinterface'] if 'sourceinterface' in incident['CustomFields'].keys() else ''
+          policy_dict['Destination Interface']=incident['CustomFields']['destinationinterface'] if 'destinationinterface' in incident['CustomFields'].keys() else ''
+          policy_dict['Source Address']=incident['CustomFields']['sourceaddress'] if 'sourceaddress' in incident['CustomFields'].keys() else ''
+          policy_dict['Destination Address']=incident['CustomFields']['destinationaddress'] if 'destinationaddress' in incident['CustomFields'].keys() else ''
+          policy_dict['Schedule']=''
+          policy_dict['Service']=incident['CustomFields']['service'] if 'service' in incident['CustomFields'].keys() else ''
+          policy_dict['Action']=incident['CustomFields']['policyaction'] if 'policyaction' in incident['CustomFields'].keys() else ''
+          policy_list.append(policy_dict)
+
+      else:
+          policy_dict = copy.deepcopy(dict_default)
+          policy_dict['Adom']=adom
+          policy_dict['Change']=change
+          policy_dict['Package']=package
+          policy_dict['Policy ID']=incident['CustomFields']['policyid'] if 'policyid' in incident['CustomFields'].keys() else ''
+          policy_dict['Name']=incident['CustomFields']['policyname'] if 'policyname' in incident['CustomFields'].keys() else ''
+          policy_dict['Source Interface']=incident['CustomFields']['sourceinterface'] if 'sourceinterface' in incident['CustomFields'].keys() else ''
+          policy_dict['Destination Interface']=incident['CustomFields']['destinationinterface'] if 'destinationinterface' in incident['CustomFields'].keys() else ''
+          policy_dict['Source Address']=incident['CustomFields']['sourceaddress'] if 'sourceaddress' in incident['CustomFields'].keys() else ''
+          policy_dict['Destination Address']=incident['CustomFields']['destinationaddress'] if 'destinationaddress' in incident['CustomFields'].keys() else ''
+          policy_dict['Schedule']=''
+          policy_dict['Service']=incident['CustomFields']['service'] if 'service' in incident['CustomFields'].keys() else ''
+          policy_dict['Action']=incident['CustomFields']['policyaction'] if 'policyaction' in incident['CustomFields'].keys() else ''
+          policy_list.append(policy_dict)
+
+      try:
+
+          demisto.setContext('Fortimanager.PolicyChanges', policy_list)
+          demisto.executeCommand('SetGridField',{'columns':','.join(dict_default.keys()),'context_path':'Fortimanager.PolicyChanges','grid_id':'policychanges','keys':','.join(policy_dict.keys()),'overwrite':False})
+          return_results(policy_list)
+
+      except Exception as e:
+          return_error(f'Failed to execute DisplayPolicy Automation. Error: {str(e)}')
+
+  elif change == 'Delete':
+      policy_list = []
+      policy_dict = copy.deepcopy(dict_default)
+      deleted = demisto.context()['Fortimanager']['Delete']
+
+      if type(deleted) == list:
+
+          for dell in deleted:
+              policy_dict = copy.deepcopy(dict_default)
+              policy_dict['Adom']=adom
+              policy_dict['Change']=change
+              policy_dict['Package']=dell['package']
+              policy_dict['Policy ID']=dell['policyid']
+              policy_dict['Name']=dell['name'] if 'name' in dell.keys() else ''
+              policy_dict['Source Interface']=dell['sourceinterface'] if 'sourceinterface' in dell.keys() else ''
+              policy_dict['Destination Interface']=dell['destinationinterface'] if 'destinationinterface' in dell.keys() else ''
+              policy_dict['Source Address']=dell['sourceaddress'] if 'sourceaddress' in dell.keys() else ''
+              policy_dict['Destination Address']=dell['destinationaddress'] if 'destinationaddress' in dell.keys() else ''
+              policy_dict['Schedule']=''
+              policy_dict['Service']=dell['service'] if 'service' in dell.keys() else ''
+              policy_dict['Action']=dell['policyaction'] if 'policyaction' in dell.keys() else ''
+              policy_list.append(policy_dict)
+
+      else:
+
+          policy_dict['Adom']=adom
+          policy_dict['Change']=change
+          policy_dict['Package']=deleted['package']
+          policy_dict['Policy ID']=deleted['policyid']
+          policy_dict['Name']=deleted['name'] if 'name' in deleted.keys() else ''
+          policy_dict['Source Interface']=deleted['sourceinterface'] if 'sourceinterface' in deleted.keys() else ''
+          policy_dict['Destination Interface']=deleted['destinationinterface'] if 'destinationinterface' in deleted.keys() else ''
+          policy_dict['Source Address']=deleted['sourceaddress'] if 'sourceaddress' in deleted.keys() else ''
+          policy_dict['Destination Address']=deleted['destinationaddress'] if 'destinationaddress' in deleted.keys() else ''
+          policy_dict['Schedule']=''
+          policy_dict['Service']=deleted['service'] if 'service' in deleted.keys() else ''
+          policy_dict['Action']=deleted['policyaction'] if 'policyaction' in deleted.keys() else ''
+          policy_list.append(policy_dict)
+
+      try:
+          demisto.setContext('Fortimanager.PolicyChanges', policy_list)
+          demisto.executeCommand('SetGridField',{'columns':','.join(dict_default.keys()),'context_path':'Fortimanager.PolicyChanges','grid_id':'policychanges','keys':','.join(dict_default.keys()),'overwrite':False})
+          return_results(policy_list)
+      except Exception as e:
+          return_error(f'Failed to execute DisplayPolicy Automation. Error: {str(e)}')
+
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+type: python
