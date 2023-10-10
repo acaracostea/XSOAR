@@ -1,0 +1,107 @@
+{
+	"action": "drop",
+	"cacheVersn": 0,
+	"definitionId": "",
+	"enabled": false,
+	"existingEventsFilters": [],
+	"fromServerVersion": "6.8.0",
+	"id": "Drop XSOAR Engineer Training Blocked Alerts",
+	"index": 0,
+	"itemVersion": "1.0.0",
+	"linkTo": "oldest",
+	"locked": false,
+	"name": "Drop XSOAR Engineer Training Blocked Alerts",
+	"newEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "eventtype"
+					}
+				},
+				"operator": "containsGeneral",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "blocked"
+					}
+				},
+				"type": "shortText"
+			}
+		],
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "type"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "XSOAR Engineer URL Alerts"
+					}
+				},
+				"type": "singleSelect"
+			}
+		]
+	],
+	"packID": "XSOAR_Engineer_Training",
+	"packName": "XSOAR Engineer Training",
+	"packPropagationLabels": [
+		"all"
+	],
+	"period": {
+		"by": "days",
+		"fromValue": 30
+	},
+	"propagationLabels": [],
+	"readyExistingEventsFilters": [],
+	"readyNewEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "eventtype"
+					}
+				},
+				"operator": "containsGeneral",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "blocked"
+					}
+				},
+				"type": "shortText"
+			}
+		],
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "type"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"isContext": false,
+					"value": {
+						"simple": "XSOAR Engineer URL Alerts"
+					}
+				},
+				"type": "singleSelect"
+			}
+		]
+	],
+	"scriptID": "",
+	"scriptName": "",
+	"searchClosed": false,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1
+}
