@@ -1,0 +1,62 @@
+args:
+- description: Username to use
+  name: to_user
+  required: true
+- name: incidentid
+  required: true
+commonfields:
+  id: 42054289-b5a8-4d14-8003-441e4b9b3edf
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ChangeCreator
+pswd: ""
+runas: DBotRole
+runonce: false
+script: |2-
+
+
+  def change_user(username: str, incidentid: str):
+      parameters1 = {"uri": f"/incident/load/{incidentid}",
+                   "body": {}}
+      results = demisto.executeCommand('demisto-api-get', parameters1)
+      existingdata = results[0]['Contents']['response']
+      existingdata['dbotCreatedBy']=username
+      parameters2 = {"uri": "/incident",
+                   "body": existingdata}
+      response = demisto.executeCommand('demisto-api-post', parameters2)
+      if response[0]['Contents']['response']['dbotCreatedBy'] == username:
+          return f'Creator changed to {username}'
+      else:
+          return 'Change failed'
+
+
+  def main():
+      try:
+          result = change_user(demisto.args().get('to_user'),demisto.args().get('incidentid'))
+          return_results(result)
+      except Exception as ex:
+          demisto.error(traceback.format_exc())  # print the traceback
+          return_error(f'Failed to execute BaseScript. Error: {str(ex)}')
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+type: python
