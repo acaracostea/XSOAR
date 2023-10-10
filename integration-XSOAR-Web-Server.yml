@@ -1,0 +1,399 @@
+category: Utilities
+commonfields:
+  id: XSOAR-Web-Server
+  version: -1
+configuration:
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- display: Long running instance
+  name: longRunning
+  required: false
+  type: 8
+- additionalinfo: The port on which the integration instance will listen
+  display: Server Listening Port
+  name: longRunningPort
+  required: true
+  type: 0
+- additionalinfo: The URL on which the user should send the response to.
+  display: ""
+  name: xsoar-external-url
+  required: true
+  type: 0
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.0.1
+    packID: XsoarWebserver
+    packName: Xsoar-web-server
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: 'This is a simple web-server that as of now, supports handling configurable
+  user responses (like Yes/No/Maybe) and data collection tasks that can be used to
+  fetch key value pairs. What makes it different from Data collection tasks is that,
+  the URL to perform a certain action is predictable and written to the incident context
+  when an action is setup.This URL can be inserted to for eg: an HTML email.  User
+  clicks are  are recorded in the integration context and can be polled by Scheduled
+  Commands/ Generic Polling'
+detaileddescription: |-
+  ### Community Contributed Integration
+   #### Integration Author: Arun Narayanan
+   No support or maintenance is provided by the author. Customers are encouraged to engage with the user community for questions and guidance at the [Cortex XSOAR Live Discussions](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions).
+  ***
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/xsoar-web-server)
+display: XSOAR-Web-Server (Community Contribution)
+image: data:image/png;base64,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
+name: XSOAR-Web-Server
+script:
+  commands:
+  - arguments:
+    - description: Comma separated possible values for each action. Mandatory for
+        get requests
+      name: actions
+      required: true
+    - description: Comma separated email addresses of the recipients
+      name: emailaddresses
+      required: true
+    - description: User defined string that has to be set from the playbook. This
+        is  used to differentiate between multiple jobs running on the same incident
+      name: userstring
+      required: true
+    - description: template to construct the html mail
+      name: htmltemplate
+      required: true
+    - auto: PREDEFINED
+      default: true
+      defaultValue: "true"
+      description: Used to specify what endpoint to submit the responses. If set to
+        false, the  html template will have the endpoint containing the custom port
+      name: xsoarproxy
+      predefined:
+      - "true"
+      - "false"
+    description: setup the web server to handle URL clicks for each action specified
+      from single or multiple recipients
+    name: xsoar-ws-setup-simple-action
+    outputs:
+    - contextPath: WS-ActionDetails
+      description: The current status of the action's  configuration details
+    - contextPath: WS-ActionDetails.job_uuid
+      description: Subset of action details, added for ease of configuration in playbooks
+  - arguments: []
+    description: Clear the backend storage containing all session information.
+    name: xsoar-ws-clear-cache
+  - arguments: []
+    description: Show the details of all the setup actions from the backend
+    name: xsoar-ws-show-cache
+  - arguments:
+    - description: Job's uuid
+      name: uuid
+      required: true
+    description: Remove a certain job from the backend
+    name: xsoar-ws-remove-action
+  - arguments:
+    - description: Job's uuid
+      name: uuid
+      required: true
+    description: Gets the current status of an action that was setup; Used to track
+      if the user responded to the action.
+    name: xsoar-ws-get-action-status
+    outputs:
+    - contextPath: WS-ActionStatus
+      description: The current status of the action with some configuration data.
+        Is used for polling the status
+    - contextPath: WS-ActionStatus.link_tracker
+      description: Subset of action status; tracked here to make it easier for configuring
+        playbooks
+  - arguments:
+    - description: Job's uuid
+      name: uuid
+      required: true
+    description: Set a job to complete. Usually called from the automation that is
+      polling the result
+    name: xsoar-ws-set-job-complete
+  - arguments:
+    - description: Comma separated email addresses of the recipients
+      name: emailaddresses
+      required: true
+    - description: Optional user string that can be set from the playbook. Can be
+        used to differentiate between multiple jobs running on the same incident
+      name: userstring
+    - description: The template to build the email content
+      name: htmltemplate
+      required: true
+    - default: true
+      defaultValue: "true"
+      description: Used to specify what endpoint to submit the responses. If set to
+        false, the  html template will have the endpoint containing the custom port
+      name: xsoarproxy
+    description: setup a form submission job that can take multiple values from multiple
+      users
+    name: xsoar-ws-setup-form-submission
+  dockerimage: demisto/bottle:1.0.0.32745
+  longRunning: true
+  longRunningPort: true
+  runonce: false
+  script: |
+    register_module_line('XSOAR-Web-Server', 'start', __line__())
+    ### pack version: 1.0.1
+
+
+    import uuid
+    from string import Template
+    from bottle import request, route, run
+
+
+    @route('/hello')
+    def hello():
+        return "Hello World!"
+
+
+    @route('/process/<uuid>/<linkuuid>/<action>', method="GET")
+    def process_get(uuid, linkuuid, action):
+        integration_context = get_integration_context()
+        try:
+            data = integration_context[uuid]
+            if action not in data['input_list']:
+                raise KeyError
+            data["link_tracker"][linkuuid]["response"] = action
+            data["link_tracker"][linkuuid]["response_received"] = True
+            integration_context[uuid] = data
+            set_integration_context(integration_context)
+            response_html = '''<html><body>
+                                <b>Thank you for responding, Your security team is grateful !</b>
+                                </body>
+                               </html>'''
+            return response_html
+        except KeyError:
+            return "Cannot process action,server error"
+
+
+    @route('/processform/<uuid>/<linkuuid>/', method='POST')
+    def process_form(uuid, linkuuid):
+        integration_context = get_integration_context()
+        try:
+            data = integration_context[uuid]
+            data["link_tracker"][linkuuid]["response_received"] = True
+            data["link_tracker"][linkuuid]["response"] = dict(request.forms.decode())  # pylint: disable=E1101
+            integration_context[uuid] = data
+            set_integration_context(integration_context)
+            response_html = '''<html><body>
+                                <b>Thank you for responding, Your security team is grateful !</b>
+                                </body>
+                               </html>'''
+            return response_html
+        except KeyError:
+            return "Cannot process action,server error"
+
+
+    @route('/processform/<uuid>/<linkuuid>/', method='GET')
+    def process_form_get(uuid, linkuuid):
+        integration_context = get_integration_context()
+        try:
+            data = integration_context[uuid]
+            email_html = data["link_tracker"][linkuuid]["htmlemail"]
+            return email_html
+        except KeyError:
+            return "Cannot process action,server error"
+
+
+    def run_long_running(listen_port):
+        run(host='0.0.0.0', port=listen_port, debug=True)
+
+
+    def return_common_params():
+        port = demisto.params().get('longRunningPort')
+        inc = demisto.incident()
+        ic = get_integration_context()
+        uuid_ret = str(uuid.uuid4())
+        ext_url = demisto.params().get('xsoar-external-url').rstrip('/')
+        integration_name = demisto.integrationInstance()
+        return port, inc, ic, uuid_ret, ext_url, integration_name
+
+
+    def run_setup_simple_action():
+        port, inc, integration_context, entry_uuid, xsoar_external_url, integration_instance_name = return_common_params()
+        user_emails = demisto.args().get('emailaddresses').split(',')
+        user_string = demisto.args().get('userstring', '')
+        input_list = demisto.args().get('actions').split(',')
+        htmltemplate = demisto.args().get('htmltemplate')
+        xsoar_proxy = demisto.args().get('xsoarproxy')
+        link_tracker = {}
+
+        for email in user_emails:
+            html_dict = {}
+            link_uuid = str(uuid.uuid4())
+            partial_link = f'{xsoar_external_url}/instance/execute/{integration_instance_name}/process/{entry_uuid}/{link_uuid}/'
+            partial_link_port = f'{xsoar_external_url}:{port}/instance/execute/{integration_instance_name}/process/{entry_uuid}/{link_uuid}/'  # noqa: E501
+            temp_link_tracker = {"response": "", "response_received": False, "emailaddress": email}
+
+            for ind, action in enumerate(input_list):
+                marker = ind + 1
+                if xsoar_proxy == 'true':
+                    temp_link_tracker[f"action_{action}_url"] = partial_link + action
+                    html_dict[f"action{marker}"] = partial_link + action
+                else:
+                    temp_link_tracker[f"action_{action}_url"] = partial_link_port + action
+                    html_dict[f"action{marker}"] = partial_link_port + action
+            temp_link_tracker['htmlemail'] = Template(htmltemplate).substitute(**html_dict)
+            link_tracker[link_uuid] = temp_link_tracker
+
+        integration_context[entry_uuid] = {"type": "simple_action", "inc_id": inc['id'], "input_list": input_list,
+                                           "link_tracker": link_tracker, "job_uuid": entry_uuid, "completed": False,
+                                           "user_string": user_string
+                                           }
+        set_integration_context(integration_context)
+        to_return = CommandResults(outputs_prefix='WS-ActionDetails(val.job_uuid==obj.job_uuid)',
+                                   outputs=integration_context[entry_uuid])
+        return_results(to_return)
+
+
+    def run_setup_post_action():
+        port, inc, integration_context, entry_uuid, xsoar_external_url, integration_instance_name = return_common_params()
+        user_emails = demisto.args().get('emailaddresses').split(',')
+        user_string = demisto.args().get('userstring', '')
+        htmltemplate = demisto.args().get('htmltemplate')
+        xsoar_proxy = demisto.args().get('xsoarproxy')
+
+        link_tracker = {}
+        for ind, email in enumerate(user_emails):
+            html_dict = {}
+            link_uuid = str(uuid.uuid4())
+            partial_link = f'{xsoar_external_url}/instance/execute/{integration_instance_name}/processform/{entry_uuid}/{link_uuid}/'
+            partial_link_port = f'{xsoar_external_url}:{port}/instance/execute/{integration_instance_name}/processform/{entry_uuid}/{link_uuid}/'  # noqa: E501
+
+            if xsoar_proxy == "true":
+                action_url = partial_link
+            else:
+                action_url = partial_link_port
+            html_dict["action1"] = action_url
+            temp_link_tracker = {"response": "", "response_received": False, "emailaddress": email, "action_url": action_url,
+                                 "htmlemail": Template(htmltemplate).substitute(**html_dict)}
+            link_tracker[link_uuid] = temp_link_tracker
+
+        integration_context[entry_uuid] = {"type": "post_action", "inc_id": inc['id'],
+                                           "link_tracker": link_tracker, "job_uuid": entry_uuid, "completed": False,
+                                           "user_string": user_string
+                                           }
+        set_integration_context(integration_context)
+        to_return = CommandResults(outputs_prefix='WS-ActionDetails(val.job_uuid==obj.job_uuid)',
+                                   outputs=integration_context[entry_uuid])
+        return_results(to_return)
+
+
+    def run_clear_integration_cache():
+        set_integration_context({})
+        return_results("cleared backend cache")
+
+
+    def run_show_integration_cache():
+        ic = get_integration_context()
+        return_results(json.dumps(ic))
+
+
+    def remove_action_internal(uuid):
+        integration_context = get_integration_context()
+        integration_context.pop(uuid)
+        set_integration_context(integration_context)
+
+
+    def run_remove_action():
+        uuid = demisto.args().get('uuid')
+        lookup, data = validate_uuid(uuid)
+        if lookup:
+            remove_action_internal(uuid)
+        else:
+            return_results(data)
+
+
+    def validate_uuid(uuid):
+        integration_context = get_integration_context()
+        try:
+            data = integration_context[uuid]
+            return True, data
+        except KeyError:
+            return False, "Action lookup failed; please check the UUID"
+
+
+    def run_get_action_status():
+        uuid = demisto.args().get('uuid')
+        lookup, data = validate_uuid(uuid)
+        if lookup:
+            input_get_req = data.get("input_list", "")
+            output_to_ret = {"job_uuid": data["job_uuid"], "incident_id": data["inc_id"], "user_string": data["user_string"],
+                             "completed": data["completed"], "input_list": input_get_req}
+            link_tracker = data["link_tracker"]
+            link_tracker_list = []
+            for key, value in link_tracker.items():
+                link_tracker_list.append({"link_uuid": key, "email": value["emailaddress"],
+                                          "response": value["response"], "response_received": value["response_received"],
+                                          "emailhtml": value["htmlemail"]})
+            output_to_ret["link_tracker"] = link_tracker_list
+            to_return = CommandResults(outputs_prefix='WS-ActionStatus(val.job_uuid==obj.job_uuid)',
+                                       readable_output="fetching current status", outputs=output_to_ret)
+            return_results(to_return)
+        else:
+            return_results(data)
+
+
+    def run_set_job_complete(uuid):
+        lookup, data = validate_uuid(uuid)
+        if lookup:
+            ic = get_integration_context()
+            data["completed"] = True
+            ic[uuid] = data
+            set_integration_context(ic)
+            return_results("Job successfully marked as Complete")
+        else:
+            return_results(data)
+
+
+    def main() -> None:
+        """main function, parses params and runs command functions
+
+        :return:
+        :rtype:
+        """
+
+        listen_port = demisto.params().get('longRunningPort')
+        command = demisto.command()
+
+        try:
+            if command == 'long-running-execution':
+                run_long_running(listen_port)
+            elif command == 'test-module':
+                pass
+            elif command == 'xsoar-ws-setup-simple-action':
+                run_setup_simple_action()
+            elif command == 'xsoar-ws-clear-cache':
+                run_clear_integration_cache()
+            elif command == 'xsoar-ws-show-cache':
+                run_show_integration_cache()
+            elif command == 'xsoar-ws-get-action-status':
+                run_get_action_status()
+            elif command == 'xsoar-ws-remove-action':
+                run_remove_action()
+            elif command == 'xsoar-ws-set-job-complete':
+                job_uuid = demisto.args().get('uuid')
+                run_set_job_complete(job_uuid)
+            elif command == 'xsoar-ws-setup-form-submission':
+                run_setup_post_action()
+            else:
+                return_error('Command not found')
+
+        except Exception as e:
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('XSOAR-Web-Server', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
