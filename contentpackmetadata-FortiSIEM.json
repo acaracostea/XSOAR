@@ -1,0 +1,331 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Analytics \u0026 SIEM"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "",
+				"id": "FortiSIEM v2",
+				"name": "FortiSIEM v2"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "FortiSIEM Incident ID",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Attack Tactics",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Event Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Incident First Seen",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Events",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Resolution Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Incident Report Device Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Events Count",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Incident Reporter IP",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Incident Last Seen",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Incident Severity",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "FortiSIEM Destination User",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "FortiSIEM",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Get events by incidents",
+						"name": "fortisiem-get-events-by-incident"
+					},
+					{
+						"description": "Clear (close) a FortiSIEM incident.",
+						"name": "fortisiem-clear-incident"
+					},
+					{
+						"description": "Returns an event list according to the specified filters.",
+						"name": "fortisiem-get-events-by-filter"
+					},
+					{
+						"description": "Returns the description of each device.",
+						"name": "fortisiem-get-cmdb-devices"
+					},
+					{
+						"description": "Returns event list filtered by query",
+						"name": "fortisiem-get-events-by-query"
+					},
+					{
+						"description": "Get all FortiSIEM resource lists hierarchy.",
+						"name": "fortisiem-get-lists"
+					},
+					{
+						"description": "add element to a resource list.",
+						"name": "fortisiem-add-item-to-resource-list"
+					},
+					{
+						"description": "Removes elements from a resource list.",
+						"name": "fortisiem-remove-item-from-resource-list"
+					},
+					{
+						"description": "Lists all elements in a resource list.",
+						"name": "fortisiem-get-resource-list"
+					}
+				],
+				"description": "Search and update events of FortiSIEM and manage resource lists.",
+				"id": "FortiSIEM",
+				"name": "FortiSIEM"
+			},
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Initiate search process on events. The events are retrieved according to a constraint determined either by the query argument or by the filtering arguments. When using filtering arguments, an 'AND' operator is used between them. If the query argument is filled, it overrides the values in the filtering arguments.",
+						"name": "fortisiem-event-search"
+					},
+					{
+						"description": "The status of the specified search ID.",
+						"name": "fortisiem-event-search-status"
+					},
+					{
+						"description": "The results of the specified search ID.",
+						"name": "fortisiem-event-search-results"
+					},
+					{
+						"description": "Update attributes of the specified incident. Only the provided attributes are overwritten.",
+						"name": "fortisiem-incident-update"
+					},
+					{
+						"description": "List CMDB (Centralized Management Database) devices with short information for each device. If you provide one of the exclude arguments, their values are excluded from the provided include arguments. For example, to list all devices in the range 192.168.20.1-192.168.20.100, but exclude 192.168.20.20, 192.168.20.25, use include_ip_range='192.168.20.1-192.168.20.100' and exclude_ip='192.168.20.20, 192.168.20.25'. If no argument is provided, the command retrieves all devices.",
+						"name": "fortisiem-cmdb-devices-list"
+					},
+					{
+						"description": "Retrieve full information of the specified devices.",
+						"name": "fortisiem-cmdb-device-get"
+					},
+					{
+						"description": "List of monitored organizations in service provider deployments.",
+						"name": "fortisiem-monitored-organizations-list"
+					},
+					{
+						"description": "List events by the specified incident ID.",
+						"name": "fortisiem-event-list-by-incident"
+					},
+					{
+						"description": "List all watchlists from FortiSIEM database.",
+						"name": "fortisiem-watchlist-list"
+					},
+					{
+						"description": "Get watchlist by the specified watchlist or entry ID.",
+						"name": "fortisiem-watchlist-get"
+					},
+					{
+						"description": "Add a watchlist group. You can also add an entry to the watchlist.",
+						"name": "fortisiem-watchlist-add"
+					},
+					{
+						"description": "Add watchlist entry to one or more watchlist groups.",
+						"name": "fortisiem-watchlist-entry-add"
+					},
+					{
+						"description": "Update watchlist entry. This command overrides all existing values in the entry's attribute. Fill in all relevant arguments to avoid deletion of data.",
+						"name": "fortisiem-watchlist-entry-update"
+					},
+					{
+						"description": "Delete entry of watchlist.",
+						"name": "fortisiem-watchlist-entry-delete"
+					},
+					{
+						"description": "Delete watchlist.",
+						"name": "fortisiem-watchlist-delete"
+					},
+					{
+						"description": "Get entry by the specified entry ID.",
+						"name": "fortisiem-watchlist-entry-get"
+					}
+				],
+				"description": "Use FortiSIEM v2 to fetch and update incidents, search events and manage watchlists of FortiSIEM.",
+				"id": "FortiSIEMV2",
+				"name": "FortiSIEM v2"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "FortiSIEM incident Layout"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook executes a search query to retrieve FortiSIEM Events.",
+				"name": "GenericPolling-FortiSIEM"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "2.0.21",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.4.3",
+			"name": "Common Playbooks"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.87",
+			"name": "Common Types"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.30",
+			"name": "Filters And Transformers"
+		}
+	},
+	"deprecated": false,
+	"description": "Search and update events of FortiSIEM and manage resource lists.",
+	"disabledMonthly": false,
+	"downloads": 1560,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FortiSIEM",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FortiSIEM/FortiSIEM_image.png",
+			"name": "FortiSIEM"
+		},
+		{
+			"imagePath": "content/packs/FortiSIEM/FortiSIEMV2_image.png",
+			"name": "FortiSIEM v2"
+		}
+	],
+	"itemVersion": "2.0.21",
+	"keywords": [],
+	"legacy": true,
+	"name": "FortiSIEM",
+	"packID": "FortiSIEM",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "#FortiSIEM\nUse FortiSIEM v2 to fetch and update incidents, search events and manage watchlists of FortiSIEM.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-09-13T22:22:43+03:00",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
