@@ -13,7 +13,7 @@
 	"closeForm": false,
 	"columns": [
 		{
-			"displayName": "Alert Id",
+			"displayName": "alertid",
 			"fieldCalcScript": "",
 			"isDefault": true,
 			"isReadOnly": true,
@@ -26,7 +26,7 @@
 			"width": 150
 		},
 		{
-			"displayName": "Title",
+			"displayName": "title",
 			"fieldCalcScript": "",
 			"isDefault": true,
 			"isReadOnly": true,
