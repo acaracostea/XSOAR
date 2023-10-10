@@ -1,0 +1,33 @@
+commonfields:
+  id: d4cbb9b8-4feb-4adc-838d-516b4eee2b9d
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.28442
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: MISP_Reset_Type_Field
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  from typing import Dict, Any
+  import traceback
+
+  demisto.executeCommand("setIncident",{"mispattributetype":""})
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- field-change-triggered
+type: python
