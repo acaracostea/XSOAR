@@ -1,0 +1,181 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 40796267-c686-414d-80ea-93ed871a5e88
+inputs: []
+name: GetPolicy
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 64f89f13-d20f-485e-8fcf-06836e7a9ec6
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 64f89f13-d20f-485e-8fcf-06836e7a9ec6
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      adom:
+        simple: ${incident.adom}
+      folder:
+        simple: ${incident.packagefolder}
+      package:
+        simple: ${incident.package}
+      using:
+        simple: FortiManager_copy_instance_1
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy
+      description: List specific firewall policies from a policy package.
+      id: f52a8448-ad18-49b2-8529-f1ceea8f2fc1
+      iscommand: true
+      name: fortimanager-firewall-policy-list
+      script: FortiManager_copy|||fortimanager-firewall-policy-list
+      type: regular
+      version: -1
+    taskid: f52a8448-ad18-49b2-8529-f1ceea8f2fc1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: Select,Policy ID,Name,Action
+      context_path:
+        simple: ${FortiManager.PolicyPackage.Policy}
+      grid_id:
+        simple: fortimanagerfirewallpolicylistpackage
+      keys:
+        simple: Select,policyid,name,action
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a Grid table from items or key-value pairs.
+      id: b1a3cb6e-bb4a-4611-8760-98580684430b
+      iscommand: false
+      name: SetGridField
+      script: SetGridField
+      type: regular
+      version: -1
+    taskid: b1a3cb6e-bb4a-4611-8760-98580684430b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "no"
+      key:
+        simple: FortiManager
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Automations
+      id: 51441657-773d-4bd5-8df6-de234316b783
+      iscommand: false
+      name: DeleteContext
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 51441657-773d-4bd5-8df6-de234316b783
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 590,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
