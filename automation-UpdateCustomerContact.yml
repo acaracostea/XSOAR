@@ -1,0 +1,64 @@
+commonfields:
+  id: e113d336-f502-4af5-85dd-a0fda9d5e0d0
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.11.57890
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UpdateCustomerContact
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import json
+  fields = demisto.incident()
+
+  customer_name = fields['CustomFields']['customername'] if 'customername' in fields['CustomFields'].keys() else ""
+  customer_id = fields['CustomFields']['customerid'] if 'customerid' in fields['CustomFields'].keys() else ""
+  customer_contact_name = fields['CustomFields']['customercontactname'] if 'customercontactname' in fields['CustomFields'].keys() else ""
+  email_contact = fields['CustomFields']['emailcontact'] if 'emailcontact' in fields['CustomFields'].keys() else ""
+
+
+  data = demisto.executeCommand("getList", { "listName": "CustomerContact" })[0]['Contents']
+  data = json.loads(data)
+  CustomerContact = []
+  count=0
+
+  for row in data:
+
+      if row['Customer Name'] == customer_name and row['Customer Contact Name'] == customer_contact_name:
+          count=1
+
+          if email_contact:
+              row['Email Contact']=email_contact
+
+      elif row['Customer Name'] == customer_name and row['Email Contact'] == email_contact:
+          count=1
+          if customer_contact_name:
+              row['Customer Contact Name']=customer_contact_name
+
+      CustomerContact.append(row)
+
+
+  if count==0:
+      CustomerContact.append({'Customer Name':customer_name,'CustomerID':customer_id,'Customer Contact Name':customer_contact_name,'Email Contact':email_contact})
+
+  demisto.executeCommand("setList", { "listName": "CustomerContact","listData": CustomerContact})
+  return_results("CustomerContact list updated")
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- incident-action-button
+type: python
