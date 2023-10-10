@@ -1,0 +1,129 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 09c20837-ef8a-4f92-8ecd-5f7dcdab829e
+inputs: []
+name: Create - Change management incident
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 02ead5c2-ba59-44dc-881b-d3caf1a1e9c4
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 02ead5c2-ba59-44dc-881b-d3caf1a1e9c4
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      name:
+        simple: ${incident.id} - Firewall Change
+      type:
+        simple: Firewall Changes
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Create a new incident
+      id: 77d4a184-f8c9-4d22-8af6-960f1a3d09ed
+      iscommand: true
+      name: createNewIncident
+      script: Builtin|||createNewIncident
+      type: regular
+      version: -1
+    taskid: 77d4a184-f8c9-4d22-8af6-960f1a3d09ed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      changemanagementincident:
+        simple: https://csaas-soardev-se01/#/Custom/caseinfoid/${CreatedIncidentID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of an incident
+      id: cbc10cb8-fe8c-456b-8105-a7607da74ee6
+      iscommand: true
+      name: setIncident
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: cbc10cb8-fe8c-456b-8105-a7607da74ee6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 410
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 455,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
