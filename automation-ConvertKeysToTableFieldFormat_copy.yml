@@ -1,0 +1,71 @@
+args:
+- description: Object to convert
+  name: value
+  required: true
+comment: |-
+  Convert object keys to match table keys.
+  Use when mapping object/collection to table (grid) field.
+  (Array of objects/collections is also supported).
+  Example:
+  Input: { "Engine": "val1", "Max Results": 13892378, "Key_With^Special   (characters)": true }
+  Output: { "engine": "val1", "maxresults": 13892378, "keywithspecialcharacters": true }
+commonfields:
+  id: 07bc838f-3017-4c7a-8420-689779c26061
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.2.32
+    packID: ""
+    packName: Filters And Transformers
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ConvertKeysToTableFieldFormat_copy
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  // pack version: 1.2.32
+  // convert a specific key
+  function stripToCliName(str) {
+    return str.substr(0, 255).replace(/[\W\s\\&$#@%?!_*;׳()^]/g, '').toLowerCase();
+  }
+
+  // convert object keys
+  function convertObject(obj) {
+      var res = {};
+      Object.keys(obj).forEach(function(key) {
+          res[stripToCliName(key)] = obj[key];
+      });
+      return res;
+  }
+
+  var value = args.value;
+
+  if (typeof value !== "object") {
+      return {
+          ContentsFormat: formats.text,
+          Type: entryTypes.error,
+          Contents: 'Invalid input. Expected object/collection, got: ' + value
+      };
+  }
+
+  if (Array.isArray(value)) {
+      return value.map(convertObject);
+  }
+
+  return convertObject(value);
+
+
+
+scripttarget: 0
+sourcescripid: ConvertKeysToTableFieldFormat
+tags:
+- transformer
+type: javascript
