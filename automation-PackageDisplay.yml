@@ -1,0 +1,55 @@
+commonfields:
+  id: 0dcaa89a-4665-4d83-8d0b-5d037378e9ab
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: PackageDisplay
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  incident = demisto.incidents()[0]
+  adom = incident['CustomFields']['adom']
+  folder = incident['CustomFields']['packagefolder'] if 'packagefolder' in incident['CustomFields'].keys() else ''
+  options = ['']
+  error = []
+
+  try:
+      if folder:
+          packages = demisto.executeCommand('fortimanager-firewall-policy-package-list', {'adom':adom,'folder':folder,'using':'FortiManager_custom_instance'})[0]['Contents']
+          for package in packages:
+              if package['type']=='pkg':
+                  options.append(package['name'])
+          demisto.results({'hidden': False, 'options': options})
+
+      else:
+          packages = demisto.executeCommand('fortimanager-firewall-policy-package-list', {'adom':adom,'using':'FortiManager_instance_1'})[0]['Contents']
+          for package in packages:
+              if package['type']=='pkg':
+                  options.append(package['name'])
+          demisto.results({'hidden': False, 'options': options})
+
+
+  except Exception as ex:
+      return_error(ex)
+
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- field-display
+type: python
