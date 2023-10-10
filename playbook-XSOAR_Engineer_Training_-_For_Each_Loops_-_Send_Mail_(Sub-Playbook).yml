@@ -1,0 +1,135 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "Playbook takes the email to send to as input and sends a quick email
+  message.  \n\nWhen used as a subplaybook you can add a loop to loop over each inputted
+  list of emails to send one email to each person. "
+id: XSOAR Engineer Training - For Each Loops - Send Mail (Sub-Playbook)
+inputs:
+- description: the email address or array of email addresses
+  key: mailto
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: XSOAR Engineer Training - For Each Loops - Send Mail (Sub-Playbook)
+outputs: []
+starttaskid: "0"
+system: true
+tags:
+- training
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ec04190e-0292-47ad-8f09-5f556f6268c2
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: ec04190e-0292-47ad-8f09-5f556f6268c2
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      to:
+        complex:
+          root: inputs.mailto
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: XSOAR Engineer Training
+      description: Send an email (doesn't actually send an email)
+      id: 9f80d4a5-e39f-4d1e-8d90-1d6dbd5444e9
+      iscommand: true
+      name: Send Email
+      script: XSOAR Engineer Training|||send-mail
+      type: regular
+      version: -1
+    taskid: 9f80d4a5-e39f-4d1e-8d90-1d6dbd5444e9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 220
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d42b9fe0-fee1-48d8-817c-8a9f60cafd7a
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: d42b9fe0-fee1-48d8-817c-8a9f60cafd7a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 390
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 405,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
