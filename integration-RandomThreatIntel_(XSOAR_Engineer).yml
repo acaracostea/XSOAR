@@ -1,0 +1,412 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: RandomThreatIntel (XSOAR Engineer)
+  version: -1
+configuration:
+- defaultvalue: Random Threat Intel
+  display: ""
+  name: name
+  required: false
+  type: 0
+- additionalinfo: The reliability of this integration, remember everything is made
+    up, so definitely not to be trusted, great for training though!
+  defaultvalue: F - Reliability cannot be judged
+  display: Source Reliability
+  name: integrationReliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: false
+  type: 15
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "This example integration randomly enriches file, ip, url, and domain
+  indictors.  Useful for demos, DO NOT use this in any production environment.\n\nBasically
+  any of these indicators types could come back as good, suspicious, or bad.   "
+detaileddescription: "### Community Contributed Integration\n #### Integration Author:
+  beauchompers\n No support or maintenance is provided by the author. Customers are
+  encouraged to engage with the user community for questions and guidance at the [Cortex
+  XSOAR Live Discussions](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions).\n***\n#
+  DO NOT USE IN PRODUCTION\n\n## Random Threat Intelligence\nThis is an example integration
+  that returns fake data against the following indicator types in XSOAR, intended
+  for demos, where you don't want to hit things like VirusTotal etc.  This will generate
+  good, suspicious, or bad indicators for the following:\n- IP (ip command)\n- File
+  (file command)\n- Domain (domain command)\n- URL (url command)\n\n### Custom Indicator
+  Types\nThis integration also demos how you could build a custom reputation command
+  into XSOAR to get indicator data for say an internal host.  In this example you
+  can create the following custom indicator after enabling this integration (Settings
+  -> Advanced -> Indicator Types)\n\nIndicator Type: CXHost\nRegex: ```(crossiscoming\\d{3,5})```\nReputation
+  Command: cxhost\n\nThis will mean whenever a host gets extracted matching that regex,
+  the command will return returning data about that hose.\n\n### Private IP Ranges\nThis
+  integration also does the same for a custom indicator type of 'Private IP'.   By
+  default, private IPs such as 10.10.10.10 would be extracted an run through VirusTotal.
+  \  In this case I'd rather reference an internal system for information about that
+  IP.  This can be done in either an integration, and/or through a user reputation
+  script. \n\nIndicator Type: Private IP\nRegex: ```\\b(10((?:\\[\\.\\]|\\.)(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){3}|((172(?:\\[\\.\\]|\\.)(1[6-9]|2[0-9]|3[01]))|192(?:\\[\\.\\]|\\.)168)((?:\\[\\.\\]|\\.)(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){2})```\nReputation
+  Command: private-ip\n\n#### Exclusions: For this to work, exclude the following
+  CIDR ranges as type IP so they don't get auto-extracted as such: 10.0.0.0/8, 192.168.0.0/16,
+  172.16.0.0/12\n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/random-threat-intel-xsoar-engineer)"
+display: RandomThreatIntel (XSOAR Engineer) (Community Contribution)
+image: data:image/png;base64,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
+name: RandomThreatIntel (XSOAR Engineer)
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: URL to check
+      isArray: true
+      name: url
+      required: true
+    description: URL to check
+    name: url
+  - arguments:
+    - default: true
+      description: 'Domain to check '
+      isArray: true
+      name: domain
+      required: true
+    description: 'Domain to check '
+    name: domain
+  - arguments:
+    - default: true
+      description: IP to check
+      isArray: true
+      name: ip
+      required: true
+    description: IP to check
+    name: ip
+  - arguments:
+    - default: true
+      description: File to check
+      isArray: true
+      name: file
+      required: true
+    description: File to check
+    name: file
+  - arguments:
+    - description: IP to check
+      name: ip
+      required: true
+    description: 'IP to check '
+    name: private-ip
+  - arguments:
+    - description: Host to check
+      name: cxhost
+      required: true
+    description: Host to check
+    name: cxhost
+  dockerimage: demisto/python3:3.10.10.48392
+  runonce: false
+  script: |
+    register_module_line('RandomThreatIntel (XSOAR Engineer)', 'start', __line__())
+
+
+    from random import randrange
+
+    # this integration really can't be trusted
+    reliability = demisto.params().get("integrationReliability")
+
+    # Utility functions
+
+
+    def random_threat_score():
+        """
+        Returns a random threat score and dbot score, it's anyones guess!
+        """
+        threatscore = randrange(1, 100)
+
+        # set dbotscore based on score from threat score between 1 and 100.
+        if threatscore >= 20:
+            score = Common.DBotScore.BAD
+            description = True
+        elif threatscore >= 1:
+            score = Common.DBotScore.SUSPICIOUS
+            description = True
+        else:
+            score = Common.DBotScore.GOOD
+            description = False
+
+        return threatscore, score, description
+
+
+    def create_dbot_score(indicator, indicator_type, score, malicious_description=None):
+        """
+        Returns the dbot score object
+        """
+        if malicious_description:
+            dbot_score = Common.DBotScore(
+                indicator=indicator,
+                indicator_type=indicator_type,
+                integration_name='RandomThreatIntel',
+                malicious_description=f'This URL {indicator} is up to no good!',
+                score=score,
+                reliability=reliability
+            )
+        else:
+            dbot_score = Common.DBotScore(
+                indicator=indicator,
+                indicator_type=indicator_type,
+                integration_name='RandomThreatIntel',
+                score=score,
+                reliability=reliability
+            )
+        return dbot_score
+
+
+    def create_results(readable, prefix, key_field, outputs, indicator):
+        """
+        Return the results entry
+        """
+
+        results = CommandResults(
+            readable_output=readable,
+            outputs_prefix=f'RandomThreatIntel.{prefix}',
+            outputs_key_field=key_field,
+            outputs=outputs,
+            indicator=indicator
+        )
+
+        return results
+
+
+    # Command functions
+
+
+    def url_command(url_arg):
+        """
+        Return a random result for a given url
+        """
+
+        # get some fake data
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        url_raw_response = {'url': url_arg, 'threatscore': threatscore}
+        readable = tableToMarkdown('Random Threat Intel URL Reputation', url_raw_response, headers=['url', 'threatscore'])
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=url_arg, indicator_type=DBotScoreType.URL,
+                                       score=score, malicious_description=description)
+
+        # create url context for response
+        url = Common.URL(
+            url=url_arg,
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable, 'URL', 'url', url_raw_response, url)
+
+        return results
+
+
+    def ip_command(ip_arg):
+        """
+        Return a random result for a given ip
+        """
+
+        # get some fake data
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        ip_raw_response = {'ip': ip_arg, 'threatscore': threatscore}
+        readable = tableToMarkdown('Random Threat Intel IP Reputation', ip_raw_response, headers=['ip', 'threatscore'])
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=ip_arg, indicator_type=DBotScoreType.IP,
+                                       score=score, malicious_description=description)
+
+        # create ip context for response
+        ip = Common.IP(
+            ip=ip_arg,
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable, 'IP', 'ip', ip_raw_response, ip)
+
+        return results
+
+
+    def domain_command(domain_arg):
+        """
+        Return a random result for a given domain
+        """
+
+        # get some fake data
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        domain_raw_response = {'domain': domain_arg, 'threatscore': threatscore}
+        readable = tableToMarkdown('Random Threat Intel Domain Reputation', domain_raw_response, headers=['domain', 'threatscore'])
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=domain_arg, indicator_type=DBotScoreType.DOMAIN,
+                                       score=score, malicious_description=description)
+
+        # create domain context for response
+        domain = Common.Domain(
+            domain=domain_arg,
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable, 'Domain', 'domain', domain_raw_response, domain)
+
+        return results
+
+
+    def file_command(file_arg):
+        """
+        Return a random result for a given file hash, md5, sha256, sha1
+        """
+
+        # get some fake data
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        file_raw_response = {'threatscore': threatscore}
+        if len(file_arg) == 32:
+            file_raw_response['md5'] = file_arg
+        if len(file_arg) == 40:
+            file_raw_response['sha1'] = file_arg
+        if len(file_arg) == 64:
+            file_raw_response['sha256'] = file_arg
+
+        readable = tableToMarkdown('Random Threat Intel File Reputation', file_raw_response)
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=file_arg, indicator_type=DBotScoreType.FILE,
+                                       score=score, malicious_description=description)
+
+        # create domain context for response
+        file = Common.File(
+            md5=file_raw_response.get('md5', ""),
+            sha1=file_raw_response.get('sha1', ""),
+            sha256=file_raw_response.get('sha256', ""),
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable, 'File', 'md5', file_raw_response, file)
+
+        return results
+
+
+    def private_ip_command(ip_arg):
+        """
+        Same as IP, but for private ip addresses.
+        Mocked to handle the Private IP custom indicator. Still returns IP results, but command can be used as the reputation command for a custom indicator.
+
+            Indicator Type: Private IP
+            Regex: (10((?:\[\.\]|\.)(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){3}|((172(?:\[\.\]|\.)(1[6-9]|2[0-9]|3[01]))|192(?:\[\.\]|\.)168)((?:\[\.\]|\.)(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){2})
+            Reputation Command: private-ip
+
+            Exclusions: For this to work, exclude the following CIDR ranges as type IP so they don't get auto-extracted as such: 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12
+        """
+
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        ip_raw_response = {'ip': ip_arg, 'asn': 'privateip', 'threatscore': threatscore, 'description': 'Internal IP'}
+        readable = tableToMarkdown('Random Threat Intel IP Reputation', ip_raw_response,
+                                   headers=['ip', 'asn', 'threatscore', 'description'])
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=ip_arg, indicator_type=DBotScoreType.IP,
+                                       score=score, malicious_description=description)
+
+        # create ip context for response
+        ip = Common.IP(
+            ip=ip_arg,
+            asn='12345',
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable, 'IP', 'ip', ip_raw_response, ip)
+
+        return results
+
+
+    def cxhost_command(cxhost_arg):
+        """
+        This is and example of indicator enrichment on a custom indicator called CXHost, showing how you can set this up automatically run when extracted via regex
+        The response is rather picky, you need to return exactly as shown below, with your additions etc in teh raw response.
+            Indicator Type: CXHost
+            Regex: (crossiscoming\d{3,5}) (autoextract anything with crossiscoming and 3-5 digits)
+            Reputation Command: cxhost
+        """
+
+        # fake raw response and readable output
+        cxhost_raw_response = {'cxhost': cxhost_arg, 'description': 'cxhost custom indicator'}
+        readable = tableToMarkdown('Random Threat Intel CXHost Reputation', cxhost_raw_response, headers=['cxhost', 'description'])
+
+        # generate and return results for this indicator
+        results = {
+            'Type': entryTypes['note'],
+            'ContentsFormat': formats['json'],
+            'Contents': cxhost_raw_response,
+            'HumanReadable': readable,
+            'EntryContext': {
+                'DBotScore': {
+                    'Indicator': cxhost_arg,
+                    'Type': 'CXHost',
+                            'Vendor': 'RandomThreatIntel',
+                            'Score': 1
+                },
+                'RandomThreatIntel.CXHost': cxhost_raw_response
+            }
+        }
+
+        return results
+
+
+    # Command execution
+
+    if demisto.command() == 'test-module':
+        demisto.results('ok')
+
+    elif demisto.command() == 'url':
+        url_arg = demisto.args().get('url')
+        return_results(url_command(url_arg))
+
+    elif demisto.command() == 'ip':
+        ip_arg = demisto.args().get('ip')
+        return_results(ip_command(ip_arg))
+
+    elif demisto.command() == 'domain':
+        domain_arg = demisto.args().get('domain')
+        return_results(domain_command(domain_arg))
+
+    elif demisto.command() == 'file':
+        file_arg = demisto.args().get('file')
+        return_results(file_command(file_arg))
+
+    elif demisto.command() == 'private-ip':
+        ip_arg = demisto.args().get('ip')
+        return_results(private_ip_command(ip_arg))
+
+    elif demisto.command() == 'cxhost':
+        cxhost_arg = demisto.args().get('cxhost')
+        demisto.results(cxhost_command(cxhost_arg))
+
+    register_module_line('RandomThreatIntel (XSOAR Engineer)', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
