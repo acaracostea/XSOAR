@@ -1,0 +1,142 @@
+commonfields:
+  id: adc63231-feb3-4375-8fa2-3081fab2f3f1
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.28442
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GetIncidentIndicator_error_handling
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  import copy
+
+  status_dict = {
+      "Status":"",
+      "Message":""
+  }
+
+  incident_indicator_default = {
+      "Value":"",
+      "Category":"",
+      "Type":"",
+      "Select":False
+  }
+
+  MispFormat = {
+  "Account": {"type":"target-user","category":"Targeting data"},
+  "accountRep": {"type":"other","category":"Other"},
+  "CIDR": {"type":"other","category":"Other"},
+  "CVE": {"type":"vulnerability","category":"External analysis"},
+  "Domain": {"type":"domain","category":"Network activity"},
+  "DomainGlob": {"type":"domain","category":"Network activity"},
+  "Email": {"type":"email","category":"Network activity"},
+  "File": {"type":"sha256","category":"Payload delivery"},
+  "File MD5": {"type":"md5","category":"Payload delivery"},
+  "File SHA-1": {"type":"sha1","category":"Payload delivery"},
+  "File SHA-256": {"type":"sha256","category":"Payload delivery"},
+  "Host": {"type":"hostname","category":"Network activity"},
+  "Infrastructure": {"type":"other","category":"Other"},
+  "Intrusion Set": {"type":"other","category":"Other"},
+  "IP": {"type":"ip-src","category":"Network activity"},
+  "IPv6": {"type":"ip-src","category":"Network activity"},
+  "IPv6CIDR": {"type":"ip-src","category":"Network activity"},
+  "Malware": {"type":"malware-type","category":"Payload delivery"},
+  "Registry Key": {"type":"regkey","category":"External analysis"},
+  "ssdeep": {"type":"ssdeep","category":"Payload delivery"},
+  "Threat Actor": {"type":"threat-actor","category":"Attribution"},
+  "Tool": {"type":"other","category":"Other"},
+  "URL": {"type":"url","category":"Network activity"}
+  }
+
+  attrs = []
+  fields = demisto.incident()
+  if "mispid" in fields["CustomFields"].keys():
+      event_id = fields["CustomFields"]["mispid"]
+      indicators_raw = demisto.executeCommand("GetIndicatorsByQuery", { "query":"incident.id:"+str(fields['id']),"populateFields":"value,indicator_type,score,id,investigationIDs"})
+      indicators = indicators_raw[0]['Contents']
+      if indicators:
+          for indicator in indicators:
+              res_search_value = demisto.executeCommand("misp-search-attributes", { "event_id":event_id, "value":indicator['value'], "using":"MISP V3_instance_1"})
+              if not (res_search_value[0]["Type"] == entryTypes["error"]):
+                  if res_search_value[0]['Contents']['Attribute']:
+                      continue
+                  else:
+                      for k,v in MispFormat.items():
+                          if indicator['indicator_type'] == k:
+                              attr = copy.deepcopy(incident_indicator_default)
+                              attr['Value'] = indicator['value']
+                              attr['Category'] = v['category']
+                              attr['Type'] = v['type']
+                              attrs.append(attr)
+          demisto.setContext("IncidentGridField", attrs)
+          SetGridField = demisto.executeCommand("SetGridField", {"columns" : "Select,Value,Category,Type", "context_path": "IncidentGridField", "grid_id": "incidentindicators", "keys":"Select,Value,Category,Type"})
+          if not (SetGridField[0]["Type"] == entryTypes["error"]):
+              status_dict["Status"] = '<p style="color:green">Success</p>'
+              status_dict["Message"] = '<p style="color:green">Indicators returned</p>'
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("Indicators returned")
+          else:
+              status_dict["Status"] = '<p style="color:red">Error</p>'
+              status_dict["Message"] = '<p style="color:red">'+str(SetGridField[0]["Contents"])+'</p>'
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("Error: "+str(SetGridField[0]["Contents"]))
+
+      else:
+          status_dict["Status"] = '<p style="color:red">Error</p>'
+          status_dict["Message"] = '<p style="color:red">There are no Indicators</p>'
+          demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+          return_results("There are no Indicators")
+
+
+  else:
+      indicators_raw = demisto.executeCommand("GetIndicatorsByQuery", { "query":"incident.id:"+str(fields['id']),"populateFields":"value,indicator_type,score,id,investigationIDs"})
+      indicators = indicators_raw[0]['Contents']
+      if indicators:
+          for indicator in indicators:
+              for k,v in MispFormat.items():
+                  if indicator['indicator_type'] == k:
+                      attr = copy.deepcopy(incident_indicator_default)
+                      attr['Value'] = indicator['value']
+                      attr['Category'] = v['category']
+                      attr['Type'] = v['type']
+                      attrs.append(attr)
+
+          demisto.setContext("IncidentGridField", attrs)
+          SetGridField = demisto.executeCommand("SetGridField", {"columns" : "Select,Value,Category,Type", "context_path": "IncidentGridField", "grid_id": "incidentindicators", "keys":"Select,Value,Category,Type"})
+          if not (SetGridField[0]["Type"] == entryTypes["error"]):
+              status_dict["Status"] = '<p style="color:green">Success</p>'
+              status_dict["Message"] = '<p style="color:green">Indicators returned</p>'
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("Indicators returned")
+          else:
+              status_dict["Status"] = '<p style="color:red">Error</p>'
+              status_dict["Message"] = '<p style="color:red">'+str(SetGridField[0]["Contents"])+'</p>'
+              demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+              return_results("Error: "+str(SetGridField[0]["Contents"]))
+
+      else:
+          status_dict["Status"] = '<p style="color:red">Error</p>'
+          status_dict["Message"] = '<p style="color:red">There are no Indicators</p>'
+          demisto.executeCommand("setIncident",{"mispuploadstatus":status_dict["Status"],"mispuploadmessage":status_dict["Message"]})
+          return_results("There are no Indicators")
+
+
+
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+type: python
