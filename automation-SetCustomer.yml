@@ -1,0 +1,39 @@
+commonfields:
+  id: ec97fb4d-8c97-4955-8e0c-c6d96f38e708
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.11.57890
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SetCustomer
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  fields = demisto.incident()
+  if "selectexistingcustomer" in fields["CustomFields"].keys() and fields['CustomFields']['selectexistingcustomer']:
+      data = demisto.executeCommand("getList", { "listName": "CustomerInfo" })[0]['Contents']
+      data = json.loads(data)
+      for row in data:
+          if row['Customer Name'] == fields['CustomFields']['selectexistingcustomer']:
+              demisto.executeCommand("setIncident",{"customername":fields['CustomFields']['selectexistingcustomer'],"customerid":row['CustomerID']})
+              break
+  elif "selectexistingcustomer" in fields["CustomFields"].keys() and not fields['CustomFields']['selectexistingcustomer']:
+      demisto.executeCommand("setIncident",{"customername":"","customerid":""})
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- field-change-triggered
+type: python
