@@ -1,0 +1,660 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook walks you through setting up the XSOAR Training Pack
+id: XSOAR Engineer Training - Setup
+inputs: []
+name: XSOAR Engineer Training - Setup
+outputs: []
+starttaskid: "0"
+system: true
+tags:
+- training
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f93b195d-321c-4220-8046-dc8cf44ee087
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: f93b195d-321c-4220-8046-dc8cf44ee087
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.Internal IP Ranges
+          operator: isExists
+          right:
+            value: {}
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.Internal IP Ranges
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the internal ranges list exists.
+      id: 7e89b632-ca9b-41e0-8aa5-e7ca1eb6cc92
+      iscommand: false
+      name: Does the Internal IP Ranges list exist?
+      type: condition
+      version: -1
+    taskid: 7e89b632-ca9b-41e0-8aa5-e7ca1eb6cc92
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1040
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: 10.0.0.0/8,192.168.8.0/24
+      listName:
+        simple: Internal IP Ranges
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.create
+      id: 5377d87d-252f-4f26-8c09-caa1df77c6f8
+      iscommand: true
+      name: Create Internal IP Ranges list
+      script: Builtin|||createList
+      type: regular
+      version: -1
+    taskid: 5377d87d-252f-4f26-8c09-caa1df77c6f8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 1215
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "5"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: Core REST API
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'
+      id: 790836b2-811f-4891-8ae1-ca36676dc406
+      iscommand: false
+      name: Is the Core REST API integration available?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 790836b2-811f-4891-8ae1-ca36676dc406
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 1535
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This playbook requires the Core REST API integration, please configure
+        an instance of it. '
+      id: e3ce1ee0-85dc-49e2-8eb6-7b9d2223b53b
+      iscommand: false
+      name: Configure Core Rest API integration
+      type: regular
+      version: -1
+    taskid: e3ce1ee0-85dc-49e2-8eb6-7b9d2223b53b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 612.5,
+          "y": 1710
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1566022f-9400-444c-8555-6a7067645459
+      iscommand: false
+      name: Configuration
+      type: title
+      version: -1
+    taskid: 1566022f-9400-444c-8555-6a7067645459
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 1390
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        **Install the Case Management - Generic Pack:**
+        - Make sure to Install the Case Management - Generic pack from the Marketplace. The layouts have the buttons on them....
+
+        **Configure an Instance for the following integrations, no configuration needed:**
+        - XSOAR Engineer Training
+        - RandomThreatIntel (this is optional)
+      id: 5f6444d3-4c35-4587-87e9-75dd5864637a
+      iscommand: false
+      name: Configure Training Integrations and Install Marketplace Packs
+      type: regular
+      version: -1
+    taskid: 5f6444d3-4c35-4587-87e9-75dd5864637a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 1885
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a1a91ee3-863a-44b3-83cd-676e56935fe1
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: a1a91ee3-863a-44b3-83cd-676e56935fe1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 2410
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 09c061d2-43e1-4be8-85a4-64502e76143e
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 09c061d2-43e1-4be8-85a4-64502e76143e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 195
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      email:
+        simple: james.bond@xsoar.local
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves detailed information about a user account. The user can
+        be specified by username, email address, or as an Active Directory Distinguished
+        Name (DN).
+      id: 1abd55ad-63a7-42dc-828b-a1ac2487c99d
+      iscommand: true
+      name: Test XSOAR Engineer Training Integration
+      script: '|||ad-get-user'
+      type: regular
+      version: -1
+    taskid: 1abd55ad-63a7-42dc-828b-a1ac2487c99d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 2060
+        }
+      }
+  "14":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isExists
+          right:
+            value: {}
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "16"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the environment list exists.
+      id: b5012da3-c9ff-4d09-81f8-5f550786cd46
+      iscommand: false
+      name: Does the Environment list exist?
+      type: condition
+      version: -1
+    taskid: b5012da3-c9ff-4d09-81f8-5f550786cd46
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 500,
+          "y": 1040
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: development
+      listName:
+        simple: environment
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.create
+      id: 9bbe482f-a0f7-4d1b-8f76-52544a709f19
+      iscommand: true
+      name: Create Environment list
+      script: Builtin|||createList
+      type: regular
+      version: -1
+    taskid: 9bbe482f-a0f7-4d1b-8f76-52544a709f19
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 612.5,
+          "y": 1215
+        }
+      }
+  "17":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.training setup completed
+          operator: isExists
+          right:
+            value: {}
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.training setup completed
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "21"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the setup has been done before, by checking if the list
+        exists.
+      id: 0e966182-07a2-4228-86bd-7677d513b092
+      iscommand: false
+      name: Has the setup already been run?
+      type: condition
+      version: -1
+    taskid: 0e966182-07a2-4228-86bd-7677d513b092
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 545
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: Ooooooohhhhh Canada....
+      listName:
+        simple: training setup completed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.create
+      id: 523bc52d-bd68-45af-8bef-1dcdb8acdd1e
+      iscommand: true
+      name: Set Setup Completed Flag
+      script: Builtin|||createList
+      type: regular
+      version: -1
+    taskid: 523bc52d-bd68-45af-8bef-1dcdb8acdd1e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 2235
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      name:
+        simple: XSOAR Engineer Training!
+      severity:
+        simple: "0.5"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 83113fbe-ff56-46ff-81a5-89002c1c7387
+      iscommand: true
+      name: Set Severity and Name
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 83113fbe-ff56-46ff-81a5-89002c1c7387
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 370
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "9"
+      "Yes":
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Select **YES** to have the playbook walk you through setting up
+        this content.  \n\nSelect **NO** if you don't want to go through this process
+        at this time.\n\nYou can rerun the playbook if you want to complete this in
+        the future. "
+      id: 8f078c8f-3b1c-43d4-898f-a3535da12fc2
+      iscommand: false
+      name: 'Do quick setup? '
+      type: condition
+      version: -1
+    taskid: 8f078c8f-3b1c-43d4-898f-a3535da12fc2
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 387.5,
+          "y": 720
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f1037ddc-ab59-4889-8489-c2a0267d2eba
+      iscommand: false
+      name: Setup Walkthrough
+      type: title
+      version: -1
+    taskid: f1037ddc-ab59-4889-8489-c2a0267d2eba
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 895
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 2425,
+        "width": 942.5,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
