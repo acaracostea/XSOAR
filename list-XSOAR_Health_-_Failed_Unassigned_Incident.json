@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "13028,13029,13032,13033,13034,13035,13036,13040,13042",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Failed Unassigned Incident",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Failed Unassigned Incident",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
