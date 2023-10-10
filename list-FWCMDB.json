@@ -1,0 +1,27 @@
+{
+	"allRead": true,
+	"allReadWrite": true,
+	"cacheVersn": 0,
+	"data": "[{\"ADOM\":\"1\",\"Customer Name\":\"New Customer\",\"CustomerID\":\"11111111\",\"FW Hostname\":\"FW Host\"},{\"ADOM\":\"1\",\"Customer Name\":\"New Customer\",\"CustomerID\":\"11111111\",\"FW Hostname\":\"FW Host\"}]",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "FWCMDB",
+	"itemVersion": "",
+	"locked": false,
+	"name": "FWCMDB",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"previousAllRead": true,
+	"previousAllReadWrite": true,
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "json",
+	"version": -1
+}
