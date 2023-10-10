@@ -1,0 +1,81 @@
+commonfields:
+  id: 10586317-969d-4ab7-8494-334392055621
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.8.39276
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UploadComment
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('UploadComment', 'start', __line__())
+  import json
+
+  translate_action = {
+      'Investigation':'18',
+      'CERT':'1',
+      'External':'2',
+      'Opened':'12',
+      'Closed':'13',
+      'Monitor':'14',
+      'Takedown':'15',
+      'Info':'16',
+      'Alerting':'17'
+  }
+
+  def main():
+      fields = demisto.incident()
+
+      if 'firid' in fields["CustomFields"].keys():
+          incident = fields["CustomFields"]['firid']
+      else:
+          incident = False
+          status = '<p style="color:red">Error</p>'
+          message = '<p style="color:red">FIR ID argument was not set</p>'
+
+      if 'newcomment' in fields["CustomFields"].keys():
+          NewComment = fields["CustomFields"]['newcomment']
+      else:
+          NewComment = False
+          status = '<p style="color:red">Error</p>'
+          message = '<p style="color:red">New Comment argument was not set</p>'
+
+      if 'fircommentaction' in fields["CustomFields"].keys():
+          action = fields["CustomFields"]['fircommentaction']
+      else:
+          action = False
+          status = '<p style="color:red">Error</p>'
+          message = '<p style="color:red">FIR Comment Action argument was not set</p>'
+
+      if fields and incident and NewComment and action:
+          demisto.executeCommand('upload-comment', {'action':translate_action[action],'incident':incident,'comment':NewComment,'using':'FIR_instance_1'})
+          status = '<p style="color:green">Successful</p>'
+          message = '<p style="color:green">Comment</p>'
+          demisto.executeCommand("setIncident",{"actionstatus":status,"message":message})
+          return_results('Uploaded')
+      else:
+
+          demisto.executeCommand("setIncident",{"actionstatus":status,"message":message})
+          return_results('Arguments were not passed')
+
+  if __name__ == "__builtin__" or __name__ == "builtins":
+      main()
+
+  register_module_line('UploadComment', 'end', __line__())
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
