@@ -1,0 +1,659 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.6
+    packID: FortiManager
+    packName: FortiManager
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Install FortiManager firewall policy package on a given device.
+id: FortiManager - Install Policy Package on Device
+inputs:
+- description: The device name on which to install the policy package.
+  key: device_name
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: The policy package to install.
+  key: policy_package
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.package}
+- description: The ADOM in which the device exists. In not set will use the default
+    integration ADOM.
+  key: adom
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.adom}
+- description: |
+    VDOM on which to install the package.
+  key: vdom
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The comment for the new ADOM revision.
+  key: adom_rev_comment
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The name for the new ADOM revision.
+  key: adom_rev_name
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The comment for the device configuration revision that will be generated
+    during install.
+  key: dev_rev_comment
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: FortiManager - Install Policy Package on Device
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 66019fb8-3d36-45eb-8316-595c667f6bf1
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 66019fb8-3d36-45eb-8316-595c667f6bf1
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      adom:
+        simple: ${inputs.adom}
+      device:
+        simple: ${inputs.device_name}
+      using:
+        simple: FortiManager_instance_1
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: List all devices in the ADOM instance.
+      id: ea8db1ea-f6cc-4c1c-8a40-9189e9e97854
+      iscommand: true
+      name: Get Device Info
+      script: '|||fortimanager-devices-list'
+      type: regular
+      version: -1
+    taskid: ea8db1ea-f6cc-4c1c-8a40-9189e9e97854
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: FortiManager.Device.conf_status
+          operator: isEqualString
+          right:
+            value:
+              simple: insync
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e8bc55bc-3abf-4334-8d76-f13f78e6d620
+      iscommand: false
+      name: Check if Device is Insync
+      type: condition
+      version: -1
+    taskid: e8bc55bc-3abf-4334-8d76-f13f78e6d620
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 2
+    reputationcalc: 1
+    scriptarguments:
+      adom:
+        simple: ${inputs.adom}
+      adom_rev_comment:
+        simple: ${inputs.adom_rev_comment}
+      adom_rev_name:
+        simple: ${inputs.adom_rev_name}
+      dev_rev_comment:
+        simple: ${inputs.dev_rev_comment}
+      name:
+        simple: cust1-fgt
+      package:
+        simple: ${inputs.policy_package}
+      using:
+        simple: FortiManager_custom_instance
+      vdom:
+        simple: root
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      description: Schedule a policy package installation.
+      id: 588e18b3-df1d-4377-8cfd-4a186303cd88
+      iscommand: true
+      name: Initiate Policy Package installation
+      script: FortiManager_copy_copy|||fortimanager-firewall-policy-package-install
+      type: regular
+      version: -1
+    taskid: 588e18b3-df1d-4377-8cfd-4a186303cd88
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1245
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AdditionalPollingCommandArgNames:
+        simple: using
+      AdditionalPollingCommandArgValues:
+        simple: FortiManager_custom_instance
+      Ids:
+        simple: ${FortiManager.Installation.id}
+      Interval:
+        simple: "1"
+      PollingCommandArgName:
+        simple: task_id
+      PollingCommandName:
+        simple: fortimanager-firewall-policy-package-install-status
+      Timeout:
+        simple: "10"
+      dt:
+        simple: FortiManager.Installation(val.precent != 100)
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
+        The remote action should have the following structure:
+
+        1. Initiate the operation.
+        2. Poll to check if the operation completed.
+        3. (optional) Get the results of the operation.
+      id: 13bb0003-5bc3-4dd7-8089-7d67a972f108
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: 13bb0003-5bc3-4dd7-8089-7d67a972f108
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1420
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      task_id:
+        simple: ${FortiManager.Installation.id}
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      description: Get installation status.
+      id: 030c8a99-f047-481a-887b-e966ecdb52bb
+      iscommand: true
+      name: Get Installation Status
+      script: FortiManager_copy_copy|||fortimanager-firewall-policy-package-install-status
+      type: regular
+      version: -1
+    taskid: 030c8a99-f047-481a-887b-e966ecdb52bb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1595
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: FortiManager.Installation.num_err
+          operator: isEqualNumber
+          right:
+            value:
+              simple: "0"
+      - - left:
+            iscontext: true
+            value:
+              simple: FortiManager.Installation.num_warn
+          operator: isEqualNumber
+          right:
+            value:
+              simple: "0"
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      "yes":
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d3152e7a-b087-4db9-87bb-0772ccc91781
+      iscommand: false
+      name: Check For Errors and Warnings
+      type: condition
+      version: -1
+    taskid: d3152e7a-b087-4db9-87bb-0772ccc91781
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1770
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 106276e0-9977-49f2-88c6-5238dec5f9d3
+      iscommand: false
+      name: Installation Complete
+      type: title
+      version: -1
+    taskid: 106276e0-9977-49f2-88c6-5238dec5f9d3
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2135
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: FortiManager - Device Not in sync - stopping installation. Sync the
+          device through FortiManager and resume Installation.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 8c5ec974-efdf-4319-85f7-b994368e51ce
+      iscommand: false
+      name: Device Not In Sync
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 8c5ec974-efdf-4319-85f7-b994368e51ce
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 152.5,
+          "y": 545
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a65d9c41-ba57-42a2-85bd-9707ee793ba2
+      iscommand: false
+      name: Manually Resume after Device Sync
+      type: regular
+      version: -1
+    taskid: a65d9c41-ba57-42a2-85bd-9707ee793ba2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 152.5,
+          "y": 720
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: FortiManager Installation Failed.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: fd360246-5964-4d5b-8b94-d35e96add7df
+      iscommand: false
+      name: PrintErrorEntry
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: fd360246-5964-4d5b-8b94-d35e96add7df
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1945
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      adom:
+        simple: ${incident.adom}
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      id: a0ceaca7-1b06-4cf7-8073-a9dd480d0a5d
+      iscommand: true
+      name: Lock Adom
+      script: FortiManager_copy_copy|||fortimanager-lock-adom
+      type: regular
+      version: -1
+    taskid: a0ceaca7-1b06-4cf7-8073-a9dd480d0a5d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 895
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      adom:
+        simple: ${incident.adom}
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      id: 4d5d4229-019b-40c4-887f-9194ad64e3cf
+      iscommand: true
+      name: Unlock Adom
+      script: FortiManager_copy_copy|||fortimanager-unlock-adom
+      type: regular
+      version: -1
+    taskid: 4d5d4229-019b-40c4-887f-9194ad64e3cf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1945
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      adom:
+        simple: ${incident.adom}
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      id: 88fdfc22-15a4-4037-835a-c8d20be7b876
+      iscommand: true
+      name: Unlock Adom
+      script: FortiManager_copy_copy|||fortimanager-unlock-adom
+      type: regular
+      version: -1
+    taskid: 88fdfc22-15a4-4037-835a-c8d20be7b876
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2120
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "no"
+      key:
+        simple: FortiManager.Installation
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs-cortex.paloaltonetworks.com/r/Cortex-XSOAR/6.10/Cortex-XSOAR-Administrator-Guide/Automations
+      id: 90bcf497-e5b0-48a9-87b9-d431b2477ccf
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 90bcf497-e5b0-48a9-87b9-d431b2477ccf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1070
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 2165,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
