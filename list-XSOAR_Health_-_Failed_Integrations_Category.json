@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "Utilities,Network Security,Email,Endpoint,Cloud Services,Cloud Services,Cloud Services,Data Enrichment \u0026 Threat Intelligence,Forensics \u0026 Malware Analysis",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Failed Integrations Category",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Failed Integrations Category",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
