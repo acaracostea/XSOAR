@@ -1,0 +1,290 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.0.1
+    packID: XsoarWebserver
+    packName: Xsoar-web-server
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |
+  Playbook to demonstrate the features of XSOAR-Web-Server. It sends an html email to a set of users up to 2 times. The email can contain multiple html links, that the users can click and the response will be available in the context. This playbook sets up the webserver to handle http get requests
+id: xsoarwebserver-email-acknowledgement
+inputs:
+- description: The emails to send the data collection links to.
+  key: useremails
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: Replace with comma separated user emails
+- description: The template for the acknowledgement email is an HTML string with multiple
+    hyper links with each hyper link has a place holder like "$action{number}" with
+    number varying across number of actions
+  key: htmltemplate
+  playbookInputQuery: null
+  required: true
+  value:
+    complex:
+      accessor: AcknowledgementEmailHTML
+      root: lists
+- description: Comma separated list of actions that get registered when the corresponding
+    links are clicked. Make sure that your template has an equal number of placeholders
+  key: useractions
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: happy,angry
+name: xsoarwebserver-email-acknowledgement
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1c5cb449-cde3-4ee1-8a81-0dd24e63ebb2
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 1c5cb449-cde3-4ee1-8a81-0dd24e63ebb2
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": -140
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      emailsendcounter:
+        simple: "0"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 248ef8ca-113b-42b5-8bb7-81c7d87480da
+      iscommand: true
+      name: Initializing Email Send Counter
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 248ef8ca-113b-42b5-8bb7-81c7d87480da
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": 35
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      actions:
+        simple: ${inputs.useractions}
+      emailaddresses:
+        simple: ${inputs.useremails}
+      htmltemplate:
+        simple: ${inputs.htmltemplate}
+      userstring:
+        simple: simplegetrequestxsoarfeedback
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: setup the web server to handle URL clicks for each action specified
+        from single or multiple recipients
+      id: 22c64a9d-1c37-42a5-8224-5ac88f696258
+      iscommand: true
+      name: Setup WS Actions
+      script: '|||xsoar-ws-setup-simple-action'
+      type: regular
+      version: -1
+    taskid: 22c64a9d-1c37-42a5-8224-5ac88f696258
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": 260
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 102fb6e8-b681-4cb6-8881-77b2b728f98d
+      iscommand: false
+      name: End
+      type: title
+      version: -1
+    taskid: 102fb6e8-b681-4cb6-8881-77b2b728f98d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": 870
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      builtincondition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: completed
+                root: WS-ActionStatus
+          operator: isTrue
+          right:
+            value: {}
+        - left:
+            iscontext: true
+            value:
+              simple: incident.emailsendcounter
+          operator: greaterThanOrEqual
+          right:
+            value:
+              simple: "2"
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      EmailSubject:
+        simple: Do you like XSOAR ?
+      FileAttachments:
+        simple: ${InfoFile.EntryID}
+      Jobuuid:
+        simple: ${WS-ActionDetails.job_uuid}
+      PollingTimebetweenRuns:
+        simple: "30"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook tracks the user responses and  resends the emails
+        to recipients who have not responded
+      id: 79833017-77f4-4cd0-80a6-823b06e76c23
+      iscommand: false
+      name: xsoar-data-collection-response-tracking
+      playbookId: xsoar-data-collection-response-tracking
+      type: playbook
+      version: -1
+    taskid: 79833017-77f4-4cd0-80a6-823b06e76c23
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": 460
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      timerField:
+        simple: EmailUserSLA
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.stop.timer
+      id: ae779448-1c5f-4f10-8b58-176137118fdd
+      iscommand: true
+      name: Stopping SLA timer
+      script: Builtin|||stopTimer
+      type: regular
+      version: -1
+    taskid: ae779448-1c5f-4f10-8b58-176137118fdd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": 670
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1075,
+        "width": 380,
+        "x": 530,
+        "y": -140
+      }
+    }
+  }
