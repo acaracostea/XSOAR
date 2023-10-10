@@ -1,0 +1,37 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.8.0",
+	"id": "XSOAR Engineer Training Classifier",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.0",
+	"keyTypeMap": {
+		"url allowed": "XSOAR Engineer URL Alerts",
+		"url blocked": "XSOAR Engineer URL Alerts"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "XSOAR Engineer Training Classifier",
+	"nameRaw": "XSOAR Engineer Training Classifier",
+	"packID": "XSOAR_Engineer_Training",
+	"packName": "XSOAR Engineer Training",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
