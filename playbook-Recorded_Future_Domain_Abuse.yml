@@ -1,0 +1,634 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.7.2
+    packID: RecordedFuture
+    packName: Recorded Future Intelligence
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook was developed as a template to handle the ingestion of
+  Recorded Future Domain Abuse playbook alerts.
+id: Recorded Future Domain Abuse
+inputs: []
+name: Recorded Future Domain Abuse
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 703160b4-0df7-429c-8ec5-71b79342af64
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 703160b4-0df7-429c-8ec5-71b79342af64
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 20
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: "Summary:\n\nIdentified Domain:\n\nRisk Score:\n\nTargeted Domains:\n\nWhois:\n\nRegistrar
+          Name:\n\nCreated Date:\n\nName Servers: \n\nContact Email: "
+      summary:
+        simple: ${incident.name}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: jira-v2
+      description: Creates a new issue in Jira.
+      id: f38f5715-99e9-4411-8ac8-2d42a876eb30
+      iscommand: true
+      name: Create Jira Issue
+      script: jira-v2|||jira-create-issue
+      type: regular
+      version: -1
+    taskid: f38f5715-99e9-4411-8ac8-2d42a876eb30
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1535
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8da8664e-1019-4313-8f7d-e50389c49ff1
+      iscommand: false
+      name: Ticket Creation
+      type: title
+      version: -1
+    taskid: 8da8664e-1019-4313-8f7d-e50389c49ff1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1375
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f6783d1f-a4a7-411d-8625-07d11ada3f1b
+      iscommand: false
+      name: Set Portal Status to In-Progress
+      type: title
+      version: -1
+    taskid: f6783d1f-a4a7-411d-8625-07d11ada3f1b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 545
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      alert_ids:
+        simple: ${incident.alertid}
+      new_status:
+        simple: in-progress
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: RecordedFuturePlaybookAlerts
+      description: Update the status of one or multiple Playbook alerts
+      id: 06f0da6e-4510-48f8-846e-3776f063f192
+      iscommand: true
+      name: Set Status to In-Progress
+      script: RecordedFuturePlaybookAlerts|||recordedfuture-playbook-alerts-update
+      type: regular
+      version: -1
+    taskid: 06f0da6e-4510-48f8-846e-3776f063f192
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 690
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1a1d8aab-f723-4e1a-87b1-65cf8a5a7282
+      iscommand: false
+      name: Initiate Takedown
+      type: title
+      version: -1
+    taskid: 1a1d8aab-f723-4e1a-87b1-65cf8a5a7282
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1375
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: "2"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of an incident
+      id: 32304026-3a0d-4947-8a84-f0b88c7c4b0f
+      iscommand: true
+      name: Set Incident Severity to Medium
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 32304026-3a0d-4947-8a84-f0b88c7c4b0f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 370
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    form:
+      description: Review Screenshots, DNS Records, Whois.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Does this alert pose a true risk to my organization?
+        options: []
+        optionsarg:
+        - simple: "Yes"
+        - simple: "No"
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: singleSelect
+      sender: Your SOC team
+      title: Does this pose a risk?
+      totalanswers: 0
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: null
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Manual analyst step to confirm that action is required
+      id: 8658cbb4-0654-4130-8d55-09b09ed9ba56
+      iscommand: false
+      name: Analyst Prompt
+      type: collection
+      version: -1
+    taskid: 8658cbb4-0654-4130-8d55-09b09ed9ba56
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1010
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: "1"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of an incident
+      id: b32aa546-6795-42ff-81e2-2aea2855c789
+      iscommand: true
+      name: Set Incident Severity to Low
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: b32aa546-6795-42ff-81e2-2aea2855c789
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 890,
+          "y": 370
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: "3"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of an incident
+      id: 28c4236a-49f7-4653-8503-eb2bfcc4f402
+      iscommand: true
+      name: Set Incident Severity to High
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 28c4236a-49f7-4653-8503-eb2bfcc4f402
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 370
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a462c1fe-05e7-4676-852e-628098beee2e
+      iscommand: false
+      name: Analyst Review
+      type: title
+      version: -1
+    taskid: a462c1fe-05e7-4676-852e-628098beee2e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 865
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: "0"
+                root: Does this pose a risk?.Answers
+          operator: isEqualString
+          right:
+            value:
+              simple: "Yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "15"
+      "yes":
+      - "2"
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Answer from the analyst
+      id: 80d58977-6efe-459c-8f4b-2243a7dbc5bd
+      iscommand: false
+      name: Analyst Answer
+      type: condition
+      version: -1
+    taskid: 80d58977-6efe-459c-8f4b-2243a7dbc5bd
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1185
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: sourcepriority
+                root: incident
+          operator: isEqualString
+          right:
+            value:
+              simple: High
+      label: High
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: sourcepriority
+                root: incident
+          operator: isEqualString
+          right:
+            value:
+              simple: Moderate
+      label: Moderate
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      High:
+      - "9"
+      Moderate:
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check what the incidents severity is
+      id: 4e8c18f2-f54c-4809-83a7-15c6849d373e
+      iscommand: false
+      name: What is the Severity?
+      type: condition
+      version: -1
+    taskid: 4e8c18f2-f54c-4809-83a7-15c6849d373e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 145
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      id:
+        complex:
+          accessor: id
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: e6d0c3d6-f7b1-4a49-861c-145121a4fd52
+      iscommand: true
+      name: Close Incident
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: e6d0c3d6-f7b1-4a49-861c-145121a4fd52
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 940,
+          "y": 1535
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Request a takedown of the domain
+      id: fdd565ca-dbf7-48fe-8c6e-53a957a2d373
+      iscommand: false
+      name: Request a Takedown
+      type: regular
+      version: -1
+    taskid: fdd565ca-dbf7-48fe-8c6e-53a957a2d373
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1535
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      alert_ids:
+        simple: ${incident.alertid}
+      new_status:
+        simple: dismissed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: RecordedFuturePlaybookAlerts
+      description: Update the status of one or multiple Playbook alerts
+      id: 105eb164-ecd5-483e-8b86-0ef5d08fc6a0
+      iscommand: true
+      name: Set Status to Dismissed
+      script: RecordedFuturePlaybookAlerts|||recordedfuture-playbook-alerts-update
+      type: regular
+      version: -1
+    taskid: 105eb164-ecd5-483e-8b86-0ef5d08fc6a0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 940,
+          "y": 1360
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1610,
+        "width": 1270,
+        "x": 50,
+        "y": 20
+      }
+    }
+  }
