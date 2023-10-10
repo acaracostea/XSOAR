@@ -1,0 +1,52 @@
+comment: Display field options from an XSOAR list, will create the list as well....
+commonfields:
+  id: FieldOptionsFromList
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.10.48392
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: FieldOptionsFromList
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('FieldOptionsFromList', 'start', __line__())
+
+
+  # This is a field display script, that will present options pulled from an XSOAR list.
+
+  # get the list
+  field_values = demisto.executeCommand("getList", {"listName": "Training Custom Field Values"})[0]['Contents']
+
+  # default tools list if there is no list from above.
+  default_options = "Option 1,Option 2,Option 3"
+
+  # check if the list exists, if not create it:
+  if "Item not found" in field_values:
+      demisto.executeCommand("createList", {"listName": "Training Custom Field Values", "listData": default_options})
+      field_values = json.loads(demisto.executeCommand("getList", {"listName": "Training Custom Field Values"})[0]["Contents"])
+
+  options = field_values.split(",")
+  demisto.results({'hidden': False, 'options': options})
+
+  register_module_line('FieldOptionsFromList', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- field-display
+- training
+type: python
