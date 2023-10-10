@@ -1,0 +1,59 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.8.0",
+	"id": "XSOAR Engineer Training Mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.0",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"XSOAR Engineer URL Alerts": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Alert Category": {
+					"simple": "urlCategory"
+				},
+				"Event ID": {
+					"simple": "eventID"
+				},
+				"Event Type": {
+					"simple": "type"
+				},
+				"Source IP": {
+					"simple": "sourceIP"
+				},
+				"Source Username": {
+					"simple": "sourceUser"
+				},
+				"details": {
+					"simple": "url"
+				},
+				"occurred": {
+					"simple": "occurred"
+				}
+			}
+		}
+	},
+	"name": "XSOAR Engineer Training Mapper",
+	"nameRaw": "XSOAR Engineer Training Mapper",
+	"packID": "XSOAR_Engineer_Training",
+	"packName": "XSOAR Engineer Training",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
