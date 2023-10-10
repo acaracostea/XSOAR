@@ -1,0 +1,81 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "fca34276-fd64-44e6-8e4b-99966f0ee9e2",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 3,
+	"mapping": {
+		"Botnet Traffic": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"FIR Comment": {
+					"complex": {
+						"filters": [],
+						"root": "comments_set",
+						"transformers": []
+					}
+				},
+				"FIR Creation Date": {
+					"simple": "date"
+				},
+				"FIR ID": {
+					"simple": "id"
+				},
+				"FIR Subject": {
+					"simple": "subject"
+				},
+				"Fir Description": {
+					"simple": "description"
+				}
+			}
+		},
+		"Firewall Events": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"FIR Comment": {
+					"complex": {
+						"filters": [],
+						"root": "comments_set",
+						"transformers": []
+					}
+				},
+				"FIR Creation Date": {
+					"simple": "date"
+				},
+				"FIR ID": {
+					"simple": "id"
+				},
+				"FIR Subject": {
+					"simple": "subject"
+				},
+				"Fir Description": {
+					"simple": "description"
+				}
+			}
+		}
+	},
+	"name": "Botnet",
+	"nameRaw": "Botnet",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
