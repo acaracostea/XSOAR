@@ -1,0 +1,315 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "This sub-playbook can be used to send email notification if an Incidents
+  severity is High or Critical.  By default it will take the current Incident severity
+  as input, and requires a comma separated list of email addresses to send the notification
+  to.\n\nInputs:\n\nemail: The email addresses to send the message to, can be comma
+  separated. \nseverity: Defaults to the current incident severity in string format
+  (critical, high, etc)\n\nOutputs:\n\nEscalationEmailSent: (Yes | No) : Whether a
+  notification email was sent. "
+id: XSOAR Engineer Training - On Call Notification (Sub-Playbook)
+inputs:
+- description: 'The email addresses to send the message to, can be comma separated. '
+  key: email
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: 'The Incident severity in string format '
+  key: severity
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.severityStr}
+name: XSOAR Engineer Training - On Call Notification (Sub-Playbook)
+outputs:
+- contextPath: EscalationEmailSent
+  description: Whether an escalation email was sent, will be Yes or No
+  type: string
+starttaskid: "0"
+system: true
+tags:
+- training
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 759e2ed0-b274-4de4-8857-5920738da1cf
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 759e2ed0-b274-4de4-8857-5920738da1cf
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.severity
+          operator: inList
+          right:
+            value:
+              simple: critical,high
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check the severity of the Incident.
+      id: 6ab3d15f-53a0-4cf2-807d-75a83b6e42bc
+      iscommand: false
+      name: Is the Severity Critical or High?
+      type: condition
+      version: -1
+    taskid: 6ab3d15f-53a0-4cf2-807d-75a83b6e42bc
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      value:
+        simple: |-
+          Sent Notification for ${inputs.severity} alert, to:
+
+          ${inputs.email}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: In this case we would likely use the 'send-mail' command to send
+        the notification, but not for training purposes
+      id: a037d69d-2ce7-433c-88be-43cbc9e31bb8
+      iscommand: false
+      name: Send Notification for ${inputs.severity} alert
+      script: Print
+      type: regular
+      version: -1
+    taskid: a037d69d-2ce7-433c-88be-43cbc9e31bb8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 370
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 66e338b6-2689-449c-84dc-9595cd9c2a18
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 66e338b6-2689-449c-84dc-9595cd9c2a18
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 895
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 1
+    reputationcalc: 1
+    scriptarguments:
+      key:
+        simple: EscalationEmailSent
+      stringify:
+        simple: "true"
+      value:
+        simple: "Yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 1a147589-5f29-4097-809e-12df4232ebed
+      iscommand: false
+      name: Set EscalationEmail to Yes
+      script: Set
+      type: regular
+      version: -1
+    taskid: 1a147589-5f29-4097-809e-12df4232ebed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 545
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 1
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EscalationEmailSent
+      stringify:
+        simple: "true"
+      value:
+        simple: "No"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 401bfcf4-3491-4fee-89fc-3477950efbb5
+      iscommand: false
+      name: Set EscalationEmail to No
+      script: Set
+      type: regular
+      version: -1
+    taskid: 401bfcf4-3491-4fee-89fc-3477950efbb5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      to:
+        simple: rickroll@xet.com
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: XSOAR Engineer Training
+      description: Send an email (doesn't actually send an email)
+      id: 968c2121-9fda-48f5-8409-59287f018bf7
+      iscommand: true
+      name: 'Send Email '
+      script: XSOAR Engineer Training|||send-mail
+      type: regular
+      version: -1
+    taskid: 968c2121-9fda-48f5-8409-59287f018bf7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 720
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 910,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
