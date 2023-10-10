@@ -1,0 +1,205 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 1ce04f1e-a284-42f4-8c5e-c65267b477fb
+inputs: []
+name: FAZ - Extract indicator from events
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 267c32ad-5ba4-4d7e-8847-81a9e8535256
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 267c32ad-5ba4-4d7e-8847-81a9e8535256
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 2
+    reputationcalc: 2
+    scriptarguments:
+      text:
+        simple: ${events}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Extract all indicators according to server indicators configuration
+      id: 38bc3aad-9e23-4a6d-8cd6-7c6e7c86cb09
+      iscommand: true
+      name: extractIndicators
+      script: Builtin|||extractIndicators
+      type: regular
+      version: -1
+    taskid: 38bc3aad-9e23-4a6d-8cd6-7c6e7c86cb09
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: '${ExtractedIndicators} '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: f2f4e0ec-609c-4a55-8145-28036dbf0f04
+      iscommand: true
+      name: Set Field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: f2f4e0ec-609c-4a55-8145-28036dbf0f04
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${events}
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: ${events}
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6556925a-cadd-4dc6-81a6-539a424368fe
+      iscommand: false
+      name: Check Events
+      type: condition
+      version: -1
+    taskid: 6556925a-cadd-4dc6-81a6-539a424368fe
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: The events were not fetched or the list is empty
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 21d26704-3a0c-4fc2-87cd-ead2723de301
+      iscommand: true
+      name: Set Field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 21d26704-3a0c-4fc2-87cd-ead2723de301
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 590,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
