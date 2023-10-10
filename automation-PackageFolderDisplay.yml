@@ -1,0 +1,45 @@
+commonfields:
+  id: 940084b3-20a7-4650-88c9-efe429230f1f
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: PackageFolderDisplay
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  incident = demisto.incidents()[0]
+  adom = incident['CustomFields']['adom']
+  options = ['']
+  error = []
+  try:
+      packages = demisto.executeCommand('fortimanager-firewall-policy-package-list', {'adom':adom,'using':'FortiManager_instance_1'})[0]['Contents']
+      for package in packages:
+          if package['type']=='folder':
+              options.append(package['name'])
+      demisto.results({'hidden': False, 'options': options})
+
+  except Exception as ex:
+      return_error(ex)
+
+
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- field-display
+type: python
