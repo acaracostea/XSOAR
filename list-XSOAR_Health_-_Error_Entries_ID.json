@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "3826@13028,3827@13028,18@13029,19@13029,20@13029,16@13029,17@13029,21@13029,3589@13032,3590@13032,20@13033,21@13033,19@13034,20@13034,16@13035,17@13035,18@13035,19@13035,20@13035,21@13035,22@13035,3948@13036,3949@13036,358@13040,359@13040,3269@13042,3270@13042,3268@13048,3269@13048,19@13045,20@13045,21@13045,16@13045,17@13045,18@13045,22@13045,6@13627,6@13640",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Error Entries ID",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Error Entries ID",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
