@@ -1,0 +1,55 @@
+commonfields:
+  id: 43aae137-2793-4fae-88c0-89e0ff16f0b6
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.10.48392
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: MSDefenderQuarantineFile
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  fields = demisto.incident()
+  machine_id = fields['deviceid']
+  file_hash = fields['filehash']
+  comment = fields['comment']
+  parameters = {
+      'comment':comment,
+      'file_hash':file_hash,
+      'machine_id':machine_id,
+      'using':'Microsoft Defender Advanced Threat Protection_instance_1'
+  }
+  response = demisto.executeCommand('microsoft-atp-stop-and-quarantine-file', parameters)
+
+  if file_hash and machine_id and comment:
+      if not (response[0]["Type"] == entryTypes["error"]):
+          status = '<p style="color:green">Successful</p>'
+          message = '<p style="color:green">Quarantine succeded</p>'
+          demisto.executeCommand("setIncident",{"msdefenderactionstatus":status,"msdefenderactionmessage":message})
+
+      else:
+          status = '<p style="color:red">Error</p>'
+          message = '<p style="color:red">'+str(response[0]["Contents"])+'</p>'
+          demisto.executeCommand("setIncident",{"msdefenderactionstatus":status,"msdefenderactionmessage":message})
+  else:
+      status = '<p style="color:red">Error</p>'
+      message = '<p style="color:red">Fields file_hash, machine_id and comment must not be empty</p>'
+  return_results('Action Completed')
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- Telia
+type: python
