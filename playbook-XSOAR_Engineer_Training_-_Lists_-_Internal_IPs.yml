@@ -1,0 +1,361 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: 'Example of using an XSOAR list in a playbook, this time checking if
+  an IP is in an internal range or not. '
+id: XSOAR Engineer Training - Lists - Internal IPs
+inputs: []
+name: XSOAR Engineer Training - Lists - Internal IPs
+outputs: []
+starttaskid: "0"
+system: true
+tags:
+- training
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ab98231d-df54-4f9e-8d35-fcc5e308dc4f
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: ab98231d-df54-4f9e-8d35-fcc5e308dc4f
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    form:
+      description: Please enter an IP address to check against the internal ranges
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: IP to Check
+        options: []
+        optionsarg: []
+        placeholder: 10.10.10.10
+        readonly: false
+        required: true
+        tooltip: IP to Check
+        type: shortText
+      sender: ""
+      title: IP to Check
+      totalanswers: 0
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: IP to Check
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Query for the IP to check.
+      id: 80b516cc-579e-4b52-82b6-edf90d3aceb6
+      iscommand: false
+      name: Query for an IP
+      type: collection
+      version: -1
+    taskid: 80b516cc-579e-4b52-82b6-edf90d3aceb6
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        complex:
+          accessor: "0"
+          root: IP to Check.Answers
+      ipRanges:
+        complex:
+          accessor: Internal IP Ranges
+          root: lists
+          transformers:
+          - args:
+              applyIfEmpty: {}
+              defaultValue:
+                value:
+                  simple: 10.0.0.0/8, 172.12.0.0/16, 172.13.0.0/16,192.168.8.0/24
+            operator: SetIfEmpty
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns yes if the IP is in one of the ranges provided, returns
+        no otherwise.
+      id: 275c38b1-1250-4fdb-8bac-1aef6968b255
+      iscommand: false
+      name: Check IP against Internal IPs List
+      script: IsIPInRanges
+      type: regular
+      version: -1
+    taskid: 275c38b1-1250-4fdb-8bac-1aef6968b255
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - Lists - Internal IPs\n\nExample of using
+          an XSOAR list in a playbook, this time checking if an IP is in an internal
+          range or not. \n\n\nThis playbook will check the IP against an XSOAR list
+          called 'Internal IP Ranges'\n\nYou can put a comma separated list of CIDR
+          blocks in this list, like this:\n10.0.0.0/8, 172.12.0.0/16, 172.13.0.0/16,192.168.8.0/24"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: a0ead115-4737-4ed8-8765-9981c68f6669
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: a0ead115-4737-4ed8-8765-9981c68f6669
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: IP.InRange
+          operator: isEqualString
+          right:
+            value:
+              simple: "yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the IP is internal or external.
+      id: a03ac01c-6877-454f-8580-eda63eb475b6
+      iscommand: false
+      name: Is IP Internal?
+      type: condition
+      version: -1
+    taskid: a03ac01c-6877-454f-8580-eda63eb475b6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 720
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: Yes ${IP.Address} is in the ranges
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 222952c3-95d9-42e2-877e-7273c5d34270
+      iscommand: false
+      name: "Yes"
+      script: Print
+      type: regular
+      version: -1
+    taskid: 222952c3-95d9-42e2-877e-7273c5d34270
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: No ${IP.Address} is not in the ranges.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 36a20023-e901-473a-89f6-031ef90fdf47
+      iscommand: false
+      name: "No"
+      script: Print
+      type: regular
+      version: -1
+    taskid: 36a20023-e901-473a-89f6-031ef90fdf47
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 895
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4131acc2-a710-481f-8b5a-5964e3069cff
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 4131acc2-a710-481f-8b5a-5964e3069cff
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1070
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1085,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
