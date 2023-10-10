@@ -1,0 +1,48 @@
+commonfields:
+  id: 715d852d-b09d-4ce0-8723-06883e1635c4
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.11.57890
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UpdateFWCMDB
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import json
+  fields = demisto.incident()
+
+  customer_name = fields['CustomFields']['customername'] if 'customername' in fields['CustomFields'].keys() else ""
+  customer_id = fields['CustomFields']['customerid'] if 'customerid' in fields['CustomFields'].keys() else ""
+  adom = fields['CustomFields']['adom'] if 'adom' in fields['CustomFields'].keys() else ""
+  fw_hostname = fields['CustomFields']['fwhostname'] if 'fwhostname' in fields['CustomFields'].keys() else ""
+
+
+  data = demisto.executeCommand("getList", { "listName": "FWCMDB" })[0]['Contents']
+  data = json.loads(data)
+  FWCMDB = []
+  count=0
+
+  for row in data:
+      FWCMDB.append({'Customer Name':customer_name,'CustomerID':customer_id,'FW Hostname':fw_hostname,'ADOM':adom})
+
+  demisto.executeCommand("setList", { "listName": "FWCMDB","listData": FWCMDB})
+  return_results("FWCMDB list updated")
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- incident-action-button
+type: python
