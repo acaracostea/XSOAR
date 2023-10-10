@@ -1,0 +1,52 @@
+args:
+- description: The value to be transformed.
+  name: value
+  required: true
+comment: Transforms ServiceNow Severity value to XSOAR Severity values.
+commonfields:
+  id: IncomingServiceNowSeverityMap
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.10.48392
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: IncomingServiceNowSeverityMap
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('IncomingServiceNowSeverityMap', 'start', __line__())
+
+
+  # use the below script to translate incoming ServiceNow severity values to XSOAR values.
+
+  text = demisto.args().get('value')
+
+  xsoar_map = {
+      "1": "3",
+      "2": "2",
+      "3": "1"
+  }
+
+  demisto.results(xsoar_map.get(str(text)))
+
+  register_module_line('IncomingServiceNowSeverityMap', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- transformer
+- training
+type: python
