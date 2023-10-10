@@ -1,0 +1,648 @@
+{
+	"author": "beauchompers",
+	"authorImage": "",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier",
+		"layoutscontainer",
+		"layoutrule",
+		"modelingrule",
+		"genericdefinition",
+		"('trigger',)",
+		"parsingrule",
+		"correlationrule",
+		"('wizard',)",
+		"xsiamreport",
+		"job",
+		"xdrctemplate",
+		"pre-process-rule",
+		"xsiamdashboard",
+		"genericmodule"
+	],
+	"contentItems": {
+		"('trigger',)": [],
+		"('wizard',)": [],
+		"automation": [
+			{
+				"description": "Lookup a User and their Manager in Active Directory",
+				"name": "ADGetUserAndManager",
+				"tags": [
+					"training",
+					"incident-action-button"
+				]
+			},
+			{
+				"description": "Demo script that returns the arguments available to us in the post-processing script.",
+				"name": "PostProcessingPrintArguments",
+				"tags": [
+					"post-processing",
+					"training"
+				]
+			},
+			{
+				"description": "This automation sets the playbook on a given Incident based on a list of options.  ",
+				"name": "XSOARTrainingPlaybookButton",
+				"tags": [
+					"incident-action-button",
+					"xet"
+				]
+			},
+			{
+				"description": "Dynamic display script to display a list of reference links on the layout for the training incident type.",
+				"name": "XETReferenceLinks",
+				"tags": [
+					"dynamic-section",
+					"xet"
+				]
+			},
+			{
+				"description": "This example script will request a users email, and execute the ad-get-user command via an Incident action button",
+				"name": "ADGetUserByEmailButton",
+				"tags": [
+					"training",
+					"incident-action-button"
+				]
+			},
+			{
+				"description": "Values a field on change matches a given regex, and returns error otherwise.  Default is 5 digits. (\\d{5})",
+				"name": "FieldValidateWithRegex",
+				"tags": [
+					"field-change-triggered",
+					"training"
+				]
+			},
+			{
+				"description": "Post processing script to resolve and close XDR Incidents if the XSOAR Incident is closed.",
+				"name": "XDRCloseIncident",
+				"tags": [
+					"post-processing",
+					"training"
+				]
+			},
+			{
+				"description": "Display field options from an XSOAR list, will create the list as well....",
+				"name": "FieldOptionsFromList",
+				"tags": [
+					"field-display",
+					"training"
+				]
+			},
+			{
+				"description": "This automation sets the playbook on the current Incident to the XSOAR Engineer Training - BYOI Take a Half Day playbook.  Because we needed a button for half days. \n",
+				"name": "XSOARTrainingHalfDayButton",
+				"tags": [
+					"incident-action-button",
+					"xet"
+				]
+			},
+			{
+				"description": "Transforms ServiceNow Severity value to XSOAR Severity values.",
+				"name": "IncomingServiceNowSeverityMap",
+				"tags": [
+					"transformer",
+					"training"
+				]
+			},
+			{
+				"description": "Post processing script to resolve and close Service Now tickets if the XSOAR Incident is closed.",
+				"name": "ServiceNowCloseIncidentTicket",
+				"tags": [
+					"post-processing",
+					"training"
+				]
+			},
+			{
+				"description": "Sets the Roles on an Incident as part of preprocessing",
+				"name": "SetRolesOnPreProcess",
+				"tags": [
+					"preProcessing",
+					"training"
+				]
+			},
+			{
+				"description": "Excludes private IP ranges as IP indicators: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 as part of the XSOAR Engineer Training Pack.",
+				"name": "TrainingExcludePrivateCIDRsButton",
+				"tags": [
+					"incident-action-button",
+					"xet"
+				]
+			},
+			{
+				"description": "Dynamic Section that displays a markdown list based on the Tab.",
+				"name": "XETBuildingAUseCase",
+				"tags": [
+					"xet",
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Dynamic Section that displays a markdown list based on the Tab.",
+				"name": "XETCustomIndicators",
+				"tags": [
+					"xet",
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Checks if an Owner is assigned before closing the Incident, returns an error if no owner assigned.",
+				"name": "CheckIfOwnerPostProcess",
+				"tags": [
+					"post-processing",
+					"training"
+				]
+			},
+			{
+				"description": "This sorts the training grid field by date/time as entries are added. ",
+				"name": "FieldChangeGrid",
+				"tags": [
+					"training",
+					"field-change-triggered"
+				]
+			},
+			{
+				"description": "Example Field Change trigger script which can be added to the DBot Status field, and will trigger if an Incident is reopened.",
+				"name": "FieldChangeReOpen",
+				"tags": [
+					"field-change-triggered",
+					"training"
+				]
+			},
+			{
+				"description": "Determines whether an IPv4 address is contained in one or more comma-delimited CIDR ranges.  You can pass in an array of IPs, and the name of the XSOAR list containing the comma separated list of CIDRs or /32 addresses.",
+				"name": "CheckIPsinCIDRList",
+				"tags": [
+					"Utilities",
+					"training"
+				]
+			},
+			{
+				"description": "Example Field Change trigger script.",
+				"name": "FieldChangeTeams",
+				"tags": [
+					"field-change-triggered",
+					"training"
+				]
+			},
+			{
+				"description": "Incident action button that allows you to re-run the setup for the XSOAR Engineer Training Pack",
+				"name": "XETRerunSetup",
+				"tags": [
+					"incident-action-button",
+					"xet"
+				]
+			},
+			{
+				"description": "Dynamic display script to display a list of useful Analyst Tools on an Incident display.",
+				"name": "AnalystTools",
+				"tags": [
+					"dynamic-section",
+					"training"
+				]
+			},
+			{
+				"description": "Creates the Private IP and CXHost custom indicators via the REST API",
+				"name": "TrainingCreateCustomIndicatorTypesButton",
+				"tags": [
+					"incident-action-button",
+					"xet"
+				]
+			},
+			{
+				"description": "Dynamic Section that displays a markdown list based on the Tab.",
+				"name": "XETAutomationOverview",
+				"tags": [
+					"xet",
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Dynamic Section that displays a markdown list based on the Tab.",
+				"name": "XETIncidentLifeCycle",
+				"tags": [
+					"xet",
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Sorts a Single Select or Multi-Select field options on display. ",
+				"name": "FieldDisplaySort",
+				"tags": [
+					"field-display",
+					"training"
+				]
+			},
+			{
+				"description": "Dynamic section which shows the playbooks from the Training Pack on the Training layout.",
+				"name": "GetTrainingPlaybooksList",
+				"tags": [
+					"dynamic-section",
+					"xet"
+				]
+			},
+			{
+				"description": "Changes the text in a short text field to UPPERCASE when the field is changed.",
+				"name": "FieldChangeYell",
+				"tags": [
+					"training",
+					"field-change-triggered"
+				]
+			},
+			{
+				"description": "Dynamic section which shows the automations from the Training Pack on the Training layout.",
+				"name": "GetTrainingAutomationsList",
+				"tags": [
+					"dynamic-section",
+					"xet"
+				]
+			},
+			{
+				"description": "Preprocessing script that checks if an Incident exists with the incoming Event ID, and drops it with only a war room entry.  Basically the same as drop and update, but without incrementing the dropped count field",
+				"name": "PreProcessEventID",
+				"tags": [
+					"preProcessing",
+					"training"
+				]
+			},
+			{
+				"description": "This script will complete tasks with the 'timerbreach' tag value upon timer breach",
+				"name": "ExecuteTaskOnTimerBreach",
+				"tags": [
+					"sla",
+					"training"
+				]
+			},
+			{
+				"description": "Transformer which changes a string to a number, or dies trying. ",
+				"name": "StringToNumberTransformer",
+				"tags": [
+					"training",
+					"example",
+					"transformer"
+				]
+			},
+			{
+				"description": "Example Splunk Post Processing script, you will likely need to change the field that contains the splunk notable event ID to make sure it can be closed. ",
+				"name": "SplunkClosePostProcess",
+				"tags": [
+					"post-processing",
+					"training"
+				]
+			}
+		],
+		"classifier": [
+			{
+				"description": "",
+				"id": "",
+				"name": "XSOAR Engineer Training Classifier"
+			},
+			{
+				"description": "",
+				"id": "",
+				"name": "XSOAR Engineer Training Mapper"
+			}
+		],
+		"correlationrule": [],
+		"dashboard": [],
+		"genericdefinition": [],
+		"genericfield": [],
+		"genericmodule": [],
+		"generictype": [],
+		"incidentfield": [
+			{
+				"description": "Training single select with a field change script attached.  ",
+				"name": "Training Teams",
+				"type": "singleSelect"
+			},
+			{
+				"description": "Example Timer for Training",
+				"name": "Training Example Timer",
+				"type": "timer"
+			},
+			{
+				"description": "Example field for demoing the SetGridField automation. ",
+				"name": "Training Grid Set Grid Field",
+				"type": "grid"
+			},
+			{
+				"description": "Single select field, which using the field script takes it's options from an XSOAR list. ",
+				"name": "Training Options From List",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Training Short Text",
+				"type": "shortText"
+			},
+			{
+				"description": "Was the XSOAR Training Pack Useful?",
+				"name": "XSOAR Training Pack Useful",
+				"type": "singleSelect"
+			},
+			{
+				"description": "traininggridfieldsort",
+				"name": "Training Grid Field Sort",
+				"type": "grid"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "XSOAR Engineer URL Alerts",
+				"playbook": "XSOAR Engineer Training - URL Alerts (Completed)",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "XSOAR Engineer Training",
+				"playbook": "XSOAR Engineer Training - Setup",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": [],
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Lookup an IP",
+						"name": "xsoar-engineer-ipinfo"
+					}
+				],
+				"description": "Queries IpInfo.io for information about an IP.   Use for training how to write simple integrations.",
+				"id": "",
+				"name": "IP Info (XSOAR Engineer)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "URL to check",
+						"name": "url"
+					},
+					{
+						"description": "Domain to check ",
+						"name": "domain"
+					},
+					{
+						"description": "IP to check",
+						"name": "ip"
+					},
+					{
+						"description": "File to check",
+						"name": "file"
+					},
+					{
+						"description": "IP to check ",
+						"name": "private-ip"
+					},
+					{
+						"description": "Host to check",
+						"name": "cxhost"
+					}
+				],
+				"description": "This example integration randomly enriches file, ip, url, and domain indictors.  Useful for demos, DO NOT use this in any production environment.\n\nBasically any of these indicators types could come back as good, suspicious, or bad.   ",
+				"id": "",
+				"name": "RandomThreatIntel (XSOAR Engineer)"
+			},
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Retrieves the weather by provided city (where you wish you were)",
+						"name": "openweather-by-city"
+					}
+				],
+				"description": "This integration gets the current weather using the Open Weather Map API.  Use for training how to write not-as-simple integrations.",
+				"id": "",
+				"name": "OpenWeatherMap (XSOAR Engineer)"
+			},
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Fetches events for all clicks and messages relating to known threats within the specified time period. Details as per clicks/blocked.",
+						"name": "xsoar-engineer-get-events"
+					},
+					{
+						"description": "Retrieves detailed information about a user account. The user can be specified by username, email address, or as an Active Directory Distinguished Name (DN).",
+						"name": "ad-get-user"
+					},
+					{
+						"description": "Expires the password of an Active Directory user.",
+						"name": "ad-expire-password"
+					},
+					{
+						"description": "Sets a new password for an Active Directory user.",
+						"name": "ad-set-new-password"
+					},
+					{
+						"description": "Searches the simulated SIEM for events.",
+						"name": "siem-search"
+					},
+					{
+						"description": "Send an email (doesn't actually send an email)",
+						"name": "send-mail"
+					}
+				],
+				"description": "This integration provides sample data to fetch events into XSOAR, and commands to build playbooks around.\n\nUse for training purposes only. ",
+				"id": "",
+				"name": "XSOAR Engineer Training"
+			}
+		],
+		"job": [],
+		"layoutrule": [],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "XSOAR Engineer Training Layout"
+			},
+			{
+				"description": "",
+				"name": "XSOAR Engineer URL Alerts Layout"
+			}
+		],
+		"list": [
+			{
+				"description": "",
+				"name": "XETAutomationOverview"
+			},
+			{
+				"description": "",
+				"name": "XETCustomIndicators"
+			},
+			{
+				"description": "",
+				"name": "XETBuildingAUseCase"
+			},
+			{
+				"description": "",
+				"name": "XETIncidentLifeCycle"
+			},
+			{
+				"description": "",
+				"name": "XETAutomationScripts"
+			}
+		],
+		"modelingrule": [],
+		"parsingrule": [],
+		"playbook": [
+			{
+				"description": "This playbook walks you through setting up the XSOAR Training Pack",
+				"name": "XSOAR Engineer Training - Setup"
+			},
+			{
+				"description": "Playbook takes the email to send to as input and sends a quick email message.  \n\nWhen used as a subplaybook you can add a loop to loop over each inputted list of emails to send one email to each person. ",
+				"name": "XSOAR Engineer Training - For Each Loops - Send Mail (Sub-Playbook)"
+			},
+			{
+				"description": "This playbook demonstrates a timer breach script in action.  Timers can be used to track metrics, or to trigger actions in a playbook at a later date. ",
+				"name": "XSOAR Engineer Training - SLA Timer Breach Example"
+			},
+			{
+				"description": "This sub-playbook will check to see if the user exists in AD based on the inputed email address.\n\nIf the user exists, it will add the user to a key called Exists, if not add them to NotExists.  \n\nThese keys are outputs of this sub-playbook which will be returned to the parent.",
+				"name": "XSOAR Engineer Training - AD User Lookup (Sub-Playbook)"
+			},
+			{
+				"description": "Example of using an XSOAR list in a playbook, this time checking if an IP is in an internal range or not. ",
+				"name": "XSOAR Engineer Training - Lists - Internal IPs"
+			},
+			{
+				"description": "This sub-playbook works with the parent, and will loop over the passed in data, and IF there is a Base64 key, it will decode it, and return a new key called LoopData with contained the original Base64 and the decoded base 64. \n\nMake sure to check the Playbook Inputs/Outputs to see what to pass in, and what this playbook will output to the parent. ",
+				"name": "XSOAR Engineer Training - For Each Loops (Sub-Playbook)"
+			},
+			{
+				"description": "This playbook demonstrates how a playbook task loops over an array of data, and different ways to handle that.\n\nBy default when you pass an array into an integration command or an Automation script, it run the command for each item in the array.   \n\nThis behaviour can be changed by using the \"Is Array\" option on the argument, which tells XSOAR to expect an array in this field, and run once instead.\n\nThis playbook demonstrates this using 2 automations, one is IsIPinRanges, the other is CheckCIDRinList, which is a custom automation in this pack.  Both can be viewed from the Automations menu.",
+				"name": "XSOAR Engineer Training - Loop on Array Data"
+			},
+			{
+				"description": "This playbook uses the extend context technique when looking up an AD user.\n\nThe simple task puts their Name and Email in their own context keys.\n\nThe advanced task creates a UserDetails key with the name and email as a dictionary underneath.",
+				"name": "XSOAR Engineer Training - Extend Context - AD Get User"
+			},
+			{
+				"description": "This playbook demonstrates playbook looping via the embedded sub-playbook.  In this case, we query for a list of users to lookup, and pass them into the sub-playbook.  \n\nThe sub-playbook will check to see if the user exists in AD or not, and return a list of users who do exist, and those who don't as outputs which we can use in further parts of our parent playbook.",
+				"name": "XSOAR Engineer Training - AD User Lookup (Parent)"
+			},
+			{
+				"description": "This playbook demonstrates a for each loop with a sub-playbook to send each user an individual email. ",
+				"name": "XSOAR Engineer Training - For Each Loops - Send Mail Example (Parent)"
+			},
+			{
+				"description": "Example playbook for the Training - URL Clicks use case, for xsoar engineer training.  This is what it *could* look like when done. \n",
+				"name": "XSOAR Engineer Training - URL Alerts (Completed)"
+			},
+			{
+				"description": "This playbook demonstrates sub-playbook looping using a for each method.  \n\nWe start by setting an array to a context key that we are going to loop over.  The array is a list of dictionaries with or without a base64 encoded string. \n\nWe pass this into the sub-playbook to loop over, decode the string and return the original and decoded value. \n\nIndividual steps in the playbook may have additional details. ",
+				"name": "XSOAR Engineer Training - For Each Loops (Parent)"
+			},
+			{
+				"description": "This sub-playbook can be used to send email notification if an Incidents severity is High or Critical.  By default it will take the current Incident severity as input, and requires a comma separated list of email addresses to send the notification to.\n\nInputs:\n\nemail: The email addresses to send the message to, can be comma separated. \nseverity: Defaults to the current incident severity in string format (critical, high, etc)\n\nOutputs:\n\nEscalationEmailSent: (Yes | No) : Whether a notification email was sent. ",
+				"name": "XSOAR Engineer Training - On Call Notification (Sub-Playbook)"
+			},
+			{
+				"description": "Example Playbook which queries for Status from one incident, and then does a set by incident on it if it's not closed.   The use case is to update the original open Incident with additional information (such as another reporting user for a phishing email), so we can keep track, and deduplicate.\n\nEach step in the playbook may have some additional details in the details tab to explain what we are doing. ",
+				"name": "XSOAR Engineer Training - Extend Context - Set By Incident"
+			},
+			{
+				"description": "This playbook demos the set grid field automation.  ",
+				"name": "XSOAR Engineer Training - Set Grid Field"
+			},
+			{
+				"description": "This sub-playbook runs a SIEM search, and also increments a counter to track how many loops were performed while waiting for a search result.  Used with the parent playbook to demonstrate the Builtin looping method.",
+				"name": "XSOAR Engineer Training - Builtin Loops (Sub-Playbook)"
+			},
+			{
+				"description": "This playbooks sets a list of users to a key in Context (UsersToBlock) and extracts IP addresses and then presents that list to the user in a data collection task.   \n\nUser can pick one, multiple, or no users/ips, and it will print the results. \n\nUse case for this would be to get a list of users to take further action on, or filter down the list for example.   \n\nThis technique can be adapted to actual data in context to present a list of IPs, URLs, etc for blocking.",
+				"name": "XSOAR Engineer Training - Data Collection Tasks"
+			},
+			{
+				"description": "This playbook demonstrates how to do sub-playbook looping using the Builtin method.  Basically looping over the embedded sub-playbook until results are returned (or not). \n",
+				"name": "XSOAR Engineer Training - Builtin Loops (Parent)"
+			},
+			{
+				"description": "This is a sub-playbook that simulates an AD Password Reset process, which can be used as a sub-playbook across a number of different playbooks simply by adding it in, and passing the proper inputs in. \n\nThis sub-playbook will output the new password, so it can be provided to the User, or maybe the users manager. ",
+				"name": "XSOAR Engineer Training - AD Password Reset  (Sub-Playbook)"
+			},
+			{
+				"description": "This playbook demonstrates using the values in an XSOAR list in a playbook.  Specifically a list called environment that holds which environment we are dealing with!",
+				"name": "XSOAR Engineer Training - Lists - Environment List"
+			},
+			{
+				"description": "This playbook demos the BYOI OpenWeatherMap integration, as part of the XSOAR Training Pack. ",
+				"name": "XSOAR Engineer Training - BYOI Take a Half Day"
+			}
+		],
+		"pre-process-rule": [
+			{
+				"description": "",
+				"name": "Drop XSOAR Engineer Training Blocked Alerts"
+			}
+		],
+		"report": [],
+		"reputation": [],
+		"widget": [],
+		"wizard": null,
+		"xdrctemplate": [],
+		"xsiamdashboard": [],
+		"xsiamreport": []
+	},
+	"currentVersion": "1.0.0",
+	"definitionId": "",
+	"dependencies": {},
+	"deprecated": false,
+	"description": "XSOAR Engineer Training Pack, this pack contains content utilized to train you on how to be an XSOAR Engineer.",
+	"disabledMonthly": false,
+	"downloads": 0,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "0.0.0",
+	"general": [
+		"generalFieldFree"
+	],
+	"id": "XSOAR_Engineer_Training",
+	"installMessage": "",
+	"integrations": null,
+	"itemVersion": "1.0.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "XSOAR Engineer Training",
+	"packID": "XSOAR_Engineer_Training",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "# XSOAR Engineer Training \n\nThis pack contains content utilized to train you on how to be an XSOAR Engineer.  \n\nTo get started after installing this pack, create a new **XSOAR Engineer Training** incident, and follow along!\n\n[![Video Name](https://img.youtube.com/vi/BhpkZA9t1HA/0.jpg)](https://www.youtube.com/watch?v=BhpkZA9t1HA \"XSOAR Engineer Training\")",
+	"searchRank": 0,
+	"serverMaxVersion": "",
+	"serverMinVersion": "0.0.0",
+	"support": "community",
+	"supportDetails": {
+		"email": "",
+		"url": "https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-09-27T22:28:29+03:00",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "",
+	"videos": null
+}
