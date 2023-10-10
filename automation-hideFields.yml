@@ -1,0 +1,46 @@
+commonfields:
+  id: 3551eca7-a5fd-4fb3-86b5-ccc2482ff327
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: hideFields
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |2+
+
+  from typing import Dict, Any
+  import traceback
+
+
+  incident = demisto.incidents()[0]
+  display = incident['CustomFields']['display']
+
+
+  if display == "fortimanager-devices-list":
+
+      demisto.results({"hidden": False})
+  else:
+      demisto.results({"hidden": True})
+
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- field-display
+- field-change-triggered
+type: python
