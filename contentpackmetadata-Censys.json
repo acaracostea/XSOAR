@@ -1,0 +1,129 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Returns detailed information for an IP address within the specified index.",
+						"name": "cen-view"
+					},
+					{
+						"description": "Searches for an attribute within the specified index.",
+						"name": "cen-search"
+					}
+				],
+				"description": "Deprecated. Use Censys v2 instead. Censys is a search engine that allows computer scientists to ask questions about the devices and networks that compose the internet. Driven by internet-wide scanning, Censys lets researchers find specific hosts and create aggregate reports on how devices, websites, and certificates are configured and deployed.",
+				"id": "Censys",
+				"name": "Censys (Deprecated)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Returns detailed information for an IP address or SHA256 within the specified index.",
+						"name": "cen-view"
+					},
+					{
+						"description": "Return previews of hosts matching a specified search query or a list of certificates that match the given query.",
+						"name": "cen-search"
+					}
+				],
+				"description": "Censys is a search engine that allows computer scientists to ask questions about the devices and networks that compose the internet. Driven by internet-wide scanning, Censys lets researchers find specific hosts and create aggregate reports on how devices, and certificates are configured and deployed.",
+				"id": "CensysV2",
+				"name": "Censys v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "2.0.26",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.33",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Censys is a search engine that allows computer scientists to ask questions about the devices and networks that compose the Internet. Driven by Internet-wide scanning, Censys lets researchers find specific hosts and create aggregate reports on how devices, websites, and certificates are configured and deployed.",
+	"disabledMonthly": false,
+	"downloads": 5237,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Censys",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Censys/Censys_image.png",
+			"name": "Censys (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Censys/CensysV2_image.png",
+			"name": "Censys v2"
+		}
+	],
+	"itemVersion": "2.0.26",
+	"keywords": [],
+	"legacy": true,
+	"name": "Censys",
+	"packID": "Censys",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-09-05T12:25:13+03:00",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "6319909",
+	"videos": []
+}
