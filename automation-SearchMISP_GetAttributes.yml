@@ -1,0 +1,67 @@
+commonfields:
+  id: 2a4b064b-e0cc-41db-8931-e5a8bb6bc9f3
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SearchMISP_GetAttributes
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  # Python template - reading arguments, calling a command, handling errors and returning results
+  import copy
+  import datetime
+
+  fields = demisto.incident()
+  attribute_list = []
+  attribute_dict = {
+      "Date":"",
+      "Category":"",
+      "Type":"",
+      "Value":"",
+      "Comment":"",
+      "Harmful":""
+  }
+
+  if "mispid" in fields["CustomFields"].keys():
+      event_id = fields["CustomFields"]["mispid"]
+      res = demisto.executeCommand("misp-search-attributes", {'event_id' : event_id, 'using': 'MISP V3_AWS_Instance'})
+      attributes_list_misp = res[0]["Contents"]["Attribute"]
+
+      if isinstance(attributes_list_misp,list):
+          for attr in attributes_list_misp:
+              attribute = copy.deepcopy(attribute_dict)
+              attribute["Date"] = datetime.datetime.fromtimestamp(int(attr["timestamp"])).strftime('%Y-%m-%d %H:%M:%S')
+              attribute["Category"] = attr["category"]
+              attribute["Type"] = attr["type"]
+              attribute["Value"] = attr["value"]
+              attribute["Comment"] = attr["comment"]
+              attribute["Harmful"] = "YES" if attr["to_ids"] else "NO"
+              attribute_list.append(attribute)
+
+      demisto.setContext("MispGridField", attribute_list)
+      demisto.executeCommand("SetGridField", {"columns" : "Date,Category,Type,Value,Comment", "context_path": "MispGridField", "grid_id": "mispattributes", "keys":"Date,Category,Type,Value,Comment","append":True})
+      demisto.results(res)
+  else:
+      demisto.results("There is no MISP Event ID created")
+
+
+
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+type: python
