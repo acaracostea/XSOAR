@@ -1,0 +1,56 @@
+args:
+- description: xsoar-ws job UUID
+  name: uuid
+  required: true
+- default: true
+  defaultValue: XSOAR email
+  description: subject of the email
+  name: emailsubject
+- description: files to attach to the email
+  name: attachIDs
+comment: To parse the context data after running  xsoar-ws-get-action-status and resend
+  emails to recipients who have not responded
+commonfields:
+  id: xsoar-ws-parse-context
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.0.1
+    packID: XsoarWebserver
+    packName: Xsoar-web-server
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: xsoar-ws-parse-context
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('xsoar-ws-parse-context', 'start', __line__())
+  ### pack version: 1.0.1
+
+
+
+  job_uuid = demisto.args().get('uuid')
+  emailsubject = demisto.args().get('emailsubject')
+  attachIDs = demisto.args().get('attachIDs', '')
+  context = demisto.context()
+  dt = demisto.dt(context, f"WS-ActionStatus(val.job_uuid=='{job_uuid}').link_tracker(val.response_received==false)")
+  for item in dt:
+      demisto.executeCommand("send-mail", {"subject": emailsubject, "to": item['email'], "attachIDs": attachIDs,
+                                           "htmlBody": item['emailhtml']})
+
+  register_module_line('xsoar-ws-parse-context', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
