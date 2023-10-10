@@ -1,0 +1,30 @@
+commonfields:
+  id: e4157b8c-8da2-47ef-84d9-411e7472d12e
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ChangePackageFolderField
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: demisto.executeCommand('setIncident', {'package':''})
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+- Firewall Changes
+- field-change-triggered
+type: python
