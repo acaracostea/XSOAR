@@ -42,8 +42,7 @@ script: |+
       var res = {};
       Object.keys(obj).forEach(function(key) {
           if (key == "url" || key == "IpAddress" || key == "processId"){
-              key = "value"
-              res[stripToCliName(key)] = obj[key];
+              res["value"] = obj[key];
           } else {
               res[stripToCliName(key)] = obj[key];
           }
