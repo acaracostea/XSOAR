@@ -1,0 +1,48 @@
+comment: Checks if an Owner is assigned before closing the Incident, returns an error
+  if no owner assigned.
+commonfields:
+  id: CheckIfOwnerPostProcess
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python:2.7.18.49010
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: CheckIfOwnerPostProcess
+pswd: ""
+runas: Administrator
+runonce: false
+script: |
+  register_module_line('CheckIfOwnerPostProcess', 'start', __line__())
+
+
+  # Post processing script for that returns an error if the Owner isn't assigned.
+  # This is an example script, should work...
+
+  # get incident details
+  inc = demisto.incidents()[0]
+  owner = inc.get('owner')
+
+  if not owner:
+      return_error("An Owner must be assigned before closing this Incident")
+
+  register_module_line('CheckIfOwnerPostProcess', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- post-processing
+- training
+timeout: 80ns
+type: python
