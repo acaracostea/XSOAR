@@ -1,0 +1,54 @@
+commonfields:
+  id: 6b2c7076-c5af-4327-8f33-131ac64dae5b
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.8.39276
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AddNotesFromComment
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('AddNotesFromComment', 'start', __line__())
+  import json
+
+  def main():
+      fields = demisto.incident()
+      comments = fields["CustomFields"]["fircomment"] if "fircomment" in fields["CustomFields"].keys() else "N/A"
+      if comments!="N/A":
+          comments=json.loads(comments)
+
+          for comment in comments:
+              note=comment['comment']
+
+              demisto.results({
+                  'ContentsFormat': formats['markdown'],
+                  'Type': entryTypes['note'],
+                  'Contents': note,
+                  'Note': True
+              })
+      else:
+          print(comments)
+
+
+  if __name__ == "__builtin__" or __name__ == "builtins":
+      main()
+
+  register_module_line('AddNotesFromComment', 'end', __line__())
+scripttarget: 0
+subtype: python3
+tags:
+- AC
+type: python
