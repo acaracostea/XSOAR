@@ -1,0 +1,244 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: d6e759a9-0756-4bac-86a5-6e367e376b6f
+inputs: []
+name: FortiManager - Create new object
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5d865eca-3753-40c7-8307-8388047cc9c6
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 5d865eca-3753-40c7-8307-8388047cc9c6
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      adom:
+        simple: Customer_One
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy
+      id: 5cbdb3f3-0608-455b-82f7-73f68202747a
+      iscommand: true
+      name: Fortimanager Lock ADOM
+      script: FortiManager_copy|||fortimanager-lock-adom
+      type: regular
+      version: -1
+    taskid: 5cbdb3f3-0608-455b-82f7-73f68202747a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 200
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      adom:
+        simple: Customer_One
+      comment:
+        simple: This is a comment
+      name:
+        simple: 10.0.0.5/32
+      subnet:
+        simple: 10.0.0.5/255.255.255.255
+      type:
+        simple: ipmask
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager
+      description: Add a new IPv4 address.
+      id: fcdc16a0-1957-4b2a-8cff-5cb18baee345
+      iscommand: true
+      name: Create Object
+      script: FortiManager|||fortimanager-address-create
+      type: regular
+      version: -1
+    taskid: fcdc16a0-1957-4b2a-8cff-5cb18baee345
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 380
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      adom:
+        simple: Customer_One
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      id: a9ca3436-8a56-45f5-832f-9af436e862c0
+      iscommand: true
+      name: Fortimanager Commit
+      script: FortiManager_copy_copy|||fortimanager-save-adom-command
+      type: regular
+      version: -1
+    taskid: a9ca3436-8a56-45f5-832f-9af436e862c0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 560
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      adom:
+        simple: Customer_One
+      using:
+        simple: FortiManager_custom_instance
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FortiManager_copy_copy
+      id: 3a24734e-9ac8-4ba6-842f-387eeceab846
+      iscommand: true
+      name: Fortimanager Unlock ADOM
+      script: FortiManager_copy_copy|||fortimanager-unlock-adom
+      type: regular
+      version: -1
+    taskid: 3a24734e-9ac8-4ba6-842f-387eeceab846
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 720
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      change:
+        simple: Create
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0a6e6206-5314-42fe-8f1b-ffb9a824c8e2
+      iscommand: false
+      name: Log Change
+      script: fcd51dba-a75b-47b2-85cf-e4bef2d3363a
+      type: regular
+      version: -1
+    taskid: 0a6e6206-5314-42fe-8f1b-ffb9a824c8e2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 900
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 945,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
