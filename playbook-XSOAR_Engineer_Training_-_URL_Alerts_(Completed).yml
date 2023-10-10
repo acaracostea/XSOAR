@@ -1,0 +1,1018 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "Example playbook for the Training - URL Clicks use case, for xsoar engineer
+  training.  This is what it *could* look like when done. \n"
+id: XSOAR Engineer Training - URL Alerts (Completed)
+inputs: []
+name: XSOAR Engineer Training - URL Alerts (Completed)
+outputs: []
+starttaskid: "0"
+system: true
+tags:
+- training
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8b711fcb-8ad8-4779-83f5-bceb5aeaea54
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 8b711fcb-8ad8-4779-83f5-bceb5aeaea54
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "34"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      email:
+        complex:
+          accessor: sourceusername
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: XSOAR Engineer Training
+      description: Retrieves detailed information about a user account. The user can
+        be specified by username, email address, or as an Active Directory Distinguished
+        Name (DN).
+      id: 73fab278-32d9-40fb-844a-7a79c263232e
+      iscommand: true
+      name: Get User details from AD
+      script: XSOAR Engineer Training|||ad-get-user
+      type: regular
+      version: -1
+    taskid: 73fab278-32d9-40fb-844a-7a79c263232e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 592.5,
+          "y": 1040
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 794c5e99-5801-4f21-8f92-0b45b6d2598d
+      iscommand: false
+      name: 'Triage '
+      type: title
+      version: -1
+    taskid: 794c5e99-5801-4f21-8f92-0b45b6d2598d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 720
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 537d91f9-d81a-4edf-8f00-c37c010ca0ac
+      iscommand: false
+      name: Remediation - Start Remediation SLA Timer
+      type: title
+      version: -1
+    taskid: 537d91f9-d81a-4edf-8f00-c37c010ca0ac
+    timertriggers:
+    - action: start
+      fieldname: remediationsla
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 592.5,
+          "y": 1915
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "8"
+      "Yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Review Incident, determine if remediation is required or not.
+
+        Select Yes to remediate this by blocking the clicked url and engaging with the user to reset their password.
+
+        Select No to close this as a False Positive.
+      id: c64ef296-766b-4fde-87d2-c3ee8d10e1a6
+      iscommand: false
+      name: Analyst Review - No Malicious Indicators Found
+      type: condition
+      version: -1
+    taskid: c64ef296-766b-4fde-87d2-c3ee8d10e1a6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1740
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeNotes:
+        simple: Done.
+      closeReason:
+        simple: False Positive
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 68da5c1d-9ebc-42e6-8bd6-a245ee57a716
+      iscommand: true
+      name: Close Investigation - FP
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 68da5c1d-9ebc-42e6-8bd6-a245ee57a716
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 3050
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    form:
+      description: Check whether the user put creds in, we can email this to the user.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Did you put your creds in that page?
+        options: []
+        optionsarg:
+        - {}
+        - simple: "Yes"
+        - simple: "No"
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: Did they put creds in.
+        type: singleSelect
+      sender: Cross is Coming
+      title: Malicious URL Survey
+      totalanswers: 0
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: We've been notified you clicked a bad url, please respond to the survey.
+      cc: null
+      format: ""
+      methods: []
+      subject:
+        simple: Malicious URL Clicked
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 0
+      to: {}
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Data Collection Task
+      id: 8753642e-c211-447e-8530-e6d3ef0fa19f
+      iscommand: false
+      name: Ask user if they potentially exposed Credentials?
+      type: collection
+      version: -1
+    taskid: 8753642e-c211-447e-8530-e6d3ef0fa19f
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 2205
+        }
+      }
+  "13":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Malicious URL Survey.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: "Yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "18"
+      "yes":
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Conditional if they answered yes to leaking creds.
+      id: 2b1e015a-79a3-4878-8656-64f713e13c7b
+      iscommand: false
+      name: Did user leak creds?
+      type: condition
+      version: -1
+    taskid: 2b1e015a-79a3-4878-8656-64f713e13c7b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 2380
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 305ae00f-df59-47e2-8920-7151b5e4d785
+      iscommand: false
+      name: Closure
+      type: title
+      version: -1
+    taskid: 305ae00f-df59-47e2-8920-7151b5e4d785
+    timertriggers:
+    - action: stop
+      fieldname: remediationsla
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 2905
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: "Close the current incident:\n\nYou can goto Actions -> Close to
+        complete the required fields. "
+      id: 3d300add-e4c1-4620-8ca8-faddec5dbe0b
+      iscommand: false
+      name: Close XSOAR Investigation (Manual)
+      type: regular
+      version: -1
+    taskid: 3d300add-e4c1-4620-8ca8-faddec5dbe0b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 3050
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          accessor: sAMAccountName
+          root: ActiveDirectory.Users
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "This is a sub-playbook that simulates an AD Password Reset process,
+        which can be used as a sub-playbook across a number of different playbooks
+        simply by adding it in, and passing the proper inputs in. \n\nThis sub-playbook
+        will output the new password, so it can be provided to the User, or maybe
+        the users manager. "
+      id: 413ad950-51ff-4297-8397-95b3ed3f9537
+      iscommand: false
+      name: XSOAR Engineer Training - AD Password Reset  (Sub-Playbook)
+      playbookId: XSOAR Engineer Training - AD Password Reset  (Sub-Playbook)
+      type: playbook
+      version: -1
+    taskid: 413ad950-51ff-4297-8397-95b3ed3f9537
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 2555
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Please call the user with their new password:
+
+        New Password: ${NEW_PASSWORD}
+      id: d0fbc72b-5605-483d-83de-a4ce721866dc
+      iscommand: false
+      name: Manual - Provide password to User!
+      type: regular
+      version: -1
+    taskid: d0fbc72b-5605-483d-83de-a4ce721866dc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 2730
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: f467d40a-23de-4225-8644-aa7d70ccbf56
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: f467d40a-23de-4225-8644-aa7d70ccbf56
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 195
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      field:
+        simple: tags
+      fieldValue:
+        simple: approved_block
+      indicatorsValues:
+        complex:
+          accessor: details
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.add.values.to.indicator.multi.select.field
+      id: ef7dbd7c-2916-48e4-8bdc-f0cf418b71d2
+      iscommand: true
+      name: Tag Clicked URL Indicator for blocking on EDL
+      script: Builtin|||appendIndicatorField
+      type: regular
+      version: -1
+    taskid: ef7dbd7c-2916-48e4-8bdc-f0cf418b71d2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 2730
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: Detected Internal IPs
+      output:
+        complex:
+          accessor: Address
+          filters:
+          - - ignorecase: true
+              left:
+                iscontext: true
+                value:
+                  simple: IP.InRange
+              operator: isEqualString
+              right:
+                value:
+                  simple: "yes"
+          root: IP
+    - incidentfield: Detected External IPs
+      output:
+        complex:
+          accessor: Address
+          filters:
+          - - ignorecase: true
+              left:
+                iscontext: true
+                value:
+                  simple: IP.InRange
+              operator: isEqualString
+              right:
+                value:
+                  simple: "no"
+          root: IP
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "40"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        complex:
+          accessor: sourceip
+          root: incident
+      ipRanges:
+        simple: ${lists.Internal IP Ranges}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns yes if the IP is in one of the ranges provided, returns
+        no otherwise.
+      id: 91161e02-63a0-4e91-8576-2db89e85f1be
+      iscommand: false
+      name: Check if Source IP was from an Internal or External IP with Field Mapping
+      script: IsIPInRanges
+      type: regular
+      version: -1
+    taskid: 91161e02-63a0-4e91-8576-2db89e85f1be
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 1390
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 99915672-9bd7-4f17-8bf9-1fece90ca619
+      iscommand: false
+      name: Engage with User
+      type: title
+      version: -1
+    taskid: 99915672-9bd7-4f17-8bf9-1fece90ca619
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 2060
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fa16abf4-b0a3-4dec-840a-99be26b48a09
+      iscommand: false
+      name: Block Malicious URL
+      type: title
+      version: -1
+    taskid: fa16abf4-b0a3-4dec-840a-99be26b48a09
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 2570
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - URL Clicked Playbook (Completed)\n\nExample
+          playbook for the Training - URL Clicks use case, for xsoar engineer training.
+          \ This is what it *could* look like when done. \n\nMake sure to run it on
+          a properly classified and mapped Incident in XSOAR, as it requires specific
+          fields!"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 4202f8c8-7019-4acc-8ab5-c8cbe34ec489
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: 4202f8c8-7019-4acc-8ab5-c8cbe34ec489
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 370
+        }
+      }
+  "34":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ActiveDirectory.Users.sAMAccountName
+          operator: isExists
+          right:
+            value: {}
+      - - left:
+            iscontext: true
+            value:
+              simple: ActiveDirectory.Users.sAMAccountName
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "35"
+      "yes":
+      - "26"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Does the user exist in AD?
+      id: 6e26f7f0-f22b-44e7-8397-6fcfcb0851a7
+      iscommand: false
+      name: Does the User exist in AD?
+      type: condition
+      version: -1
+    taskid: 6e26f7f0-f22b-44e7-8397-6fcfcb0851a7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 592.5,
+          "y": 1215
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeNotes:
+        simple: User ${incident.emailto} does not exist.
+      closeReason:
+        simple: False Positive
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: cdedfa28-486e-40f3-8bf1-f06e012d73e3
+      iscommand: true
+      name: Close Investigation - FP - User does not exist
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: cdedfa28-486e-40f3-8bf1-f06e012d73e3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1145,
+          "y": 3050
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      name:
+        simple: URL Clicked - ${incident.eventtype} - ${incident.sourceusername}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: fbcf7e36-6f7e-4778-8620-54bce57113c3
+      iscommand: true
+      name: Update the Incident Name
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: fbcf7e36-6f7e-4778-8620-54bce57113c3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 545
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a7b4dd05-ab9e-4019-802c-d5f98f8218db
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: a7b4dd05-ab9e-4019-802c-d5f98f8218db
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 817.5,
+          "y": 3225
+        }
+      }
+  "38":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: eventtype
+                root: incident
+          operator: isEqualString
+          right:
+            value:
+              simple: url blocked
+      label: "yes"
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "1"
+      "yes":
+      - "39"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Was the type = url blocked
+      id: a7a942c9-c8f9-4136-857b-f9de4172f6f1
+      iscommand: false
+      name: Was the URL Blocked?
+      type: condition
+      version: -1
+    taskid: a7a942c9-c8f9-4136-857b-f9de4172f6f1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 865
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeNotes:
+        simple: URL blocked by firewall.  Nothing to see here.
+      closeReason:
+        simple: Resolved
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 8f4b48d4-d4b7-4eda-8be4-20b3b72044cc
+      iscommand: true
+      name: Close - URL Blocked
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 8f4b48d4-d4b7-4eda-8be4-20b3b72044cc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1575,
+          "y": 3050
+        }
+      }
+  "40":
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "7"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      includeManual:
+        simple: "yes"
+      includeSuspicious:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the investigation found any malicious indicators (file,
+        URL, IP address, domain, or email). Returns "yes" if at least one malicious
+        indicator is found.
+      id: 61e9cf56-7b78-46bc-83c3-23a91ba7ef6e
+      iscommand: false
+      name: Are there Malicious/Suspicious Indicators Found?
+      script: IsMaliciousIndicatorFound
+      type: condition
+      version: -1
+    taskid: 61e9cf56-7b78-46bc-83c3-23a91ba7ef6e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 1565
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 3240,
+        "width": 1905,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
