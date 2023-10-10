@@ -1,0 +1,172 @@
+{
+	"author": "Arun Narayanan",
+	"authorImage": "content/packs/XsoarWebserver/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "This is used to complete the Scheduled command if the either/both the users respond in time. The time is configured on the EmailUserSLA.",
+				"name": "EmailSLABreach",
+				"tags": [
+					"sla"
+				]
+			},
+			{
+				"description": "Companion automation to XSOAR-Web-Server that polls a certain UUID for user response.\nThe automation returns a scheduledcommand if the user has not responded to the action url",
+				"name": "xsoar-ws-poll-status",
+				"tags": []
+			},
+			{
+				"description": "To parse the context data after running  xsoar-ws-get-action-status and resend emails to recipients who have not responded",
+				"name": "xsoar-ws-parse-context",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Xsoar-web-server Email Send Counter",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "Xsoar-web-server Email User SLA",
+				"type": "timer"
+			}
+		],
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "setup the web server to handle URL clicks for each action specified from single or multiple recipients",
+						"name": "xsoar-ws-setup-simple-action"
+					},
+					{
+						"description": "Clear the backend storage containing all session information.",
+						"name": "xsoar-ws-clear-cache"
+					},
+					{
+						"description": "Show the details of all the setup actions from the backend",
+						"name": "xsoar-ws-show-cache"
+					},
+					{
+						"description": "Remove a certain job from the backend",
+						"name": "xsoar-ws-remove-action"
+					},
+					{
+						"description": "Gets the current status of an action that was setup; Used to track if the user responded to the action.",
+						"name": "xsoar-ws-get-action-status"
+					},
+					{
+						"description": "Set a job to complete. Usually called from the automation that is polling the result",
+						"name": "xsoar-ws-set-job-complete"
+					},
+					{
+						"description": "setup a form submission job that can take multiple values from multiple users",
+						"name": "xsoar-ws-setup-form-submission"
+					}
+				],
+				"description": "This is a simple web-server that as of now, supports handling configurable user responses (like Yes/No/Maybe) and data collection tasks that can be used to fetch key value pairs. What makes it different from Data collection tasks is that, the URL to perform a certain action is predictable and written to the incident context when an action is setup.This URL can be inserted to for eg: an HTML email.  User clicks are  are recorded in the integration context and can be polled by Scheduled Commands/ Generic Polling",
+				"id": "XSOAR-Web-Server",
+				"name": "XSOAR-Web-Server (Community Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Playbook to demonstrate the features of XSOAR-Web-Server. It sends an html email to a set of users up to 2 times. The email can contain multiple html links, that the users can click and the response will be available in the context\n",
+				"name": "xsoarwebserver-email-data-collection"
+			},
+			{
+				"description": "This playbook tracks the user responses and  resends the emails to recipients who have not responded",
+				"name": "xsoar-data-collection-response-tracking"
+			},
+			{
+				"description": "Playbook to demonstrate the features of XSOAR-Web-Server. It sends an html email to a set of users up to 2 times. The email can contain multiple html links, that the users can click and the response will be available in the context. This playbook sets up the webserver to handle http get requests\n",
+				"name": "xsoarwebserver-email-acknowledgement"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"currentVersion": "1.0.1",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.32.19",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Contains a minimal webserver and an automation that can be used to generate predictable URLs that can be inserted into emails and the responses can be tracked. Also contains a test playbook meant to be a POC.",
+	"disabledMonthly": false,
+	"downloads": 56,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.5.0",
+	"general": [
+		"generalFieldFree"
+	],
+	"id": "XsoarWebserver",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/XsoarWebserver/XSOAR-Web-Server_image.png",
+			"name": "XSOAR-Web-Server"
+		}
+	],
+	"itemVersion": "1.0.1",
+	"keywords": [],
+	"legacy": true,
+	"name": "Xsoar-web-server",
+	"packID": "XsoarWebserver",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This content pack contains a long running integration that runs a simple configurable webserver that can generate predictable URLs to share with users. The URL clicks are captured and responses are stored to the integration context. The commands take as input HTML templates(with place holders) and inserts the URLs. The final html can be emailed to the users or in the case of an form submission, the link can be copied from the context data and can be used as a tradional data collection task. The advantage is that, you can build any template you want.\n\n As of now, the integration can be used for 2 types of links. \n 1. Simple URLs that can be clicked to register a response (or approve a certain task)\n 2. A URL that accepts an HTTP POST to accept a form. \n   \n    \nThe pack also contains an automation that can be used to poll the user's response and two playbooks corresponding to the options above. \n\nLimitations\nForm submissions cannot accept a file upload as of now. To be implemented later\nIt is not possible to setup multiple data collection jobs simultaneously within the same playbook,  if you want to resend the email to the recipients.",
+	"searchRank": 0,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.5.0",
+	"support": "community",
+	"supportDetails": {
+		"email": "",
+		"url": "https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-07-25T22:32:54+03:00",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "5720652",
+	"videos": []
+}
