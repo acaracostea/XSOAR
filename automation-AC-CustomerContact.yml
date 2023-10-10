@@ -1,0 +1,32 @@
+commonfields:
+  id: 6024d026-2d2d-4bb7-81cd-0a03f4b0ce4a
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.11.56857
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AC-CustomerContact
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  import json
+  from collections import OrderedDict
+  data = demisto.executeCommand("getList", { "listName": "CustomerContact" })[0]['Contents']
+  demisto.results({"total": 5, "data":json.loads(data, object_pairs_hook=OrderedDict)})
+scripttarget: 0
+subtype: python3
+tags:
+- widget
+type: python
