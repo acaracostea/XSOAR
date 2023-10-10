@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "mitre-get-indicator-name,endpoint,mitre-get-indicator-name,mitre-get-indicator-name,mitre-get-indicator-name,endpoint,mitre-get-indicator-name,microsoft-atp-get-alert-by-id,mitre-get-indicator-name,mitre-get-indicator-name,endpoint,microsoft-atp-get-alert-by-id,microsoft-atp-get-alert-by-id",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Failed Incident Commands",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Failed Incident Commands",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
