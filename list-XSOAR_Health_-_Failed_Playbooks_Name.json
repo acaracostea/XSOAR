@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response,Telia - MDE Malware - Investigation and Response",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "XSOAR Health - Failed Playbooks Name",
+	"itemVersion": "",
+	"locked": false,
+	"name": "XSOAR Health - Failed Playbooks Name",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
