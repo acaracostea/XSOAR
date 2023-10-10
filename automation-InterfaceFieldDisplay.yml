@@ -1,0 +1,41 @@
+commonfields:
+  id: 1e533a22-14c6-42a3-87d3-e9187296e9fb
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: InterfaceFieldDisplay
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  incident = demisto.incident()['CustomFields']
+  adom = incident['adom'] if 'adom' in incident.keys() else []
+  options = ["any"]
+  try:
+      intfs = demisto.executeCommand('fortimanager-dynamic-interface-list', {'adom':adom, 'using':'FortiManager_instance_1'})[0]['Contents']
+      for intf in intfs:
+          options.append(intf['name'])
+      demisto.results({'hidden': False, 'options': options})
+
+  except Exception as ex:
+      print(ex)
+scripttarget: 0
+subtype: python3
+tags:
+- Firewall Changes
+- AC
+- field-display
+type: python
