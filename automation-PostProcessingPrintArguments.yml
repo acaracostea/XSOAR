@@ -1,0 +1,42 @@
+comment: Demo script that returns the arguments available to us in the post-processing
+  script.
+commonfields:
+  id: PostProcessingPrintArguments
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python:2.7.18.49010
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: PostProcessingPrintArguments
+pswd: ""
+runas: Administrator
+runonce: false
+script: |
+  register_module_line('PostProcessingPrintArguments', 'start', __line__())
+
+
+  # return the args to the war room, useful for seeing what you have available to you
+  # args can be called with demisto.args().get('argname')
+  demisto.results(demisto.args())
+
+  register_module_line('PostProcessingPrintArguments', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- post-processing
+- training
+timeout: 80ns
+type: python
