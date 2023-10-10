@@ -1,0 +1,39 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#0071cf",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Recorded Future Alert",
+	"itemVersion": "1.7.2",
+	"layout": "Recorded Future Incident",
+	"locked": false,
+	"name": "Recorded Future Alert",
+	"onChangeRepAlg": 0,
+	"packID": "RecordedFuture",
+	"packName": "Recorded Future Intelligence",
+	"packPropagationLabels": [
+		"all"
+	],
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
