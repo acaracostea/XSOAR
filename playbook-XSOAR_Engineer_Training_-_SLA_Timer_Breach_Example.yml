@@ -1,0 +1,346 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: 'This playbook demonstrates a timer breach script in action.  Timers
+  can be used to track metrics, or to trigger actions in a playbook at a later date. '
+id: XSOAR Engineer Training - SLA Timer Breach Example
+inputs: []
+name: XSOAR Engineer Training - SLA Timer Breach Example
+outputs: []
+starttaskid: "0"
+system: true
+tags:
+- training
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 83cb5066-24e5-4b08-891e-43c15a937921
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 83cb5066-24e5-4b08-891e-43c15a937921
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e6736bf8-c15f-4a44-828c-56e6f1fbf0f8
+      iscommand: false
+      name: Start Training Example Timer
+      type: title
+      version: -1
+    taskid: e6736bf8-c15f-4a44-828c-56e6f1fbf0f8
+    timertriggers:
+    - action: start
+      fieldname: trainingexampletimer
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        This task is tagged with 'timerbreach', and the breach script will complete it when the SLA timer breaches in 1 minute.
+      id: 91b91b4c-5b42-4a48-88ea-55ac68098b6b
+      iscommand: false
+      name: This task will complete when the timer breaches in 1 minute.
+      tags:
+      - timerbreach
+      type: regular
+      version: -1
+    taskid: 91b91b4c-5b42-4a48-88ea-55ac68098b6b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1040
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: slaStatus
+          root: incident.trainingexampletimer
+          transformers:
+          - args:
+              input_values:
+                value:
+                  simple: "-1"
+              mapped_values:
+                value:
+                  simple: BREACHED
+            operator: MapValuesTransformer
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: b6f4e59b-cd75-45c5-87f5-5ed59d819013
+      iscommand: false
+      name: Timer Breached!
+      script: Print
+      type: regular
+      version: -1
+    taskid: b6f4e59b-cd75-45c5-87f5-5ed59d819013
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1215
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ef90beb1-1d75-40c8-8213-4bee57dfdcac
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: ef90beb1-1d75-40c8-8213-4bee57dfdcac
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1390
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Complete this Task to start the timer. '
+      id: a3fa2910-af28-4275-8458-6883a9529224
+      iscommand: false
+      name: Continue to Start the Timer
+      type: regular
+      version: -1
+    taskid: a3fa2910-af28-4275-8458-6883a9529224
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 937c69e9-4285-4da7-8b17-ab29782f37ee
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 937c69e9-4285-4da7-8b17-ab29782f37ee
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - SLA Timer Breach Example\n\nThis playbook
+          demonstrates a timer breach script in action.  Timers can be used to track
+          metrics, or to trigger actions in a playbook at a later date. "
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 26f928e0-36db-4816-8aa0-e215726dd1e8
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: 26f928e0-36db-4816-8aa0-e215726dd1e8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentId:
+        complex:
+          accessor: id
+          root: incident
+      timerField:
+        simple: trainingexampletimer
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.reset.timer
+      id: 665b410b-9de9-42c9-832e-d6eb887216e4
+      iscommand: true
+      name: Reset Timer - To run more than once!
+      script: Builtin|||resetTimer
+      type: regular
+      version: -1
+    taskid: 665b410b-9de9-42c9-832e-d6eb887216e4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1405,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
