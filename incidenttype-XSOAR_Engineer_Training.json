@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#E57373",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.8.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "XSOAR Engineer Training",
+	"itemVersion": "1.0.0",
+	"layout": "XSOAR Engineer Training Layout",
+	"locked": false,
+	"name": "XSOAR Engineer Training",
+	"onChangeRepAlg": 1,
+	"packID": "XSOAR_Engineer_Training",
+	"packName": "XSOAR Engineer Training",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "XSOAR Engineer Training - Setup",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 1,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
