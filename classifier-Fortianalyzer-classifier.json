@@ -1,0 +1,38 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "6abbb929-df78-4816-8a75-c32b033399a8",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {
+		"dns": "Fortianalyzer DNS",
+		"traffic": "Fortianalyzer Traffic",
+		"webfilter": "Fortianalyzer Webfilter"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Fortianalyzer-classifier",
+	"nameRaw": "Fortianalyzer-classifier",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "eventtype"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
