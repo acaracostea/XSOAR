@@ -1,0 +1,334 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.8.0
+    itemVersion: 1.0.0
+    packID: XSOAR_Engineer_Training
+    packName: XSOAR Engineer Training
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: "This playbook demonstrates playbook looping via the embedded sub-playbook.
+  \ In this case, we query for a list of users to lookup, and pass them into the sub-playbook.
+  \ \n\nThe sub-playbook will check to see if the user exists in AD or not, and return
+  a list of users who do exist, and those who don't as outputs which we can use in
+  further parts of our parent playbook."
+id: XSOAR Engineer Training - AD User Lookup (Parent)
+inputs: []
+name: XSOAR Engineer Training - AD User Lookup (Parent)
+outputs: []
+starttaskid: "0"
+system: true
+tags:
+- training
+- xet
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7a996e27-ba49-434a-8983-ea4495ec2b05
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 7a996e27-ba49-434a-8983-ea4495ec2b05
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
+      iscommand: false
+      max: 100
+      wait: 3
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Users:
+        complex:
+          accessor: "0"
+          root: Emails to Lookup.Answers
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: splitAndTrim
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: The playbook will check to see if the user exists in AD or not,
+        and return a list of users who do exist, and those who don't as output to
+        the parent.
+      id: 93235d12-76d2-4d1b-8249-0bcd490feb89
+      iscommand: false
+      name: XSOAR Engineer Training - AD User Lookup (Sub-Playbook)
+      playbookId: XSOAR Engineer Training - AD User Lookup (Sub-Playbook)
+      type: playbook
+      version: -1
+    taskid: 93235d12-76d2-4d1b-8249-0bcd490feb89
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c3e57cb3-5a30-48cc-8921-7347f331f7f2
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: c3e57cb3-5a30-48cc-8921-7347f331f7f2
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1070
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 9c74f0c7-ca93-4786-8a60-c2889c401170
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 9c74f0c7-ca93-4786-8a60-c2889c401170
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    form:
+      description: Please select which users to lookup.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Emails
+        options: []
+        optionsarg:
+        - simple: james.bond@xsoar.local
+        - simple: jaime.bond@xsoar.local
+        - simple: eve.moneypenny@xsoar.local
+        - simple: evan.moneypenny@xsoar.local
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: Select one or more users to lookup with the sub-playbook
+        type: multiSelect
+      sender: ""
+      title: Emails to Lookup
+      totalanswers: 0
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Emails to lookup
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Query for the users to lookup.
+      id: 45791781-4532-46ac-8cca-19cb7a79bb10
+      iscommand: false
+      name: Query for User Emails to lookup
+      type: collection
+      version: -1
+    taskid: 45791781-4532-46ac-8cca-19cb7a79bb10
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: |-
+          Users who exist:
+          ${Exists}
+
+          Users who unfortunately do not:
+          ${NotExisted}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 38ce5026-1998-4e45-89d6-3fcd3aa74b25
+      iscommand: false
+      name: Print sub-playbook outputs (Existed/NotExisted)
+      script: Print
+      type: regular
+      version: -1
+    taskid: 38ce5026-1998-4e45-89d6-3fcd3aa74b25
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - AD User Lookup (Parent)\n\nThis playbook
+          demonstrates playbook looping via the embedded sub-playbook.  In this case,
+          we query for a list of users to lookup, and pass them into the sub-playbook.
+          \ \n\nThe sub-playbook will check to see if the user exists in AD or not,
+          and return a list of users who do exist, and those who don't as outputs
+          which we can use in further parts of our parent playbook."
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: e7cf1728-6548-44d7-8284-99d59183a107
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: e7cf1728-6548-44d7-8284-99d59183a107
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1085,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
