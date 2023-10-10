@@ -1,0 +1,57 @@
+commonfields:
+  id: 78008b78-40c5-452f-8fdf-76483df4804a
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.12.63474
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AC-Test
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  context = demisto.context()
+  keys = []
+
+  if 'events' in context.keys():
+
+      table = context['events']
+      if isinstance(table,list):
+          for row in table:
+              for key in row.keys():
+                  if key not in keys:
+                      keys.append(key)
+      else:
+          for key in row.keys():
+              if key not in keys:
+                  keys.append(key)
+
+
+      markdown = tableToMarkdown('Alert Events', table, headers=keys)
+
+      results = CommandResults(
+      readable_output=markdown,
+      outputs_prefix='tabel',
+      outputs_key_field='id',
+      outputs=table
+      )
+      return_results(results)
+
+  else:
+      return_results("There are no events fetched for the alert")
+scripttarget: 0
+subtype: python3
+tags:
+- dynamic-section
+type: python
