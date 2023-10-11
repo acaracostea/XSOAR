@@ -8,10 +8,10 @@ commonfields:
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
-    fromServerVersion: 5.5.0
-    itemVersion: 4.5.16
+    fromServerVersion: ""
+    itemVersion: ""
     packID: Microsoft365Defender
-    packName: Microsoft 365 Defender
+    packName: ""
     packPropagationLabels:
     - all
     prevname: ""
@@ -37,7 +37,7 @@ script: |
           return value
       users = value.split(',')
 
-      return [{'User': user for user in users}]
+      return [{'Impacted entities': user for user in users}]
 
 
   if __name__ in ('__main__', '__builtin__', 'builtins'):
