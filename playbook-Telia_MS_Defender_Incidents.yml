@@ -93,6 +93,10 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+      - "4"
     note: false
     quietmode: 0
     scriptarguments:
@@ -119,14 +123,98 @@ tasks:
           "y": 280
         }
       }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: Address
+          root: IP
+          transformers:
+          - args:
+              separator:
+                value:
+                  simple: ','
+            operator: join
+      tags:
+        simple: Defender
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of multiple indicators
+      id: 29bdad20-b0f5-4663-8afb-c837ad0b21ad
+      iscommand: true
+      name: setIndicators
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: 29bdad20-b0f5-4663-8afb-c837ad0b21ad
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 530
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: Data
+          root: URL
+          transformers:
+          - args:
+              separator:
+                value:
+                  simple: ','
+            operator: join
+      tags:
+        simple: Defender
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of multiple indicators
+      id: 970141f7-6e8e-4dfe-8a09-2a9973c340b1
+      iscommand: true
+      name: setIndicators
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: 970141f7-6e8e-4dfe-8a09-2a9973c340b1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 870,
+          "y": 530
+        }
+      }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 325,
-        "width": 850,
+        "height": 575,
+        "width": 1270,
         "x": -20,
         "y": 50
       }
