@@ -41,7 +41,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 265,
+          "x": 480,
           "y": 50
         }
       }
@@ -53,7 +53,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "2"
+      - "5"
     note: false
     quietmode: 2
     reputationcalc: 2
@@ -77,7 +77,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 50,
+          "x": 265,
           "y": 370
         }
       }
@@ -109,8 +109,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 50,
-          "y": 545
+          "x": 265,
+          "y": 895
         }
       }
   "3":
@@ -154,7 +154,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 265,
+          "x": 480,
           "y": 195
         }
       }
@@ -186,8 +186,134 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 480,
+          "x": 695,
           "y": 370
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "10"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: 8e67cee6-2dc2-40ef-816a-046be0524018
+      iscommand: false
+      name: Sleep
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 8e67cee6-2dc2-40ef-816a-046be0524018
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: Address
+          root: IP
+          transformers:
+          - args:
+              separator:
+                value:
+                  simple: ','
+            operator: join
+      tags:
+        simple: FAZ
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of multiple indicators
+      id: 4a4eb423-a4f8-46eb-87f2-ec5d031f612f
+      iscommand: true
+      name: setIndicators
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: 4a4eb423-a4f8-46eb-87f2-ec5d031f612f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: Data
+          root: URL
+          transformers:
+          - args:
+              separator:
+                value:
+                  simple: ','
+            operator: join
+      tags:
+        simple: FAZ
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of multiple indicators
+      id: 517666eb-7673-4799-8b65-ed1ffd0d5958
+      iscommand: true
+      name: setIndicators
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: 517666eb-7673-4799-8b65-ed1ffd0d5958
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 720
         }
       }
 version: -1
@@ -196,8 +322,8 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 590,
-        "width": 810,
+        "height": 940,
+        "width": 1025,
         "x": 50,
         "y": 50
       }
