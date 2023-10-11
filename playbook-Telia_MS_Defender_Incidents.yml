@@ -216,6 +216,7 @@ tasks:
       '#none#':
       - "3"
       - "4"
+      - "6"
     note: false
     quietmode: 0
     scriptarguments:
@@ -242,6 +243,48 @@ tasks:
           "y": 450
         }
       }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: Name
+          root: Domain
+          transformers:
+          - args:
+              separator:
+                value:
+                  simple: ','
+            operator: join
+      tags:
+        simple: Defender
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of multiple indicators
+      id: 2ce13d2b-2aff-496d-89cd-4c08b8f251ba
+      iscommand: true
+      name: setIndicators
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: 2ce13d2b-2aff-496d-89cd-4c08b8f251ba
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1310,
+          "y": 625
+        }
+      }
 version: -1
 view: |-
   {
@@ -249,7 +292,7 @@ view: |-
     "paper": {
       "dimensions": {
         "height": 670,
-        "width": 1280,
+        "width": 1710,
         "x": -20,
         "y": 50
       }
