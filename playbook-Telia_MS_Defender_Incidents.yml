@@ -24,7 +24,6 @@ tasks:
     nexttasks:
       '#none#':
       - "2"
-      - "1"
     note: false
     quietmode: 0
     separatecontext: false
