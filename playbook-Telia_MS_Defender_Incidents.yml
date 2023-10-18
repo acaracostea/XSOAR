@@ -249,6 +249,9 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
     note: false
     quietmode: 0
     scriptarguments:
@@ -285,13 +288,132 @@ tasks:
           "y": 625
         }
       }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      domain:
+        complex:
+          accessor: Name
+          root: Domain
+      qtype:
+        simple: A,AAAA
+      server:
+        simple: 8.8.8.8
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns DNS details for a domain.
+      id: 10cfa0c4-89f4-4cd8-840e-c2d2ad70a213
+      iscommand: false
+      name: GetDomainDNSDetails
+      script: GetDomainDNSDetails
+      type: regular
+      version: -1
+    taskid: 10cfa0c4-89f4-4cd8-840e-c2d2ad70a213
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1310,
+          "y": 805
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "10"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: adb7c28c-0764-45b9-83e2-bdbeedc48ad6
+      iscommand: false
+      name: Sleep
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: adb7c28c-0764-45b9-83e2-bdbeedc48ad6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1310,
+          "y": 990
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: Address
+          root: IPv6
+          transformers:
+          - args:
+              separator:
+                value:
+                  simple: ','
+            operator: join
+      tags:
+        simple: Defender
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of multiple indicators
+      id: b9d1d6a6-17aa-4593-8a50-a3cf4edd910f
+      iscommand: true
+      name: setIndicators
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: b9d1d6a6-17aa-4593-8a50-a3cf4edd910f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1310,
+          "y": 1195
+        }
+      }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 670,
+        "height": 1240,
         "width": 1710,
         "x": -20,
         "y": 50
