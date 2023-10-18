@@ -40,8 +40,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 50
+          "x": 275,
+          "y": 65
         }
       }
   "1":
@@ -82,8 +82,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -20,
-          "y": 280
+          "x": 705,
+          "y": 50
         }
       }
   "2":
@@ -117,8 +117,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 280
+          "x": 275,
+          "y": 225
         }
       }
   "3":
@@ -159,8 +159,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 625
+          "x": 275,
+          "y": 1275
         }
       }
   "4":
@@ -201,8 +201,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 880,
-          "y": 625
+          "x": 50,
+          "y": 575
         }
       }
   "5":
@@ -238,8 +238,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 450
+          "x": 275,
+          "y": 400
         }
       }
   "6":
@@ -250,7 +250,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "7"
+      - "10"
     note: false
     quietmode: 0
     scriptarguments:
@@ -283,8 +283,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1310,
-          "y": 625
+          "x": 500,
+          "y": 575
         }
       }
   "7":
@@ -325,8 +325,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1310,
-          "y": 805
+          "x": 500,
+          "y": 925
         }
       }
   "8":
@@ -361,8 +361,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1310,
-          "y": 990
+          "x": 500,
+          "y": 1100
         }
       }
   "9":
@@ -403,8 +403,50 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1310,
-          "y": 1195
+          "x": 705,
+          "y": 1275
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Name
+                root: Domain
+          operator: isEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c2c4ab95-be9e-4ba1-8819-22bf3cc17976
+      iscommand: false
+      name: Check if Domain is empty
+      type: condition
+      version: -1
+    taskid: c2c4ab95-be9e-4ba1-8819-22bf3cc17976
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 500,
+          "y": 750
         }
       }
 version: -1
@@ -413,9 +455,9 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 1240,
-        "width": 1710,
-        "x": -20,
+        "height": 1320,
+        "width": 1035,
+        "x": 50,
         "y": 50
       }
     }
