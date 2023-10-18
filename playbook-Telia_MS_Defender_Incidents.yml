@@ -298,6 +298,7 @@ tasks:
       - "8"
     note: false
     quietmode: 0
+    reputationcalc: 2
     scriptarguments:
       domain:
         complex:
@@ -312,13 +313,13 @@ tasks:
     task:
       brand: ""
       description: Returns DNS details for a domain.
-      id: 10cfa0c4-89f4-4cd8-840e-c2d2ad70a213
+      id: 93f8e3cb-544c-48c8-84c4-149b57ed2cc0
       iscommand: false
       name: GetDomainDNSDetails
       script: GetDomainDNSDetails
       type: regular
       version: -1
-    taskid: 10cfa0c4-89f4-4cd8-840e-c2d2ad70a213
+    taskid: 93f8e3cb-544c-48c8-84c4-149b57ed2cc0
     timertriggers: []
     type: regular
     view: |-
